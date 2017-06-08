@@ -45,6 +45,8 @@ W = ones(N);
 if (~affine)
     % initialization
     A = inv(mu1*(Y'*Y)+mu2*eye(N));
+%     YTYinv = (Y' * Y + Par.rho/2 * eye(N))\eye(N);
+%     P = (2/Par.rho * eye(N) - (2/Par.rho)^2 * Y' / (2/Par.rho * (Y * Y') + eye(L)) * Y );
     C1 = zeros(N,N);
     Lambda2 = zeros(N,N);
     err1 = 10*thr1; err2 = 10*thr2;
