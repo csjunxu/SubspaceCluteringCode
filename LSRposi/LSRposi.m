@@ -1,4 +1,4 @@
-function missrate = LSRposi(X,r,affine,alpha,ep1,ep2,outlier,rho,s)
+function missrate = LSRposi(X,r,affine,alpha,outlier,rho,s)
 
 if (nargin < 8)
     rho = 1;
@@ -24,10 +24,10 @@ else
 end
 
 if (~outlier)
-    CMat = admmLasso_mat_func(Xp,affine,alpha,ep1,ep2);
+    CMat = admmLasso_mat_func(Xp,affine,alpha);
     C = CMat;
 else
-    CMat = admmOutlier_mat_func(Xp,affine,alpha,ep1,ep2);
+    CMat = admmOutlier_mat_func(Xp,affine,alpha);
     N = size(Xp,2);
     C = CMat(1:N,:);
 end

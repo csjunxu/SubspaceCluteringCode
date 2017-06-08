@@ -26,8 +26,6 @@ addpath(genpath(fullfile(pwd)));
 cd 'C:/Users/csjunxu/Desktop/SC/Datasets/Hopkins155/';
 
 alpha = 800;
-ep1 = 0.001;
-ep2 = 0.02;
 
 maxNumGroup = 5;
 for i = 1:maxNumGroup
@@ -60,11 +58,11 @@ for i = 1:length(d)
             X = reshape(permute(x(1:2,:,:),[1 3 2]),D,N);
             
             r = 0; affine = true; outlier = false; rho = 0.7;
-            missrate1= LSRposi(X,r,affine,alpha,ep1,ep2,outlier,rho,s);
+            missrate1= LSRposi(X,r,affine,alpha,outlier,rho,s);
             
             r = 4*n; affine = true; outlier = false; rho = 0.7;
             time02 =   clock;
-            missrate2 = LSRposi(X,r,affine,alpha,ep1,ep2,outlier,rho,s);
+            missrate2 = LSRposi(X,r,affine,alpha,outlier,rho,s);
             
             num(n) = num(n) + 1;
             missrateTot1{n}(num(n)) = missrate1;

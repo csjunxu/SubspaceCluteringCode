@@ -1,4 +1,4 @@
-function C2 = admmOutlier_mat_func(Y,affine,alpha,ep1,ep2,thr,maxIter)
+function C2 = admmOutlier_mat_func(Y,affine,alpha,thr,maxIter)
 
 if (nargin < 2)
     % default subspaces are linear
@@ -67,19 +67,17 @@ if (~affine)
         % updating C
         C2 = max(0,(abs(Z+Lambda2/mu2) - 1/mu2*W)) .* sign(Z+Lambda2/mu2);
         C2(1:N,:) = C2(1:N,:) - diag(diag(C2(1:N,:)));
-        % updating W
-        W = ep2./(abs(C2)+ep1);
         % updating Lagrange multipliers
         Lambda1 = Lambda1 + mu1 * (Y - P * Z);
         Lambda2 = Lambda2 + mu2 * (Z - C2);
-%         % computing errors
-%         err1(i+1) = errorCoef(Z,C2);
-%         err2(i+1) = errorLinSys(P,Z);
+        % computing errors
+        err1(i+1) = errorCoef(Z,C2);
+        err2(i+1) = errorLinSys(P,Z);
         %
         C1 = C2;
         i = i + 1;
     end
-%     fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end),err2(end),i);
+    fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end),err2(end),i);
 else
     % initialization
     delta = [ones(N,1);zeros(D,1)];

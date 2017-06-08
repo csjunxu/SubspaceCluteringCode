@@ -1,4 +1,4 @@
-function C2 = admmLasso_mat_func(Y,affine,alpha,ep1,ep2,thr,maxIter)
+function C2 = admmLasso_mat_func(Y,affine,alpha,thr,maxIter)
 
 if (nargin < 2)
     % default subspaces are linear
@@ -40,8 +40,6 @@ N = size(Y,2);
 mu1 = alpha1 * 1/computeLambda_mat(Y);
 mu2 = alpha2 * 1;
 
-W = ones(N);
-
 if (~affine)
     % initialization
     A = inv(mu1*(Y'*Y)+mu2*eye(N));
@@ -57,10 +55,8 @@ if (~affine)
         Z = A * (mu1*(Y'*Y)+mu2*(C1-Lambda2/mu2));
         Z = Z - diag(diag(Z));
         % updating C
-        C2 = max(0,(abs(Z+Lambda2/mu2) - 1/mu2*W)) .* sign(Z+Lambda2/mu2);
+        C2 = max(0,(abs(Z+Lambda2/mu2) - 1/mu2*ones(N))) .* sign(Z+Lambda2/mu2);
         C2 = C2 - diag(diag(C2));
-        % updating weight matrix
-        W = ep2./(abs(C2)+ep1);
         % updating Lagrange multipliers
         Lambda2 = Lambda2 + mu2 * (Z - C2);
         % computing errors
@@ -85,12 +81,8 @@ else
         Z = A * (mu1*(Y'*Y)+mu2*(C1-Lambda2/mu2)+mu2*ones(N,1)*(ones(1,N)-lambda3/mu2));
         Z = Z - diag(diag(Z));
         % updating C
-        C2 = max(0,(abs(Z+Lambda2/mu2) - 1/mu2*W)) .* sign(Z+Lambda2/mu2);
+        C2 = max(0,(abs(Z+Lambda2/mu2) - 1/mu2*ones(N))) .* sign(Z+Lambda2/mu2);
         C2 = C2 - diag(diag(C2));
-        
-        % updating weight matrix
-        W = ep2./(abs(C2)+ep1);
-        
         % updating Lagrange multipliers
         Lambda2 = Lambda2 + mu2 * (Z - C2);
         lambda3 = lambda3 + mu2 * (ones(1,N)*Z - ones(1,N));

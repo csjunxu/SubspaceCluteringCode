@@ -26,8 +26,6 @@ addpath(genpath(fullfile(pwd)));
 cd '../../data/FBMS137';
 
 alpha = 753;
-ep1 = 0.0002;
-ep2 = 0.0014;
 maxNumGroup = 5;
 for i = 1:maxNumGroup
     num(i) = 0;
