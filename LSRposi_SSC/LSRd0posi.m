@@ -3,7 +3,7 @@ function missrate = LSRd0posi(X,r,affine,outlier,rho,s,Par)
 if (nargin < 7)
     Par.lambda = 1;
     Par.rho = 0.1;
-    Par.maxIter = 200;
+    Par.maxIter = 100;
 end
 if (nargin < 5)
     rho = 1;
