@@ -7,7 +7,7 @@ method = 'LSRd0po_SSC';
 
 for mu = [1]
     Par.mu = mu;
-    for maxIter = [150 100 200]
+    for maxIter = [100 150 200]
         Par.maxIter = maxIter;
         for lambda = [0.1 0.5 1]
             Par.lambda = lambda;
