@@ -10,11 +10,13 @@ if (nargin < 2)
     % default subspaces are linear
     affine = false;
 end
-% default coefficient error threshold to stop ADMM
-% default linear system error threshold to stop ADMM
+
+% default coefficient and linear system error threshold to stop ADMM
 thr = 2*10^-4;
 
 [L, N] = size (Y);
+
+
 % setting penalty parameters for the ADMM
 % mu1 = alpha1 * 1/computeLambda_mat(Y);
 % mu2 = alpha2 * 1;
@@ -55,7 +57,8 @@ if (~affine)
     fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end),err2(end),i);
 else
     %% initialization
-    Inv = (Y'*Y+Par.rho/2*eye(N)+Par.rho/2*ones(N,N))\eye(N);
+    Inv = (Y'*Y+Par.rho/2*(eye(N)+ones(N,N)))\eye(N);
+    InvW = (2/Par.rho*(eye(N)+ones(N,N))-(2/Par.rho)^2*Y'/(2/Par.rho*(Y*Y')+eye(L))*Y);
     C1 = zeros(N,N);
     Delta = zeros(N,N);
     lambda3 = zeros(1,N);
