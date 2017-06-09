@@ -1,4 +1,4 @@
-function missrate = LSRposi(X,r,affine,alpha,outlier,rho,s)
+function missrate = LSRd0posi(X,r,affine,alpha,outlier,rho,s)
 
 if (nargin < 8)
     rho = 1;
