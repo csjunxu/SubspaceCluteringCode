@@ -61,12 +61,12 @@ end
 
 for mu = [1]
     Par.mu = mu;
-    for lambda = [5e-5 1e-5]
-        Par.lambda = lambda;
-        for rho = [0.07 0.03 0.06 0.04 0.08]
-            Par.rho = rho;
-            for maxIter = [200]
-                Par.maxIter = maxIter;
+    for maxIter = [200]
+        Par.maxIter = maxIter;
+        for lambda = [2e-5:1e-5:4e-5]
+            Par.lambda = lambda;
+            for rho = [0.02:0.01:0.08]
+                Par.rho = rho;
                 maxNumGroup = 5;
                 for i = 1:maxNumGroup
                     num(i) = 0;
@@ -78,8 +78,7 @@ for mu = [1]
                     gnd = data(i).ids' ;
                     K = length( unique( gnd ) ) ;
                     n = max(gnd);
-                    accuracy = SubspaceSegmentation( SegmentationMethod , ProjX , gnd , Par ) ;
-                    missrate = 1 - accuracy;
+                    missrate = SubspaceSegmentation( SegmentationMethod , ProjX , gnd , Par ) ;
                     num(n) = num(n) + 1;
                     missrateTot{n}(num(n)) = missrate;
                     fprintf('seq %d\t %f\n', i , missrate ) ;
