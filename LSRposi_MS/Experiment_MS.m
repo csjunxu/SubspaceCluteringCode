@@ -58,13 +58,14 @@ switch SegmentationMethod
         lambda = 4.6*1e-3 ;
 end
 
-for lambda = [5e-5 1e-5]
-    Par.lambda = lambda;
-    for rho = 0.1:0.1:1
-        Par.rho = rho;
-        for mu = [1 1.001]
-            Par.mu = mu;
-            for maxIter = [500 1000]
+
+for mu = [1]
+    Par.mu = mu;
+    for lambda = [5e-5 1e-5]
+        Par.lambda = lambda;
+        for rho = 0.2:0.1:1
+            Par.rho = rho;
+            for maxIter = [200 500 1000]
                 Par.maxIter = maxIter;
                 maxNumGroup = 5;
                 for i = 1:maxNumGroup
