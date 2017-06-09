@@ -30,10 +30,7 @@ end
 
 
 %% Subspace segmentation methods
-SegmentationMethod = 'LSR1' ;     % LSR1 by (16) in our paper
-% SegmentationMethod = 'LSR2' ;     % LSR2 by (18) in our paper
-
-% SegmentationMethod = 'LSRd0po' ;
+SegmentationMethod = 'LSRd0po' ;
 % SegmentationMethod = 'LSRpo' ;
 
 
@@ -66,9 +63,9 @@ fprintf( fid , '\n' ) ;
 
 for mu = [1]
     Par.mu = mu;
-    for lambda = [5e-5 1e-5]
+    for lambda = [0.1 0.5 1]
         Par.lambda = lambda;
-        for rho = [0.07 0.03 0.06 0.04 0.08]
+        for rho = [0.1 0.01 0.05]
             Par.rho = rho;
             for maxIter = [200]
                 Par.maxIter = maxIter;
@@ -79,8 +76,7 @@ for mu = [1]
                     fprintf( 'd = %d', d ) ;
                     Yfea = fea(1:d,:) ;
                     for j = 1 : num_para
-                        p = para( j ) ;
-                        Accuracy(i,j) = SubspaceSegmentation( SegmentationMethod , Yfea , gnd , p ) ;
+                        Accuracy(i,j) = SubspaceSegmentation( SegmentationMethod , Yfea , gnd , Par ) ;
                         fprintf( fid , '\t%.3f ' , Accuracy(i,j)*100 ) ;
                     end
                     fprintf('\n') ;

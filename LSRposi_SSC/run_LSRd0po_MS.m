@@ -14,7 +14,7 @@
 % Jun Xu, Kui Xu, Ke Chen, Jishou Ruan. "Reweighted Sparse Subspace Clustering",
 % Accepted by Computer Vision and Image Understanding, 2015.
 %----------------------------------------------------------------------------------------------------
-% Copyright @ Jun Xu, 2015
+% Copyright @ Jun Xu, 2017
 % Please Contact csjunxu@comp.polyu.edu.hk for any questions.
 %----------------------------------------------------------------------------------------------------
 
