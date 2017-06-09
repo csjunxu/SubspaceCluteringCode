@@ -1,38 +1,20 @@
-function C2 = LSRd0posi_admm(Y,affine,alpha,thr,maxIter)
+function C2 = LSRd0posi_admm(Y,affine,Par)
 
+if (nargin < 3)
+    % default regularizarion parameters
+    Par.lambda = 1;
+    Par.rho = 0.1;
+    Par.maxIter = 200;
+end
 if (nargin < 2)
     % default subspaces are linear
     affine = false;
 end
-if (nargin < 3)
-    % default regularizarion parameters
-    alpha = 800;
-end
-if (nargin < 6)
-    % default coefficient error threshold to stop ADMM
-    % default linear system error threshold to stop ADMM
-    thr = 2*10^-4;
-end
-if (nargin < 7)
-    % default maximum number of iterations of ADMM
-    maxIter = 200;
-end
+% default coefficient error threshold to stop ADMM
+% default linear system error threshold to stop ADMM
+thr = 2*10^-4;
 
-if (length(alpha) == 1)
-    alpha1 = alpha(1);
-    alpha2 = alpha(1);
-elseif (length(alpha) == 2)
-    alpha1 = alpha(1);
-    alpha2 = alpha(2);
-end
 
-if (length(thr) == 1)
-    thr1 = thr(1);
-    thr2 = thr(1);
-elseif (length(thr) == 2)
-    thr1 = thr(1);
-    thr2 = thr(2);
-end
 
 [L, N] = size (Y);
 % setting penalty parameters for the ADMM
@@ -47,29 +29,28 @@ if (~affine)
     InvW = (2/Par.rho * eye(N) - (2/Par.rho)^2 * Y' / (2/Par.rho * (Y * Y') + eye(L)) * Y );
     C1 = zeros(N,N);
     Delta = zeros(N,N);
-    err1 = 10*thr1; err2 = 10*thr2;
+    err1 = 10*thr; err2 = 10*thr;
     i = 1;
     % ADMM iterations
-    while ( err1(i) > thr1 && i < maxIter )
-         %% update A the coefficient matrix
-    if N < L
-        A = Inv * (Y' * Y + Par.rho/2 * C1 + 0.5 * Delta);
-    else
-        A =  InvW * (Y' * Y + Par.rho/2 * C1 + 0.5 * Delta);
-    end
-    A = A - diag(diag(A));
-
-        % updating C
-            %% update C the data term matrix
-    Q = (Par.rho*A - Delta)/(2*Par.lambda+Par.rho);
-    C2  = solver_BCLS_closedForm(Q);
-      C2 = C2 - diag(diag(C2));
-
-    %% update Deltas the lagrange multiplier matrix
-    Delta = Delta + Par.rho * ( C - A);
-        % computing errors
-        err1(i+1) = errorCoef(Z,C2);
-        err2(i+1) = errorLinSys(Y,Z);
+    while ( err1(i) > thr && i < Par.maxIter )
+        %% update A the coefficient matrix
+        if N < L
+            A = Inv * (Y' * Y + Par.rho/2 * C1 + 0.5 * Delta);
+        else
+            A =  InvW * (Y' * Y + Par.rho/2 * C1 + 0.5 * Delta);
+        end
+        A = A - diag(diag(A));
+        
+        %% update C the data term matrix
+        Q = (Par.rho*A - Delta)/(2*Par.lambda+Par.rho);
+        C2  = solver_BCLS_closedForm(Q);
+        C2 = C2 - diag(diag(C2));
+        
+        %% update Deltas the lagrange multiplier matrix
+        Delta = Delta + Par.rho * ( C2 - A);
+        %% computing errors
+        err1(i+1) = errorCoef(C2, A);
+        err2(i+1) = errorLinSys(Y, A);
         %
         C1 = C2;
         i = i + 1;
