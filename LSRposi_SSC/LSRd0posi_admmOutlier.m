@@ -42,7 +42,6 @@ P = [Y eye(D)/gamma];
 
 if (~affine)
     % initialization
-%     A = inv(mu1*(P'*P)+mu2*eye(N+D));
     Inv = (P'*P+Par.rho/2*eye(N+D))\eye(N+D);
     InvW = (2/Par.rho*eye(N+D) - (2/Par.rho)^2*P'/(2/Par.rho*(P*P')+ eye(D))*P);
     C1 = zeros(N+D,N);
@@ -55,6 +54,13 @@ if (~affine)
         % updating Z
         Z = A * (mu1*P'*(Y+Delta1/mu1)+mu2*(C1-Delta2/mu2));
         Z(1:N,:) = Z(1:N,:) - diag(diag(Z(1:N,:)));
+                %% update A the coefficient matrix
+        if N < L
+            A = Inv * (P'*(Y+Par.rho/2*Delta1)+Par.rho/2*C1+0.5 * Delta);
+        else
+            A =  InvW * (Y' * Y + Par.rho/2 * C1 + 0.5 * Delta);
+        end
+        A(1:N,:) = A(1:N,:) - diag(diag(A(1:N,:)));
         % updating C
         C2 = max(0,(abs(Z+Delta2/mu2) - 1/mu2*W)) .* sign(Z+Delta2/mu2);
         C2(1:N,:) = C2(1:N,:) - diag(diag(C2(1:N,:)));

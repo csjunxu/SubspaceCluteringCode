@@ -57,7 +57,7 @@ mu2 = alpha2 * 1;
 if (~affine)
     % initialization
     A = inv(mu1*(Y'*Y)+mu2*eye(N));
-    C1 = zeros(N,N);
+    C1 = zeros(N,N); 
     Lambda2 = zeros(N,N);
     err1 = 10*thr1; err2 = 10*thr2;
     i = 1;
