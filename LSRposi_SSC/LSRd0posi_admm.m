@@ -14,8 +14,6 @@ end
 % default linear system error threshold to stop ADMM
 thr = 2*10^-4;
 
-
-
 [L, N] = size (Y);
 % setting penalty parameters for the ADMM
 % mu1 = alpha1 * 1/computeLambda_mat(Y);
@@ -40,7 +38,6 @@ if (~affine)
             A =  InvW * (Y' * Y + Par.rho/2 * C1 + 0.5 * Delta);
         end
         A = A - diag(diag(A));
-        
         %% update C the data term matrix
         Q = (Par.rho*A - Delta)/(2*Par.lambda+Par.rho);
         C2  = solver_BCLS_closedForm(Q);
@@ -58,14 +55,15 @@ if (~affine)
     fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end),err2(end),i);
 else
     % initialization
-    Inv = inv(mu1*(Y'*Y)+mu2*eye(N)+mu2*ones(N,N));
+%     Inv = inv(mu1*(Y'*Y)+mu2*eye(N)+mu2*ones(N,N));
+    Inv = (Y'*Y+Par.rho/2*eye(N)+Par.rho/2*ones(N,N))\eye(N);
     C1 = zeros(N,N);
     Delta = zeros(N,N);
     lambda3 = zeros(1,N);
-    err1 = 10*thr1; err2 = 10*thr2; err3 = 10*thr1;
+    err1 = 10*thr; err2 = 10*thr; err3 = 10*thr;
     i = 1;
     % ADMM iterations
-    while ( (err1(i) > thr1 || err3(i) > thr1) && i < maxIter )
+    while ( (err1(i) > thr || err3(i) > thr) && i < Par.maxIter )
         % updating Z
         Z = Inv * (mu1*(Y'*Y)+mu2*(C1-Delta/mu2)+mu2*ones(N,1)*(ones(1,N)-lambda3/mu2));
         Z = Z - diag(diag(Z));

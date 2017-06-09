@@ -29,7 +29,7 @@ if (~outlier)
     CMat = LSRd0posi_admm(Xp,affine,Par);
     C = CMat;
 else
-    CMat = admmOutlier_mat_func(Xp,affine,Par);
+    CMat = LSRd0posi_admmOutlier(Xp,affine,Par);
     N = size(Xp,2);
     C = CMat(1:N,:);
 end

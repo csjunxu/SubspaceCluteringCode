@@ -1,44 +1,35 @@
-function C2 = admmOutlier_mat_func(Y,affine,alpha,thr,maxIter)
+function C2 = LSRd0posi_admmOutlier(Y,affine,Par)
+
+if (nargin < 3)
+    % default regularizarion parameters
+    Par.alpha = 20;
+    Par.rho = 0.1;
+    Par.maxIter = 200;
+end
 
 if (nargin < 2)
     % default subspaces are linear
     affine = false; 
 end
-if (nargin < 3)
-    % default regularizarion parameters
-    alpha = 20;
-end
-if (nargin < 6)
+
     % default coefficient error threshold to stop ALM
     % default linear system error threshold to stop ALM
     thr = 2*10^-4; 
-end
-if (nargin < 7)
-    % default maximum number of iterations of ALM
-    maxIter = 150; 
-end
 
 if (length(alpha) == 1)
-    alpha1 = alpha(1);
-    alpha2 = alpha(1);
-    alpha3 = alpha(1);
+    alpha1 = Par.alpha(1);
+    alpha2 = Par.alpha(1);
+    alpha3 = Par.alpha(1);
 elseif (length(alpha) == 2)
-    alpha1 = alpha(1);
-    alpha2 = alpha(2);
-    alpha3 = alpha(2);
+    alpha1 = Par.alpha(1);
+    alpha2 = Par.alpha(2);
+    alpha3 = Par.alpha(2);
 elseif (length(alpha) == 3)
-    alpha1 = alpha(1);
-    alpha2 = alpha(2);
-    alpha3 = alpha(3);
+    alpha1 = Par.alpha(1);
+    alpha2 = Par.alpha(2);
+    alpha3 = Par.alpha(3);
 end
 
-if (length(thr) == 1)
-    thr1 = thr(1);
-    thr2 = thr(1);
-elseif (length(thr) == 2)
-    thr1 = thr(1);
-    thr2 = thr(2);
-end
 
 [D,N] = size(Y);
 
@@ -53,14 +44,16 @@ W = ones(N+D,N);
 
 if (~affine)
     % initialization
-    A = inv(mu1*(P'*P)+mu2*eye(N+D));
+%     A = inv(mu1*(P'*P)+mu2*eye(N+D));
+    Inv = (mu1*(P'*P)+mu2*eye(N+D))\eye(N+D);
+    InvW = (1/mu2*eye(N+D) - (1/mu2)^2*P'/(1/mu2*(P*P')+ eye(D))*P);
     C1 = zeros(N+D,N);
     Lambda1 = zeros(D,N);
     Lambda2 = zeros(N+D,N);
-    err1 = 10*thr1; err2 = 10*thr2;
+    err1 = 10*thr; err2 = 10*thr;
     i = 1;
     % ADMM iterations
-    while ( i < maxIter )%(err1(i) > thr1 || err2(i) > thr2) &&
+    while ( i < Par.maxIter )%(err1(i) > thr1 || err2(i) > thr2) &&
         % updating Z
         Z = A * (mu1*P'*(Y+Lambda1/mu1)+mu2*(C1-Lambda2/mu2));
         Z(1:N,:) = Z(1:N,:) - diag(diag(Z(1:N,:)));
