@@ -25,15 +25,15 @@ addpath(genpath(fullfile(pwd)));
 
 cd 'C:/Users/csjunxu/Desktop/SC/Datasets/Hopkins155/';
 
-method = 'LSRd0po';
-% method = 'LSRpo';
+method = 'LSRd0po_SSC';
+% method = 'LSRpo_SSC';
 for mu = [1]
     Par.mu = mu;
     for maxIter = [200]
         Par.maxIter = maxIter;
-        for lambda = [5e-5 1e-5]
+        for lambda = [1e-4 5e-5 1e-5 5e-6]
             Par.lambda = lambda;
-            for rho = [0.1 ]
+            for rho = [0.1 0.01 0.001]
                 Par.rho = rho;
                 
                 maxNumGroup = 5;
