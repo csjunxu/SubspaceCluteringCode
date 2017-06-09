@@ -102,8 +102,8 @@ for mu = [1]
                 [maxa, ind] = max( Accuracy*100 )
                 maxpara = para(ind)
                 maxAcc = max( max(Accuracy*100) )
-                %                 matname = sprintf(['C:/Users/csjunxu/Desktop/SC/Results/YaleB_' SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
-                %                 save(matname,'Accuracy','medallmissrate','missrateTot','avgmissrate','maxAcc');
+                matname = sprintf(['C:/Users/csjunxu/Desktop/SC/Results/YaleB_' SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
+                save(matname,'Accuracy','maxAcc');
             end
         end
     end
