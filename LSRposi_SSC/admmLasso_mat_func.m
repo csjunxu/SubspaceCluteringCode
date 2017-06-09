@@ -1,3 +1,17 @@
+%--------------------------------------------------------------------------
+% This function takes a DxN matrix of N data points in a D-dimensional
+% space and returns a NxN coefficient matrix of the sparse representation
+% of each data point in terms of the rest of the points
+% Y: DxN data matrix
+% affine: if true then enforce the affine constraint
+% thr1: stopping threshold for the coefficient error ||Z-C||
+% thr2: stopping threshold for the linear system error ||Y-YZ||
+% maxIter: maximum number of iterations of ADMM
+% C2: NxN sparse coefficient matrix
+%--------------------------------------------------------------------------
+% Copyright @ Ehsan Elhamifar, 2012
+%--------------------------------------------------------------------------
+
 function C2 = admmLasso_mat_func(Y,affine,alpha,thr,maxIter)
 
 if (nargin < 2)
@@ -8,12 +22,12 @@ if (nargin < 3)
     % default regularizarion parameters
     alpha = 800;
 end
-if (nargin < 6)
+if (nargin < 4)
     % default coefficient error threshold to stop ADMM
     % default linear system error threshold to stop ADMM
     thr = 2*10^-4;
 end
-if (nargin < 7)
+if (nargin < 5)
     % default maximum number of iterations of ADMM
     maxIter = 200;
 end
@@ -42,9 +56,7 @@ mu2 = alpha2 * 1;
 
 if (~affine)
     % initialization
-%     A = inv(mu1*(Y'*Y)+mu2*eye(N));
-    A = (mu1*(Y'*Y) + Par.rho/2 * eye(N))\eye(N);
-    P = (2/Par.rho * eye(N) - (2/Par.rho)^2 * Y' / (2/Par.rho * (Y * Y') + eye(L)) * Y );
+    A = inv(mu1*(Y'*Y)+mu2*eye(N));
     C1 = zeros(N,N);
     Lambda2 = zeros(N,N);
     err1 = 10*thr1; err2 = 10*thr2;

@@ -22,14 +22,14 @@ thr = 2*10^-4;
 % lambda = computeLambda_mat(Y);
 
 if (~affine)
-    % initialization
+    %% initialization
     Inv = (Y'*Y+Par.rho/2*eye(N))\eye(N);
     InvW = (2/Par.rho * eye(N) - (2/Par.rho)^2 * Y' / (2/Par.rho * (Y * Y') + eye(L)) * Y );
     C1 = zeros(N,N);
     Delta = zeros(N,N);
     err1 = 10*thr; err2 = 10*thr;
     i = 1;
-    % ADMM iterations
+    %% ADMM iterations
     while ( err1(i) > thr && i < Par.maxIter )
         %% update A the coefficient matrix
         if N < L
@@ -48,36 +48,40 @@ if (~affine)
         %% computing errors
         err1(i+1) = errorCoef(C2, A);
         err2(i+1) = errorLinSys(Y, A);
-        %
+        %%
         C1 = C2;
         i = i + 1;
     end
     fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end),err2(end),i);
 else
-    % initialization
-%     Inv = inv(mu1*(Y'*Y)+mu2*eye(N)+mu2*ones(N,N));
+    %% initialization
     Inv = (Y'*Y+Par.rho/2*eye(N)+Par.rho/2*ones(N,N))\eye(N);
     C1 = zeros(N,N);
     Delta = zeros(N,N);
     lambda3 = zeros(1,N);
     err1 = 10*thr; err2 = 10*thr; err3 = 10*thr;
     i = 1;
-    % ADMM iterations
+    %% ADMM iterations
     while ( (err1(i) > thr || err3(i) > thr) && i < Par.maxIter )
-        % updating Z
-        Z = Inv * (mu1*(Y'*Y)+mu2*(C1-Delta/mu2)+mu2*ones(N,1)*(ones(1,N)-lambda3/mu2));
-        Z = Z - diag(diag(Z));
-        % updating C
-        C2 = max(0,(abs(Z+Delta/mu2) - 1/mu2*ones(N))) .* sign(Z+Delta/mu2);
+        %% update A the coefficient matrix
+        if N < L
+            A = Inv*(Y'*Y+Par.rho/2*C1+0.5*Delta+Par.rho/2*ones(N,1)*ones(1,N)-ones(N,1)*lambda3);
+        else
+            A =  InvW*(Y'*Y+Par.rho/2*C1+0.5*Delta+Par.rho/2*ones(N,1)*ones(1,N)-ones(N,1)*lambda3);
+        end
+        A = A - diag(diag(A));
+        %% update C the data term matrix
+        Q = (Par.rho*A - Delta)/(2*Par.lambda+Par.rho);
+        C2  = solver_BCLS_closedForm(Q);
         C2 = C2 - diag(diag(C2));
-        % updating Lagrange multipliers
-        Delta = Delta + mu2 * (Z - C2);
-        lambda3 = lambda3 + mu2 * (ones(1,N)*Z - ones(1,N));
-        % computing errors
-        err1(i+1) = errorCoef(Z,C2);
-        err2(i+1) = errorLinSys(Y,Z);
-        err3(i+1) = errorCoef(ones(1,N)*Z,ones(1,N));
-        %
+        %% updating Lagrange multipliers
+        Delta = Delta + Par.rho * (A - C2);
+        lambda3 = lambda3 + Par.rho * (ones(1,N)*A - ones(1,N));
+        %% computing errors
+        err1(i+1) = errorCoef(A,C2);
+        err2(i+1) = errorLinSys(Y,A);
+        err3(i+1) = errorCoef(ones(1,N)*A,ones(1,N));
+        %%
         C1 = C2;
         i = i + 1;
     end
