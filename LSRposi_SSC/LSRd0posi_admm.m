@@ -14,7 +14,7 @@ end
 % default coefficient and linear system error threshold to stop ADMM
 thr = 2*10^-4;
 
-[L, N] = size (Y);
+[D, N] = size (Y);
 
 
 % setting penalty parameters for the ADMM
@@ -26,7 +26,7 @@ thr = 2*10^-4;
 if (~affine)
     %% initialization
     Inv = (Y'*Y+Par.rho/2*eye(N))\eye(N);
-    InvW = (2/Par.rho*eye(N)-(2/Par.rho)^2*Y'/(2/Par.rho*(Y*Y')+eye(L))*Y);
+    InvW = (2/Par.rho*eye(N)-(2/Par.rho)^2*Y'/(2/Par.rho*(Y*Y')+eye(D))*Y);
     C1 = zeros(N,N);
     Delta = zeros(N,N);
     err1 = 10*thr; err2 = 10*thr;
@@ -34,7 +34,7 @@ if (~affine)
     %% ADMM iterations
     while ( err1(i) > thr && i < Par.maxIter )
         %% update A the coefficient matrix
-        if N < L
+        if N < D
             A = Inv * (Y' * Y + Par.rho/2 * C1 + 0.5 * Delta);
         else
             A =  InvW * (Y' * Y + Par.rho/2 * C1 + 0.5 * Delta);
@@ -58,7 +58,7 @@ if (~affine)
 else
     %% initialization
     Inv = (Y'*Y+Par.rho/2*(eye(N)+ones(N,N)))\eye(N);
-    InvW = (2/Par.rho*(eye(N)+ones(N,N))-(2/Par.rho)^2*Y'/(2/Par.rho*(Y*Y')+eye(L))*Y);
+    InvW = (2/Par.rho*(eye(N)+ones(N,N))-(2/Par.rho)^2*Y'/(2/Par.rho*(Y*Y')+eye(D))*Y);
     C1 = zeros(N,N);
     Delta = zeros(N,N);
     Delta3 = zeros(1,N);
@@ -67,7 +67,7 @@ else
     %% ADMM iterations
     while ( (err1(i) > thr || err3(i) > thr) && i < Par.maxIter )
         %% update A the coefficient matrix
-        if N < L
+        if N < D
             A = Inv*(Y'*Y+Par.rho/2*C1+0.5*Delta+Par.rho/2*ones(N,1)*ones(1,N)-ones(N,1)*Delta3);
         else
             A =  InvW*(Y'*Y+Par.rho/2*C1+0.5*Delta+Par.rho/2*ones(N,1)*ones(1,N)-ones(N,1)*Delta3);
@@ -78,7 +78,7 @@ else
         C2  = solver_BCLS_closedForm(Q);
         C2 = C2 - diag(diag(C2));
         %% updating Lagrange multipliers
-        Delta = Delta + Par.rho * (A - C2);
+        Delta = Delta + Par.rho * (C2 - A);
         Delta3 = Delta3 + Par.rho * (ones(1,N)*A - ones(1,N));
         %% computing errors
         err1(i+1) = errorCoef(A,C2);
