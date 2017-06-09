@@ -24,7 +24,7 @@ else
 end
 
 if (~outlier)
-    CMat = admmLasso_mat_func(Xp,affine,alpha);
+    CMat = LSRd0posi_admm(Xp,affine,alpha);
     C = CMat;
 else
     CMat = admmOutlier_mat_func(Xp,affine,alpha);
