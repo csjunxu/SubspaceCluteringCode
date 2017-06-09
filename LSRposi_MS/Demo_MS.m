@@ -78,7 +78,8 @@ for mu = [1]
                     gnd = data(i).ids' ;
                     K = length( unique( gnd ) ) ;
                     n = max(gnd);
-                    missrate = SubspaceSegmentation( SegmentationMethod , ProjX , gnd , Par ) ;
+                    accuracy = SubspaceSegmentation( SegmentationMethod , ProjX , gnd , Par ) ;
+                    missrate = 1 - accuracy;
                     num(n) = num(n) + 1;
                     missrateTot{n}(num(n)) = missrate;
                     fprintf('seq %d\t %f\n', i , missrate ) ;

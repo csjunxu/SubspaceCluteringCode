@@ -1,4 +1,4 @@
-function missrate = SubspaceSegmentation( SegmentatiomMethod , X , gnd , Par )
+function acc = SubspaceSegmentation( SegmentatiomMethod , X , gnd , Par )
 
 switch SegmentatiomMethod
     
@@ -20,4 +20,3 @@ nCluster = length( unique( gnd ) ) ;
 Z = ( abs(C) + abs(C') ) / 2 ;
 idx = clu_ncut(Z,nCluster) ;
 acc = compacc(idx,gnd) ;
-missrate = 1 - acc;
