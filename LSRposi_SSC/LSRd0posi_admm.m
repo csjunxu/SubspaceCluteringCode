@@ -26,7 +26,7 @@ thr = 2*10^-4;
 if (~affine)
     %% initialization
     Inv = (Y'*Y+Par.rho/2*eye(N))\eye(N);
-    InvW = (2/Par.rho * eye(N) - (2/Par.rho)^2 * Y' / (2/Par.rho * (Y * Y') + eye(L)) * Y );
+    InvW = (2/Par.rho*eye(N)-(2/Par.rho)^2*Y'/(2/Par.rho*(Y*Y')+eye(L))*Y);
     C1 = zeros(N,N);
     Delta = zeros(N,N);
     err1 = 10*thr; err2 = 10*thr;
@@ -61,16 +61,16 @@ else
     InvW = (2/Par.rho*(eye(N)+ones(N,N))-(2/Par.rho)^2*Y'/(2/Par.rho*(Y*Y')+eye(L))*Y);
     C1 = zeros(N,N);
     Delta = zeros(N,N);
-    lambda3 = zeros(1,N);
+    Delta3 = zeros(1,N);
     err1 = 10*thr; err2 = 10*thr; err3 = 10*thr;
     i = 1;
     %% ADMM iterations
     while ( (err1(i) > thr || err3(i) > thr) && i < Par.maxIter )
         %% update A the coefficient matrix
         if N < L
-            A = Inv*(Y'*Y+Par.rho/2*C1+0.5*Delta+Par.rho/2*ones(N,1)*ones(1,N)-ones(N,1)*lambda3);
+            A = Inv*(Y'*Y+Par.rho/2*C1+0.5*Delta+Par.rho/2*ones(N,1)*ones(1,N)-ones(N,1)*Delta3);
         else
-            A =  InvW*(Y'*Y+Par.rho/2*C1+0.5*Delta+Par.rho/2*ones(N,1)*ones(1,N)-ones(N,1)*lambda3);
+            A =  InvW*(Y'*Y+Par.rho/2*C1+0.5*Delta+Par.rho/2*ones(N,1)*ones(1,N)-ones(N,1)*Delta3);
         end
         A = A - diag(diag(A));
         %% update C the data term matrix
@@ -79,7 +79,7 @@ else
         C2 = C2 - diag(diag(C2));
         %% updating Lagrange multipliers
         Delta = Delta + Par.rho * (A - C2);
-        lambda3 = lambda3 + Par.rho * (ones(1,N)*A - ones(1,N));
+        Delta3 = Delta3 + Par.rho * (ones(1,N)*A - ones(1,N));
         %% computing errors
         err1(i+1) = errorCoef(A,C2);
         err2(i+1) = errorLinSys(Y,A);
