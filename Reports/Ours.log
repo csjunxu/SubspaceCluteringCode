@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  10 JUN 2017 10:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  10 JUN 2017 10:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -536,9 +536,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 103--103
 []\OT1/ptm/b/n/14.4 Collaborative Rep-re-sen-ta-tion
  []
 
-
-Package natbib Warning: Citation `crc' on page 1 undefined on input line 104.
-
 [1{c:/Software/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
@@ -595,31 +592,33 @@ Overfull \hbox (3.79605pt too wide) in paragraph at lines 923--923
 \openout3 = `Ours.brf'.
 
  [4])
-
-Package natbib Warning: There were undefined citations.
-
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 949.
-[5
+ [5
 
 ]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 949.
  (./Ours.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 949.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 949.
-Package rerunfilecheck Info: File `Ours.brf' has not changed.
-(rerunfilecheck)             Checksum: 460E11D99B4BC6A40DC981F269A8074F;91.
 
+
+Package rerunfilecheck Warning: File `Ours.brf' has changed.
+(rerunfilecheck)                Rerun to get bibliographical references right.
+
+Package rerunfilecheck Info: Checksums for `Ours.brf':
+(rerunfilecheck)             Before: 460E11D99B4BC6A40DC981F269A8074F;91
+(rerunfilecheck)             After:  D5D341A1E4C8FEE986D327015DF1BC06;126.
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 949.
  ) 
 Here is how much of TeX's memory you used:
- 7276 strings out of 493091
- 103855 string characters out of 6134517
- 200276 words of memory out of 5000000
- 10566 multiletter control sequences out of 15000+600000
- 35960 words of font info for 106 fonts, out of 8000000 for 9000
+ 7274 strings out of 493091
+ 103844 string characters out of 6134517
+ 200270 words of memory out of 5000000
+ 10565 multiletter control sequences out of 15000+600000
+ 34853 words of font info for 105 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  34i,17n,28p,413b,462s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Software/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/Software
@@ -641,10 +640,10 @@ xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/Software/tex
 live/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015
 /texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-di
 st/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Ours.pdf (5 pages, 184648 bytes).
+Output written on Ours.pdf (5 pages, 178202 bytes).
 PDF statistics:
- 176 PDF objects out of 1000 (max. 8388607)
- 149 compressed objects within 2 object streams
+ 177 PDF objects out of 1000 (max. 8388607)
+ 150 compressed objects within 2 object streams
  55 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

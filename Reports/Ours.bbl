@@ -5,13 +5,12 @@ Can-Yi Lu, Hai Min, Zhong-Qiu Zhao, Lin Zhu, De-Shuang Huang, and Shuicheng
   Yan.
 \newblock Robust and efficient subspace segmentation via least squares
   regression.
-\newblock {\em Computer Vision--ECCV 2012}, pages 347--360, 2012.
+\newblock {\em ECCV}, pages 347--360, 2012.
 
-\bibitem{gis}
-Wangmeng Zuo, Deyu Meng, Lei Zhang, Xiangchu Feng, and David Zhang.
-\newblock A generalized iterated shrinkage algorithm for non-convex sparse
-  coding.
-\newblock {\em IEEE international conference on computer vision}, pages
-  217--224, 2013.
+\bibitem{crc}
+Lei Zhang, Meng Yang, and Xiangchu Feng.
+\newblock Sparse representation or collaborative representation: Which helps
+  face recognition?
+\newblock {\em ICCV}, pages 471--478, 2011.
 
 \end{thebibliography}
