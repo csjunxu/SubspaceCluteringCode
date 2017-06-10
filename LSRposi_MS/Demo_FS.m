@@ -76,12 +76,25 @@ for mu = [1]
                     fprintf( 'd = %d', d ) ;
                     Yfea = fea(1:d,:) ;
                     for j = 1 : num_para
-                        Accuracy(i,j) = SubspaceSegmentation( SegmentationMethod , Yfea , gnd , Par ) ;
+                        
+                        switch SegmentationMethod
+                            case 'LSRd0po'
+                                C = LSRd0po( Yfea , Par ) ;
+                            case 'LSRpo'
+                                C = LSRpo( Yfea , Par ) ;
+                        end
+                        
+                        for i = 1 : size(C,2)
+                            C(:,i) = C(:,i) / max(abs(C(:,i))) ;
+                        end
+                        nCluster = length( unique( gnd ) ) ;
+                        Z = ( abs(C) + abs(C') ) / 2 ;
+                        idx = clu_ncut(Z,nCluster) ;
+                        Accuracy(i,j) = compacc(idx,gnd) ;
                         fprintf( fid , '\t%.3f ' , Accuracy(i,j)*100 ) ;
                     end
                     fprintf('\n') ;
                 end
-                
                 
                 %% output
                 fprintf('\n\n');
@@ -109,7 +122,3 @@ for mu = [1]
     end
 end
 
-
-
-
-% rmpath( genpath(currentpath) ) ;

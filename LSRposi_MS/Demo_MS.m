@@ -78,7 +78,16 @@ for mu = [1]
                     gnd = data(i).ids' ;
                     K = length( unique( gnd ) ) ;
                     n = max(gnd);
-                    accuracy = SubspaceSegmentation( SegmentationMethod , ProjX , gnd , Par ) ;
+                    switch SegmentationMethod
+                        case 'LSRd0po'
+                            C = LSRd0po( ProjX , Par ) ;
+                        case 'LSRpo'
+                            C = LSRpo( ProjX , Par ) ;
+                    end
+                    nCluster = length( unique( gnd ) ) ;
+                    Z = ( abs(C) + abs(C') ) / 2 ;
+                    idx = clu_ncut(Z,nCluster) ;
+                    accuracy = compacc(idx,gnd) ;
                     missrate = 1-accuracy;
                     num(n) = num(n) + 1;
                     missrateTot{n}(num(n)) = missrate;
