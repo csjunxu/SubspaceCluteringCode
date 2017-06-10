@@ -64,7 +64,7 @@
 \end{itemize}
 
 \section{LSR Model}
-The least squares regression (LSR) model \cite{lu2012robust} is proposed by Lu et al. can be formulated as follows:
+The least squares regression (LSR) model \cite{lsr} is proposed by Lu et al. can be formulated as follows:
 \begin{equation}
 \label{e1}
 \min_{\bm{A}}
@@ -83,7 +83,7 @@ The least squares regression (LSR) model \cite{lu2012robust} is proposed by Lu e
 \ 
 \text{diag}(\bm{A})=\bm{0}.
 \end{equation}
-According to \cite{lu2012robust}, the above problem has the optimal solution as 
+According to \cite{lsr}, the above problem has the optimal solution as 
 \begin{equation}
 \label{e2}
 \hat{\bm{A}}
@@ -101,9 +101,7 @@ The constraint of  $\text{diag}(\bm{A})=\bm{0}$ in (\ref{e1}) could be removed a
 
 
 \section{Collaborative Representation based Clustering with Constraint $\text{diag}(\bm{A})=\bm{0}$}
-The LSR model can be reformulated as a collaborative representation model \cite{crc} for subspace clustering with an additional constraint of $\text{diag}(\bm{A})=\bm{0}$. The constraint of $\text{diag}(\bm{A})=\bm{0}$ is used to avoid the samples to be self-represented.
-
-Then the model above can be 
+The LSR model can be reformulated as a collaborative representation model \cite{crc} for subspace clustering with an additional constraint of $\text{diag}(\bm{A})=\bm{0}$. The constraint of $\text{diag}(\bm{A})=\bm{0}$ is used to avoid the samples to represent themselves. Then the LSR model \cite{lsr} is still as follows:
 \begin{equation}
 \label{e2}
 \min_{\bm{A}}
@@ -111,7 +109,7 @@ Then the model above can be
 \bm{X}
 -
 \bm{X}\bm{A}
-\|_{p}^{p}
+\|_{F}^{F}
 +
 \lambda
 \|
