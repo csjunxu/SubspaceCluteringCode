@@ -32,10 +32,10 @@ for mu = [1]
                         avgmissrate(n) = mean(missrateTot{n});
                         medmissrate(n) = median(missrateTot{n});
                         matname = sprintf(['C:/Users/csjunxu/Desktop/SC/Results/YaleB_' method '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
-                        save(matname,'avgallmissrate1','medallmissrate1','missrateTot1','avgmissrate1','medmissrate1','avgallmissrate2','medallmissrate2','missrateTot2','avgmissrate2','medmissrate2');
+                        save(matname,'missrateTot','avgmissrate','medmissrate');
                     end
                     matname = sprintf(['C:/Users/csjunxu/Desktop/SC/Results/YaleB_' method '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
-                    save(matname,'avgallmissrate1','medallmissrate1','missrateTot1','avgmissrate1','medmissrate1','avgallmissrate2','medallmissrate2','missrateTot2','avgmissrate2','medmissrate2');
+                    save(matname,'missrateTot','avgmissrate','medmissrate');
                 end
             end
         end
