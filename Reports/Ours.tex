@@ -158,18 +158,16 @@ whose solution for $\bm{A}$ coincides with the solution of Eq. (\ref{e1}). By in
 \bm{\Delta},
 \bm{C}-(\bm{A}-\text{diag}(\bm{A}))
 \rangle
-\\
-&
 +
 \frac{\rho}{2}
 \|
-\bm{C}-(\bm{A}-\text{diag}(\bm{A}))+\rho^{-1}\bm{\Delta}
+\bm{C}-(\bm{A}-\text{diag}(\bm{A}))
 \|_{F}^{2}
 \end{split}
 \end{equation}
-Denote by ($\bm{C}_{k},\bm{A}_{k},\bm{E}_{k}$) the optimization variables at iteration $k$, by ($\bm{\Delta}_{k},\bm{\delta}_{k}$) the Lagrangian multipliers at iteration $k$, and by $\rho_{k}$ the penalty parameter at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
+Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$, by $\bm{\Delta}_{k}$ the Lagrangian multipliers at iteration $k$, and by $\rho_{k}$ the penalty parameter at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
 
-(1) Obtain $\bm{A}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{A}$, while fixing ($\bm{C}_{k},\bm{E}_{k},\bm{\Delta}_{k},\bm{\delta}_{k}$). This is equivalent to solve the following problem:
+(1) Obtain $\bm{A}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{A}$, while fixing ($\bm{C}_{k},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
 \begin{equation}
 \begin{split}
 \label{e8}
@@ -181,8 +179,8 @@ Denote by ($\bm{C}_{k},\bm{A}_{k},\bm{E}_{k}$) the optimization variables at ite
 &
 \bm{J}
 =
-(\rho_{k}+2\lambda)^{-1}
-(\rho_{k}\bm{C}_{k}+\bm{\delta}_{k})
+(\bm{X}^{\top}\bm{X}+\frac{\rho}{2}\bm{I})^{-1}
+(\bm{X}^{\top}\bm{X}+\frac{\rho}{2}\bm{C}_{k}+\frac{1}{2}\bm{\Delta}_{k})
 \end{split}
 \end{equation}
 
