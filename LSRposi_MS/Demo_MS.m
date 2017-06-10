@@ -43,8 +43,8 @@ clear seq3;
 % SegmentationMethod = 'LSR1' ;     % LSR1 by (16) in our paper
 % SegmentationMethod = 'LSR2' ;     % LSR2 by (18) in our paper
 
-SegmentationMethod = 'LSRd0po' ;
-% SegmentationMethod = 'LSRpo' ;
+SegmentationMethod = 'LSRd0po_LSR' ;
+% SegmentationMethod = 'LSRpo_LSR' ;
 
 %% Parameter
 switch SegmentationMethod
@@ -79,9 +79,9 @@ for mu = [1]
                     K = length( unique( gnd ) ) ;
                     n = max(gnd);
                     switch SegmentationMethod
-                        case 'LSRd0po'
+                        case 'LSRd0po_LSR'
                             C = LSRd0po( ProjX , Par ) ;
-                        case 'LSRpo'
+                        case 'LSRpo_LSR'
                             C = LSRpo( ProjX , Par ) ;
                     end
                     nCluster = length( unique( gnd ) ) ;

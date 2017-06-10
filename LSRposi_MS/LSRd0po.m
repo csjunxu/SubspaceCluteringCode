@@ -48,7 +48,7 @@ while  ( ~terminate )
     %% update C the data term matrix
     Q = (Par.rho*A - Delta)/(2*Par.lambda+Par.rho);
     C  = solver_BCLS_closedForm(Q);
-%     C = C - diag(diag(C));
+    C = C - diag(diag(C));
     
     %% update Deltas the lagrange multiplier matrix
     Delta = Delta + Par.rho * ( C - A);
@@ -58,7 +58,7 @@ while  ( ~terminate )
     
     %% computing errors
     err1(iter+1) = errorCoef(C, A);
-    err2(iter+1) = errorLinSys(X, C);
+    err2(iter+1) = errorLinSys(X, A);
     if (  (err1(iter+1) >= err1(iter) && err2(iter+1)<=tol) ||  iter >= Par.maxIter  )
         terminate = true;
 %         fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
