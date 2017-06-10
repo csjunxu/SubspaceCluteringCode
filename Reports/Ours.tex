@@ -55,15 +55,16 @@
 
 \section{Motivation}
 
+\begin{itemize}
+\item Positive collaborative representation could achieve sparse representation since similar points are sparse while dissimilar points are dense.
 
-\textbf{Motivation 1}: Positive collaborative representation could achieve sparse representation since similar points are sparse while dissimilar points are dense.
+\item Positive supports are positive to self-reppresentation while negative supports are negative to self-representation.
 
-\textbf{Motivation 2}: Positive supports are positive to self-reppresentation while negative supports are negative to self-representation.
-
-\textbf{Motivation 3}: Better performance. Faster? 
+\item Better performance. Faster? 
+\end{itemize}
 
 \section{LSR Model}
-The least squares regression (LSR) model \cite{} is proposed by Lu et al. can be formulated as follows:
+The least squares regression (LSR) model \cite{lu2012robust} is proposed by Lu et al. can be formulated as follows:
 \begin{equation}
 \label{e1}
 \min_{\bm{A}}
@@ -76,189 +77,31 @@ The least squares regression (LSR) model \cite{} is proposed by Lu et al. can be
 \lambda
 \|
 \bm{A}
-\|_{F}^{2},
-\end{equation}
-
-Then the model above can be 
-\begin{equation}
-\label{e2}
-\min_{\bm{A}}
-\|
-\bm{X}
--
-\bm{X}\bm{A}
-\|_{p}^{p}
-+
-\lambda
-\|
-\bm{A}
-\|_{F}^{2}
-.
-\end{equation}
-
-By introducing auxiliary variables into the optimization program, we can set 
-$
-\bm{E}
-=
-\bm{X}
--
-\bm{X}\bm{A}
-$ 
-.
-The program (\ref{e2}) can be transformed into
-\begin{equation}
-\label{e3}
-\min_{\bm{A},\bm{E}}
-\|
-\bm{E}
-\|_{p}^{p}
-+
-\lambda
-\|
-\bm{A}
 \|_{F}^{2}
 \ 
 \text{s.t.}
 \ 
-\bm{E}=\bm{X}-\bm{X}\bm{A}
-.
+\text{diag}(\bm{A})=\bm{0}.
 \end{equation}
-By introducing a Lagrangian multiplier $\bm{\Delta}$, the Lagrangian function of the Eq. (\ref{e4}) can be written as
+According to \cite{lu2012robust}, the above problem has the optimal solution as 
 \begin{equation}
-\begin{split}
-\label{e5}
-&
-\mathcal{L}
-(\bm{A},\bm{E},\bm{\Delta},\rho)
+\label{e2}
+\hat{\bm{A}}
 =
-\|
-\bm{E}
-\|_{p}^{p}
-+
-\lambda
-\|
-\bm{A}
-\|_{F}^{2}
-\\
-&
-+
-\frac{\rho}{2}
-\|
-\bm{E}-\bm{X}+\bm{X}\bm{A}+\rho^{-1}\bm{\Delta}
-\|_{F}^{2}
-\end{split}
-\end{equation}
-Denote by ($\bm{A}_{k},\bm{E}_{k}$) the optimization variables at iteration $k$, and by $\bm{\Delta}$ the Lagrangian multipliers at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
-
-(1) Obtain $\bm{A}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{A}$, while fixing ($\bm{E}_{k},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
-\begin{equation}
-\begin{split}
-\label{e8}
-&
-\bm{A}_{k+1}
-=
-\arg\min_{\bm{A}}
-\frac{\rho_{k}}{2}
-\|
-\bm{P}_{k}-\bm{X}\bm{A}
-\|_{F}^{2}
-+
-\lambda
-\|
-\bm{A}
-\|_{F}^{2}
-\end{split}
-\end{equation}
-where $\bm{P}_{k}=\bm{X}-\bm{E}_{k}-\rho_{k}^{-1}\bm{\Delta}_{k}$. This is a least squares regression problem which has a closed-form solution as 
-\begin{equation}
-\label{e7}
-\bm{A}_{k+1} 
-=
-(\bm{X}^{\top}\bm{X}+2\lambda\rho_{k}^{-1}\bm{I})^{-1}
-\bm{X}^{\top}\bm{P}_{k}.
-\end{equation}
-
-
-(3) Obtain $\bm{E}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{E}$, while fixing ($\bm{A}_{k+1},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
-\begin{equation}
-\begin{split}
-\label{e9}
-&
-\min_{\bm{E}}
-\frac{\rho_{k}}{2}
-\|
-\bm{Q}_{k}
--
-\bm{E}
-\|_{F}^{2}
-+
-\|
-\bm{E}
-\|_{p}^{p},
-\end{split}
-\end{equation}
-where $\bm{Q}_{k}=\bm{X}-\bm{X}\bm{A}_{k+1}-\rho_{k}^{-1}\bm{\Delta}_{k}$. Since this problem is seperable, it can be decoupled into $m\times n$ scalable sub-problems which share the following form:
-\begin{equation}
-\label{e10}
-\min_{y}
-=
-\frac{1}{2}
-(c-y)^{2}
-+
-\rho_{k}^{-1}
-|y|^{p}.
-\end{equation}
-This problem can be solved by the generalized soft-thresholding algorithm \cite{gis} as
-\begin{equation}
-\hat{y}
-=
-\text{sign}(c)*\text{max}(|c|-\tau_{p}(\rho_{k}^{-1}),0)*\mathcal{S}_{p}(|c|;\rho_{k}^{-1}),
-\end{equation}
-where 
-\begin{equation}
-\tau_{p}(\rho_{k}^{-1})
-=
-[2\rho_{k}^{-1}(1-p)]^{\frac{1}{2-p}}
-+
-\rho_{k}^{-1}p[2\rho_{k}^{-1}(1-p)]^{\frac{p-1}{2-p}}
-\end{equation}
-and $\mathcal{S}_{p}(|c|;\rho_{k}^{-1})$ can be obtained by solving the following equation:
-\begin{equation}
-\mathcal{S}_{p}(|c|;\rho_{k}^{-1})
--
-c
-+
-\rho_{k}^{-1}p
-(\mathcal{S}_{p}(|c|;\rho_{k}^{-1}))^{p-1}
-=
-0
-.
-\end{equation}
-
-
-(4) Obtain the Lagrangian multipliers ($\bm{\Delta}_{k+1}$) while fixing ($\bm{A}_{k+1},\bm{E}_{k+1}$):
-\begin{equation}
-\begin{split}
-\label{e10}
-\bm{\Delta}_{k+1}
-&
-=
-\bm{\Delta}_{k}
-+
-\tau\rho_{k}
-(\bm{E}_{k+1}-\bm{X}+\bm{X}\bm{A}_{k+1})
+-\bm{\bm{Z}}(\text{diag}(\bm{Z}))
+\
+\text{s.t.} 
+\
+\text{diag}(\hat{\bm{A}})=\bm{0}
 ,
-\end{split}
 \end{equation}
-where $\tau\in(0,\frac{\sqrt{5}+1}{2})$ is the dual step size and is usually set as $\tau=1$.
+where $\bm{Z}=(\bm{X}^{\top}\bm{X}+\lambda\bm{I})^{-1}$.
 
-(5) Update the penalty parameter $\rho$ as $\rho_{k+1}=\mu\rho_{k}$, where $\mu>1$.
-
-\section{RES with Diagonal Constraint}
+The constraint of  $\text{diag}(\bm{A})=\bm{0}$ in (\ref{e1}) could be removed and the LSR model achieves similar performance.
 
 
-
-We can also restrict that $\text{diag}(\bm{A})=\bm{0}$ to avoid the samples to be self-represented. However, I want to mention that the proposed model solved by ADMM algorithm with three variables and does not have convergence results.
+\section{Collaborative Representation based Clustering with Constraint $\text{diag}(\bm{A})=\bm{0}$}
+The LSR model can be reformulated as a collaborative representation model \cite{crc} for subspace clustering with an additional constraint of $\text{diag}(\bm{A})=\bm{0}$. The constraint of $\text{diag}(\bm{A})=\bm{0}$ is used to avoid the samples to be self-represented.
 
 Then the model above can be 
 \begin{equation}
