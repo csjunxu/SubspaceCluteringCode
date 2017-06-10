@@ -130,43 +130,16 @@ The LSR model (\ref{e1}) can be transformed into
 \text{s.t.}
 \ 
 \bm{C}=\bm{A}-\text{diag}(\bm{A})
-.
+,
 \end{split}
 \end{equation}
-Besides, we can further introduce an auxiliary matrix variable $\bm{C}$ and consider the following program
+whose solution for $\bm{A}$ coincides with the solution of Eq. (\ref{e1}). By introducing a Lagrangian multipliers $\bm{\Delta}$ and a penalty parameter $\rho$, the Lagrangian function of the Eq. (\ref{e3}) can be written as
 \begin{equation}
 \begin{split}
 \label{e4}
 &
-\min_{\bm{A},\bm{C},\bm{E}}
-\|
-\bm{E}
-\|_{p}^{p}
-+
-\lambda
-\|
-\bm{A}
-\|_{F}^{2}
-\\
-& 
-\text{s.t.}
-\ 
-\bm{E}=\bm{X}-\bm{X}\bm{C}
-,
-\bm{C}
-=
-\bm{A}
--
-\text{diag}(\bm{A})
-\end{split}
-\end{equation}
-whose solution for ($\bm{A},\bm{E}$) coincides with the solution of Eq. (\ref{e3}). By introducing two Lagrangian multipliers $\bm{\Delta},\bm{\delta}$, the Lagrangian function of the Eq. (\ref{e4}) can be written as
-\begin{equation}
-\begin{split}
-\label{e5}
-&
 \mathcal{L}
-(\bm{A},\bm{C},\bm{E},\bm{\Delta},\bm{\delta},\rho)
+(\bm{A},\bm{C},\bm{\Delta},\rho)
 =
 \|
 \bm{E}
