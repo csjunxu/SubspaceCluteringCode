@@ -61,12 +61,12 @@ end
 
 for mu = [1]
     Par.mu = mu;
-    for maxIter = [200]
+    for maxIter = [200 500 1000]
         Par.maxIter = maxIter;
-        for lambda = [2e-5:1e-5:4e-5]
-            Par.lambda = lambda;
-            for rho = [0.02:0.01:0.08]
-                Par.rho = rho;
+        for rho = [0.01:0.01:0.1]
+            Par.rho = rho;
+            for lambda = [1e-5:1e-5:5e-5]
+                Par.lambda = lambda;
                 maxNumGroup = 5;
                 for i = 1:maxNumGroup
                     num(i) = 0;
