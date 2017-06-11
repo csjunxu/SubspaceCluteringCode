@@ -46,7 +46,7 @@ P = [Y eye(D)/gamma];
 % mu1 = alpha1 * 1/computeLambda_mat(Y,P);
 % mu2 = alpha2 * 1;
 
-% Par.lambda = Par.ratio * computeLambda_mat(Y,P);
+Par.lambda = Par.ratio * computeLambda_mat(Y,P);
 
 if (~affine)
     %% initialization
@@ -71,7 +71,7 @@ if (~affine)
         C2  = solver_BCLS_closedForm(Q);
         C2(1:N,:) = C2(1:N,:) - diag(diag(C2(1:N,:)));
         %% updating Lagrange multipliers
-        Delta1 = Delta1 + Par.rho * (Y - P * A); 
+        Delta1 = Delta1 + 5*Par.rho * (Y - P * A); 
         Delta2 = Delta2 + Par.rho * (C2 - A);
         %% computing errors
         err1(i+1) = errorCoef(A, C2);
