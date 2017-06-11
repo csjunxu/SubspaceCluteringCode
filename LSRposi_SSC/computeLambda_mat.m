@@ -3,6 +3,7 @@
 % space and returns the regularization constant of the L1 norm
 % Y: DxN data matrix
 % lambda: regularization parameter for lambda*||C||_1 + 0.5 ||Y-YC||_F^2
+% The parameter in Equation (14) in SSC paper of PAMI2012
 %--------------------------------------------------------------------------
 % Copyright @ Ehsan Elhamifar, 2012
 %--------------------------------------------------------------------------

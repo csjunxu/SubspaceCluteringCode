@@ -49,7 +49,7 @@ mu2 = alpha2 * 1;
 
 if (~affine)
     %% initialization
-    Inv = (P'*P+Par.rho/2*eye(N+D))\eye(N+D);
+    Inv = (mu1*(P'*P)+Par.rho/2*eye(N+D))\eye(N+D);
     InvW = (2/Par.rho*eye(N+D) - (2/Par.rho)^2*P'/(2/Par.rho*(P*P')+ eye(D))*P);
     C1 = zeros(N+D,N);
     Delta1 = zeros(D,N);
