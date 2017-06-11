@@ -58,7 +58,7 @@ if (~affine)
     err1 = 10*Par.thr; err2 = 10*Par.thr;
     i = 1;
     %% ADMM iterations
-    while ( err1(i) > Par.thr || err2(i) > Par.thr && i <= Par.maxIter )
+    while ( (err1(i) > Par.thr || err2(i) > Par.thr) && i <= Par.maxIter )
         %% update A the coefficient matrix
         if L < D
             A = Inv*(P'*(Y+Par.rho/2*Delta1)+Par.rho/2*C1+0.5 * Delta2);
