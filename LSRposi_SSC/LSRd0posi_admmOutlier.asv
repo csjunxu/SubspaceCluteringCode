@@ -14,7 +14,7 @@ if (nargin < 2)
     affine = false;
 end
 
-if (length(Par.rho) == 1)
+if (length(rho) == 1)
     rho1 = Par.rho(1);
     rho2 = Par.rho(1);
     rho3 = Par.rho(1);
@@ -42,28 +42,28 @@ mu2 = rho2 * 1;
 if (~affine)
     %% initialization
     Inv = (mu1*(P'*P)+mu2/2*eye(N+D))\eye(N+D);
-%     InvW = (2/Par.rho*eye(N+D) - (2/Par.rho)^2*P'/(2/Par.rho*(P*P')+ eye(D))*P);
+    InvW = (2/Par.rho*eye(N+D) - (2/Par.rho)^2*P'/(2/Par.rho*(P*P')+ eye(D))*P);
     C1 = zeros(N+D,N);
     Delta1 = zeros(D,N);
     Delta2 = zeros(N+D,N);
     err1 = 10*Par.thr; err2 = 10*Par.thr;
     i = 1;
     %% ADMM iterations
-    while ( err1(i) > Par.thr || err2(i) > Par.thr && i < Par.maxIter )
+    while ( err1(i) > thr || err2(i) > thr && i < Par.maxIter )
         %% update A the coefficient matrix
-%         if L < D
-            A = Inv*(mu1*P'*(Y+mu2/2*Delta1)+mu2/2*C1+0.5 * Delta2);
-%         else
-%             A =  InvW*(P'*(Y+Par.rho/2*Delta1)+Par.rho/2*C1+0.5 * Delta2);
-%         end
+        if L < D
+            A = Inv*(mu1*P'*(Y+Par.rho/2*Delta1)+m*u2/2*C1+0.5 * Delta2);
+        else
+            A =  InvW*(P'*(Y+Par.rho/2*Delta1)+Par.rho/2*C1+0.5 * Delta2);
+        end
         A(1:N,:) = A(1:N,:) - diag(diag(A(1:N,:)));
         %% update C the data term matrix
-        Q = (A - Delta2/mu2)/(2/mu1+1);
+        Q = (Par.rho*A - Delta2)/(2*Par.lambda+Par.rho);
         C2  = solver_BCLS_closedForm(Q);
         C2(1:N,:) = C2(1:N,:) - diag(diag(C2(1:N,:)));
         %% updating Lagrange multipliers
         Delta1 = Delta1 + mu1 * (Y - P * A);
-        Delta2 = Delta2 + mu2 * (C2 - A);
+        Delta2 = Delta2 + rho2 * (C2 - A);
         %% computing errors
         err1(i+1) = errorCoef(A, C2);
         err2(i+1) = errorLinSys(P, A);
@@ -85,7 +85,7 @@ else
     err1 = 10*Par.thr; err2 = 10*Par.thr; err3 = 10*Par.thr;
     i = 1;
     %% ADMM iterations
-    while ( (err1(i) > Par.thr || err2(i) > Par.thr || err3(i) > Par.thr) && i < maxIter )
+    while ( (err1(i) > thr1 || err2(i) > thr2 || err3(i) > thr1) && i < maxIter )
         %% updating Z
         if L < D
             A = Inv*(P'*(Y+Par.rho/2*Delta1)+Par.rho/2*C1+0.5*Delta2+Par.rho/2*delta*ones(1,N)-0.5*delta*Delta3);
