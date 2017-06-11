@@ -5,6 +5,9 @@ if (nargin < 3)
     Par.lambda = 20;
     Par.rho = 0.1;
     Par.maxIter = 200;
+    % default coefficient error threshold to stop ALM
+    % default linear system error threshold to stop ALM
+    Par.thr = 2*10^-4;
 end
 
 if (nargin < 2)
@@ -34,18 +37,15 @@ elseif (length(thr) == 2)
     thr2 = thr(2);
 end
 
-% default coefficient error threshold to stop ALM
-% default linear system error threshold to stop ALM
-thr = 2*10^-4;
 
 [D,N] = size(Y);
 
-gamma = Par.lambda / norm(Y,1);
+gamma = alpha3 / norm(Y,1);
 P = [Y eye(D)/gamma];
 [D,L] = size(P);
-% % setting penalty parameters for the ADMM
-% mu1 = alpha1 * 1/computeLambda_mat(Y,P);
-% mu2 = alpha2 * 1;
+% setting penalty parameters for the ADMM
+mu1 = alpha1 * 1/computeLambda_mat(Y,P);
+mu2 = alpha2 * 1;
 
 if (~affine)
     %% initialization
@@ -54,7 +54,7 @@ if (~affine)
     C1 = zeros(N+D,N);
     Delta1 = zeros(D,N);
     Delta2 = zeros(N+D,N);
-    err1 = 10*thr; err2 = 10*thr;
+    err1 = 10*Par.thr; err2 = 10*Par.thr;
     i = 1;
     %% ADMM iterations
     while ( err1(i) > thr || err2(i) > thr && i < Par.maxIter )
@@ -90,7 +90,7 @@ else
     Delta1 = zeros(D,N);
     Delta2 = zeros(N+D,N);
     Delta3 = zeros(1,N);
-    err1 = 10*thr; err2 = 10*thr; err3 = 10*thr;
+    err1 = 10*Par.thr; err2 = 10*Par.thr; err3 = 10*Par.thr;
     i = 1;
     %% ADMM iterations
     while ( (err1(i) > thr1 || err2(i) > thr2 || err3(i) > thr1) && i < maxIter )
