@@ -7,12 +7,12 @@ method = 'LSRd0po_SSC';
 Par.thr = 2*10^-4;
 for mu = [1]
     Par.mu = mu;
-    for maxIter = [150 200]
+    for maxIter = [200]
         Par.maxIter = maxIter;
         for rho = [0.01 0.1:0.1:0.5]
             Par.rho = rho;
-            for ratio = [1e-5 1e-4 0.001 0.01 0.1]
-                Par.ratio = ratio;
+            for lambda = [0.01 0.1 0.5 1]
+                Par.lambda = lambda;
                 for nSet = 2 %[2 3 4 5 6 7 8 9 10]
                     for i = 1:length(nSet)
                         n = nSet(i);
@@ -31,10 +31,10 @@ for mu = [1]
                         end
                         avgmissrate(n) = mean(missrateTot{n});
                         medmissrate(n) = median(missrateTot{n});
-                        matname = sprintf(['C:/Users/csjunxu/Desktop/SC/Results/YaleB_' method '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_ratio' num2str(Par.ratio) '.mat']);
+                        matname = sprintf(['C:/Users/csjunxu/Desktop/SC/Results/YaleB_' method '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(Par.lambda) '.mat']);
                         save(matname,'missrateTot','avgmissrate','medmissrate');
                     end
-                    matname = sprintf(['C:/Users/csjunxu/Desktop/SC/Results/YaleB_' method '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_ratio' num2str(Par.ratio) '.mat']);
+                    matname = sprintf(['C:/Users/csjunxu/Desktop/SC/Results/YaleB_' method '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(Par.lambda) '.mat']);
                     save(matname,'missrateTot','avgmissrate','medmissrate');
                 end
             end

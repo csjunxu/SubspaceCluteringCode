@@ -46,8 +46,7 @@ P = [Y eye(D)/gamma];
 % mu1 = alpha1 * 1/computeLambda_mat(Y,P);
 % mu2 = alpha2 * 1;
 
-Par.lambda = Par.ratio * computeLambda_mat(Y,P);
-% mu1 = alpha1 * 1/computeLambda_mat(Y,P);
+% Par.lambda = Par.ratio * computeLambda_mat(Y,P);
 
 if (~affine)
     %% initialization
