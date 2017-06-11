@@ -18,8 +18,8 @@ thr = 2*10^-4;
 
 
 % setting penalty parameters for the ADMM
-% mu1 = alpha1 * 1/computeLambda_mat(Y);
-% mu2 = alpha2 * 1;
+mu1 = alpha1 * 1/computeLambda_mat(Y);
+mu2 = alpha2 * 1;
 
 % lambda = computeLambda_mat(Y);
 
