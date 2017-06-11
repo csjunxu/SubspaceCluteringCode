@@ -2,7 +2,7 @@ function C2 = LSRd0posi_admmOutlier(Y,affine,Par)
 
 if (nargin < 3)
     % default regularizarion parameters
-    Par.lambda = 20;
+    Par.alpha = 20;
     Par.rho = 0.1;
     Par.maxIter = 200;
     % default coefficient error threshold to stop ALM
@@ -16,26 +16,19 @@ if (nargin < 2)
 end
 
 if (length(alpha) == 1)
-    alpha1 = alpha(1);
-    alpha2 = alpha(1);
-    alpha3 = alpha(1);
+    alpha1 = Par.alpha(1);
+    alpha2 = Par.alpha(1);
+    alpha3 = Par.alpha(1);
 elseif (length(alpha) == 2)
-    alpha1 = alpha(1);
-    alpha2 = alpha(2);
-    alpha3 = alpha(2);
+    alpha1 = Par.alpha(1);
+    alpha2 = Par.alpha(2);
+    alpha3 = Par.alpha(2);
 elseif (length(alpha) == 3)
-    alpha1 = alpha(1);
-    alpha2 = alpha(2);
-    alpha3 = alpha(3);
+    alpha1 = Par.alpha(1);
+    alpha2 = Par.alpha(2);
+    alpha3 = Par.alpha(3);
 end
 
-if (length(thr) == 1)
-    thr1 = thr(1);
-    thr2 = thr(1);
-elseif (length(thr) == 2)
-    thr1 = thr(1);
-    thr2 = thr(2);
-end
 
 
 [D,N] = size(Y);
