@@ -2,8 +2,7 @@ function C2 = LSRd0posi_admmOutlier(Y,affine,Par)
 
 if (nargin < 3)
     % default regularizarion parameters
-    Par.alpha = 20;
-    Par.rho = 0.1;
+    Par.rho = 20;
     Par.maxIter = 200;
     % default coefficient error threshold to stop ALM
     % default linear system error threshold to stop ALM
@@ -15,34 +14,34 @@ if (nargin < 2)
     affine = false;
 end
 
-if (length(alpha) == 1)
-    alpha1 = Par.alpha(1);
-    alpha2 = Par.alpha(1);
-    alpha3 = Par.alpha(1);
-elseif (length(alpha) == 2)
-    alpha1 = Par.alpha(1);
-    alpha2 = Par.alpha(2);
-    alpha3 = Par.alpha(2);
-elseif (length(alpha) == 3)
-    alpha1 = Par.alpha(1);
-    alpha2 = Par.alpha(2);
-    alpha3 = Par.alpha(3);
+if (length(rho) == 1)
+    rho1 = Par.rho(1);
+    rho2 = Par.rho(1);
+    rho3 = Par.rho(1);
+elseif (length(rho) == 2)
+    rho1 = Par.rho(1);
+    rho2 = Par.rho(2);
+    rho3 = Par.rho(2);
+elseif (length(rho) == 3)
+    rho1 = Par.rho(1);
+    rho2 = Par.rho(2);
+    rho3 = Par.rho(3);
 end
 
 
 
 [D,N] = size(Y);
 
-gamma = alpha3 / norm(Y,1);
+gamma = rho3 / norm(Y,1);
 P = [Y eye(D)/gamma];
 [D,L] = size(P);
 % setting penalty parameters for the ADMM
-mu1 = alpha1 * 1/computeLambda_mat(Y,P);
-mu2 = alpha2 * 1;
+mu1 = rho1 * 1/computeLambda_mat(Y,P);
+mu2 = rho2 * 1;
 
 if (~affine)
     %% initialization
-    Inv = (mu1*(P'*P)+Par.rho/2*eye(N+D))\eye(N+D);
+    Inv = (mu1*(P'*P)+mu2/2*eye(N+D))\eye(N+D);
     InvW = (2/Par.rho*eye(N+D) - (2/Par.rho)^2*P'/(2/Par.rho*(P*P')+ eye(D))*P);
     C1 = zeros(N+D,N);
     Delta1 = zeros(D,N);
@@ -63,8 +62,8 @@ if (~affine)
         C2  = solver_BCLS_closedForm(Q);
         C2(1:N,:) = C2(1:N,:) - diag(diag(C2(1:N,:)));
         %% updating Lagrange multipliers
-        Delta1 = Delta1 + Par.rho * (Y - P * A);
-        Delta2 = Delta2 + Par.rho * (C2 - A);
+        Delta1 = Delta1 + mu1 * (Y - P * A);
+        Delta2 = Delta2 + rho2 * (C2 - A);
         %% computing errors
         err1(i+1) = errorCoef(A, C2);
         err2(i+1) = errorLinSys(P, A);
