@@ -1,3 +1,8 @@
+% error is too high
+% possible solutions
+% 1. originally, the number of iteration may not be enough at 200.
+% 2. Simulate the settings of SSC 
+
 clear all;
 
 load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleBCrop025.mat';
