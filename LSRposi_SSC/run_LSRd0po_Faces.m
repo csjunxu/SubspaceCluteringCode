@@ -4,14 +4,14 @@ load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleBCrop025.mat';
 
 method = 'LSRd0po_SSC';
 % method = 'LSRpo_SSC';
-
+ 
 for mu = [1]
     Par.mu = mu;
     for maxIter = [150 200]
         Par.maxIter = maxIter;
-        for rho = [0.01:0.01:0.05]
+        for rho = [0.1:0.1:0.5]
             Par.rho = rho;
-            for lambda = [5e-6 1e-5 5e-5 1e-4 5e-4 1e-3 5e-3]
+            for lambda = [1e-8 5e-5 1e-4 5e-4 1e-3 5e-3]
                 Par.lambda = lambda;
                 for nSet = 2 %[2 3 4 5 6 7 8 9 10]
                     for i = 1:length(nSet)
@@ -24,7 +24,7 @@ for mu = [1]
                             end
                             [D,N] = size(X);
 
-                            r = 0; affine = false; outlier = false; rho = 1;
+                            r = 0; affine = false; outlier = true; rho = 1;
                             time0  =   clock;
                             missrate= LSRd0posi(X,r,affine,outlier,rho,s{n},Par);
                             missrateTot{n}(j) = missrate;

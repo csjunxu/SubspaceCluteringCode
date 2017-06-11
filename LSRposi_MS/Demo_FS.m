@@ -30,8 +30,8 @@ end
 
 
 %% Subspace segmentation methods
-SegmentationMethod = 'LSRd0po' ;
-% SegmentationMethod = 'LSRpo' ;
+SegmentationMethod = 'LSRd0po_LSR' ;
+% SegmentationMethod = 'LSRpo_LSR' ;
 
 
 
@@ -78,9 +78,9 @@ for mu = [1]
                     for j = 1 : num_para
                         
                         switch SegmentationMethod
-                            case 'LSRd0po'
+                            case 'LSRd0po_LSR'
                                 C = LSRd0po( Yfea , Par ) ;
-                            case 'LSRpo'
+                            case 'LSRpo_LSR'
                                 C = LSRpo( Yfea , Par ) ;
                         end
                         
