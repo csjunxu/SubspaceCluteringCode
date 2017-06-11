@@ -12,6 +12,28 @@ if (nargin < 2)
     affine = false;
 end
 
+if (length(alpha) == 1)
+    alpha1 = alpha(1);
+    alpha2 = alpha(1);
+    alpha3 = alpha(1);
+elseif (length(alpha) == 2)
+    alpha1 = alpha(1);
+    alpha2 = alpha(2);
+    alpha3 = alpha(2);
+elseif (length(alpha) == 3)
+    alpha1 = alpha(1);
+    alpha2 = alpha(2);
+    alpha3 = alpha(3);
+end
+
+if (length(thr) == 1)
+    thr1 = thr(1);
+    thr2 = thr(1);
+elseif (length(thr) == 2)
+    thr1 = thr(1);
+    thr2 = thr(2);
+end
+
 % default coefficient error threshold to stop ALM
 % default linear system error threshold to stop ALM
 thr = 2*10^-4;
