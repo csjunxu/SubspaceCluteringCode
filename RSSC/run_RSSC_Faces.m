@@ -6,7 +6,7 @@ alpha = 20;
 ep1 = 9e-3;
 ep2 = 2.7e-4;
 
-for nSet = 2 %[2 3 4 5 6 7 8 9 10]
+for nSet = [2 3 4 5 6 7 8 9 10]
     for i = 1:length(nSet)
         n = nSet(i);
         idx = Ind{n};
