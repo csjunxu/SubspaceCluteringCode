@@ -2,7 +2,8 @@ function C2 = LSRd0posi_admmOutlier(Y,affine,Par)
 
 if (nargin < 3)
     % default regularizarion parameters
-    Par.rho = 20;
+    Par.lambda = 20;
+    Par.rho = 0.1;
     Par.maxIter = 200;
     % default coefficient error threshold to stop ALM
     % default linear system error threshold to stop ALM
@@ -15,34 +16,43 @@ if (nargin < 2)
 end
 
 if (length(Par.rho) == 1)
-    rho1 = Par.rho(1);
-    rho2 = Par.rho(1);
-    rho3 = Par.rho(1);
-elseif (length(rho) == 2)
-    rho1 = Par.rho(1);
-    rho2 = Par.rho(2);
-    rho3 = Par.rho(2);
-elseif (length(rho) == 3)
-    rho1 = Par.rho(1);
-    rho2 = Par.rho(2);
-    rho3 = Par.rho(3);
+    alpha1 = Par.rho(1);
+    alpha2 = Par.rho(1);
+    alpha3 = Par.rho(1);
+elseif (length(Par.rho) == 2)
+    alpha1 = Par.rho(1);
+    alpha2 = Par.rho(2);
+    alpha3 = Par.rho(2);
+elseif (length(Par.rho) == 3)
+    alpha1 = Par.rho(1);
+    alpha2 = Par.rho(2);
+    alpha3 = Par.rho(3);
 end
 
-
+if (length(Par.thr) == 1)
+    thr1 = Par.thr(1);
+    thr2 = Par.thr(1);
+elseif (length(Par.thr) == 2)
+    thr1 = Par.thr(1);
+    thr2 = Par.thr(2);
+end
 
 [D,N] = size(Y);
 
-gamma = rho3 / norm(Y,1);
+gamma = alpha3 / norm(Y,1);
 P = [Y eye(D)/gamma];
 [D,L] = size(P);
 % setting penalty parameters for the ADMM
-mu1 = rho1 * 1/computeLambda_mat(Y,P);
-mu2 = rho2 * 1;
+% mu1 = alpha1 * 1/computeLambda_mat(Y,P);
+% mu2 = alpha2 * 1;
+
+Par.lambda = computeLambda_mat(Y,P);
+mu1 = alpha1 * 1/computeLambda_mat(Y,P);
 
 if (~affine)
     %% initialization
-    Inv = (mu1*(P'*P)+mu2/2*eye(N+D))\eye(N+D);
-%     InvW = (2/Par.rho*eye(N+D) - (2/Par.rho)^2*P'/(2/Par.rho*(P*P')+ eye(D))*P);
+    Inv = (P'*P+Par.rho/2*eye(N+D))\eye(N+D);
+    InvW = (2/Par.rho*eye(N+D) - (2/Par.rho)^2*P'/(2/Par.rho*(P*P')+ eye(D))*P);
     C1 = zeros(N+D,N);
     Delta1 = zeros(D,N);
     Delta2 = zeros(N+D,N);
@@ -51,19 +61,19 @@ if (~affine)
     %% ADMM iterations
     while ( err1(i) > Par.thr || err2(i) > Par.thr && i < Par.maxIter )
         %% update A the coefficient matrix
-%         if L < D
-            A = Inv*(mu1*P'*(Y+mu2/2*Delta1)+mu2/2*C1+0.5 * Delta2);
-%         else
-%             A =  InvW*(P'*(Y+Par.rho/2*Delta1)+Par.rho/2*C1+0.5 * Delta2);
-%         end
+        if L < D
+            A = Inv*(P'*(Y+Par.rho/2*Delta1)+Par.rho/2*C1+0.5 * Delta2);
+        else
+            A =  InvW*(P'*(Y+Par.rho/2*Delta1)+Par.rho/2*C1+0.5 * Delta2);
+        end
         A(1:N,:) = A(1:N,:) - diag(diag(A(1:N,:)));
         %% update C the data term matrix
-        Q = (A - Delta2/mu2)/(2/mu1+1);
+        Q = (Par.rho*A - Delta2)/(2*Par.lambda+Par.rho);
         C2  = solver_BCLS_closedForm(Q);
         C2(1:N,:) = C2(1:N,:) - diag(diag(C2(1:N,:)));
         %% updating Lagrange multipliers
-        Delta1 = Delta1 + mu1 * (Y - P * A);
-        Delta2 = Delta2 + mu2 * (C2 - A);
+        Delta1 = Delta1 + mu1 * (Y - P * A); % Par.rho 
+        Delta2 = Delta2 + Par.rho * (C2 - A);
         %% computing errors
         err1(i+1) = errorCoef(A, C2);
         err2(i+1) = errorLinSys(P, A);
@@ -85,7 +95,7 @@ else
     err1 = 10*Par.thr; err2 = 10*Par.thr; err3 = 10*Par.thr;
     i = 1;
     %% ADMM iterations
-    while ( (err1(i) > Par.thr || err2(i) > Par.thr || err3(i) > Par.thr) && i < maxIter )
+    while ( (err1(i) > thr1 || err2(i) > thr2 || err3(i) > thr1) && i < maxIter )
         %% updating Z
         if L < D
             A = Inv*(P'*(Y+Par.rho/2*Delta1)+Par.rho/2*C1+0.5*Delta2+Par.rho/2*delta*ones(1,N)-0.5*delta*Delta3);
