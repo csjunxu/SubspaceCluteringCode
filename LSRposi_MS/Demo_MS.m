@@ -16,6 +16,8 @@ seq3 = seqs(3:end);
 % Save the data loaded in struct "data"
 data = struct('ProjX', {}, 'name',{}, 'ids',{});
 
+resultdir = 'C:/Users/csjunxu/Desktop/SC/Results/';
+
 
 for i=1:length(seq3)
     fname = seq3(i).name;
@@ -105,7 +107,7 @@ for mu = [1]
                 end
                 avgallmissrate = sum(allmissrate)/length(allmissrate);
                 medallmissrate = median(allmissrate);
-                matname = sprintf(['C:/Users/csjunxu/Desktop/SC/Results/' SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
+                matname = sprintf([resultdir SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
                 save(matname,'avgallmissrate','medallmissrate','missrateTot','avgmissrate','medmissrate');
             end
         end
