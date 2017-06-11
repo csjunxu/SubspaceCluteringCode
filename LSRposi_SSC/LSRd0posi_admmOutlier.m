@@ -52,7 +52,7 @@ if (~affine)
         Delta2 = Delta2 + Par.rho * (C2 - A);
         %% computing errors
         err1(i+1) = errorCoef(A, C2);
-        err2(i+1) = errorLinSys(P,A);
+        err2(i+1) = errorLinSys(P, A);
         %%
         C1 = C2;
         i = i + 1;
@@ -88,9 +88,9 @@ else
         Delta2 = Delta2 + Par.rho * (C2 - A);
         Delta3 = Delta3 + Par.rho * (delta'*A - ones(1,N));
         %% computing errors
-        err1(i+1) = errorCoef(A,C2);
-        err2(i+1) = errorLinSys(P,A);
-        err3(i+1) = errorCoef(delta'*A,ones(1,N));
+        err1(i+1) = errorCoef(A, C2);
+        err2(i+1) = errorLinSys(P, A);
+        err3(i+1) = errorCoef(delta'*A, ones(1,N));
         %%
         C1 = C2;
         i = i + 1;
