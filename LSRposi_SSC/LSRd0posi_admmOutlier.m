@@ -43,14 +43,14 @@ gamma = alpha3 / norm(Y,1);
 P = [Y eye(D)/gamma];
 [D,L] = size(P);
 % setting penalty parameters for the ADMM
-% mu1 = alpha1 * 1/computeLambda_mat(Y,P);
-% mu2 = alpha2 * 1;
+mu1 = alpha1 * 1/computeLambda_mat(Y,P);
+mu2 = alpha2 * 1;
 
-Par.lambda = Par.ratio * computeLambda_mat(Y,P);
+% Par.lambda = Par.ratio * computeLambda_mat(Y,P);
 
 if (~affine)
     %% initialization
-    Inv = (P'*P+Par.rho/2*eye(N+D))\eye(N+D);
+    Inv = (mu1*(P'*P)+mu2/2*eye(N+D))\eye(N+D);
     InvW = (2/Par.rho*eye(N+D) - (2/Par.rho)^2*P'/(2/Par.rho*(P*P')+ eye(D))*P);
     C1 = zeros(N+D,N);
     Delta1 = zeros(D,N);
@@ -61,18 +61,18 @@ if (~affine)
     while ( (err1(i) > Par.thr || err2(i) > Par.thr) && i <= Par.maxIter )
         %% update A the coefficient matrix
         if L < D
-            A = Inv*(P'*(Y+Par.rho/2*Delta1)+Par.rho/2*C1+0.5 * Delta2);
+            A = Inv*(mu1*P'*(Y+2*mu2/mu1*Delta1)+mu2/2*C1+0.5 * Delta2);
         else
             A =  InvW*(P'*(Y+Par.rho/2*Delta1)+Par.rho/2*C1+0.5 * Delta2);
         end
         A(1:N,:) = A(1:N,:) - diag(diag(A(1:N,:)));
         %% update C the data term matrix
-        Q = (A - Delta2/Par.rho)/(2*Par.lambda/Par.rho+1);
+        Q = (A - Delta2/mu2)/(2/mu2+1);%(2*Par.lambda/mu2+1);
         C2  = solver_BCLS_closedForm(Q);
         C2(1:N,:) = C2(1:N,:) - diag(diag(C2(1:N,:)));
         %% updating Lagrange multipliers
-        Delta1 = Delta1 + 5*Par.rho * (Y - P * A); 
-        Delta2 = Delta2 + Par.rho * (C2 - A);
+        Delta1 = Delta1 + mu1 * (Y - P * A); 
+        Delta2 = Delta2 + mu2 * (C2 - A);
         %% computing errors
         err1(i+1) = errorCoef(A, C2);
         err2(i+1) = errorLinSys(P, A);
