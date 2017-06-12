@@ -14,7 +14,7 @@ for mu = [1]
     Par.mu = mu;
     for maxIter = 150
         Par.maxIter = maxIter;
-        for rho = [0.1 0.5 1 5 10]
+        for rho = [20]
             Par.rho = rho;
             for nSet = 2 %[2 3 4 5 6 7 8 9 10]
                 for i = 1:length(nSet)
@@ -25,7 +25,7 @@ for mu = [1]
                         for p = 1:n
                             X = [X Y(:,:,idx(j,p))];
                         end
-                        [D,N] = size(X);
+                        [D,N] = size(X); 
                         
                         r = 0; affine = false; outlier = true; rho = 1;
                         time0  =   clock;
