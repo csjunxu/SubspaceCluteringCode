@@ -43,7 +43,7 @@ buildRepresentation = @(data) OMP_mat_func(data, 10, 1e-6); % second parameter i
 genLabel = @(affinity, nCluster) SpectralClustering(affinity, nCluster, 'Eig_Solver', 'eigs');
 
 %% Load data
-addpath('MNIST')
+addpath('C:\Users\csjunxu\Desktop\SC\SSCOMP_Code\MNIST\')
 if ~exist('MNIST_DATA', 'var')
     try
         % MNIST_SC_DATA is a D by N matrix. Each column contains a feature 
@@ -92,21 +92,21 @@ for iExperiment = 1:nExperiment
     % Clustering
     tic;
     
-%     fprintf('Dimension reduction...\n')
+    fprintf('Dimension reduction...\n')
     X = reduceDimension(X);
     % normalization
-%     fprintf('Normalization...\n')
+    fprintf('Normalization...\n')
     X = normalizeColumn(X);
     % generate representation
-%     fprintf('Representation...\n')
+    fprintf('Representation...\n')
     R = buildRepresentation(X);
     % generate affinity
-%     fprintf('Affinity...\n')
+    fprintf('Affinity...\n')
     R(1:N+1:end) = 0;
     R = cnormalize(R, Inf);
     A = abs(R) + abs(R)';
     % generate label
-%     fprintf('Generate label...\n')
+    fprintf('Generate label...\n')
     groups = genLabel(A, nCluster);                             
 
     time = toc;
