@@ -25,11 +25,12 @@ for mu = [1]
                         for p = 1:n
                             X = [X Y(:,:,idx(j,p))];
                         end
-                        [D,N] = size(X); 
+                        [D,N] = size(X);
                         
                         r = 0; affine = false; outlier = true; rho = 1;
                         time0  =   clock;
                         missrate= LSRd0posi(X,r,affine,outlier,rho,s{n},Par);
+                        fprintf('missrate: %2.4f\n', missrate);
                         missrateTot{n}(j) = missrate;
                     end
                     avgmissrate(n) = mean(missrateTot{n});

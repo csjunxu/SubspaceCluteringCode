@@ -1,10 +1,9 @@
-function C2 = admmOutlier_mat_func(Y,affine,alpha,ep1,ep2,thr,maxIter)
-
+function C2 = admmOutlier_mat_func(Y,affine,Par)
 if (nargin < 2)
     % default subspaces are linear
     affine = false;
 end
-if (nargin < 3)
+if (nargin < 5)
     % default regularizarion parameters
     alpha = 20;
 end
@@ -69,8 +68,8 @@ if (~affine)
         C2 = max(0,(abs(Z+Lambda2/mu2) - 1/mu2*W)) .* sign(Z+Lambda2/mu2);
         C2(1:N,:) = C2(1:N,:) - diag(diag(C2(1:N,:)));
         C2(C2<0)=0; % added on 13/06/2017
-        % updating W
-        W = ep2./(abs(C2)+ep1);
+%         % updating W
+%         W = ep2./(abs(C2)+ep1);
         % updating Lagrange multipliers
         Lambda1 = Lambda1 + mu1 * (Y - P * Z);
         Lambda2 = Lambda2 + mu2 * (Z - C2);
@@ -80,7 +79,7 @@ if (~affine)
         %
         C1 = C2;
         i = i + 1;
-        fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end),err2(end),i);
+%         fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end),err2(end),i);
     end
     fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end),err2(end),i);
 else
