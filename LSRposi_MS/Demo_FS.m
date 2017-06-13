@@ -14,14 +14,13 @@ nCluster = 5 ;           % number of subspace, 5 or 10 used in our paper
 num = nCluster * 64 ;    % number of data used for subspace segmentation
 fea = fea(:,1:num) ;
 gnd = gnd(:,1:num) ;
-redDim = nCluster * 6 ;
 
 
 
-% %% PCA Projection
-% [ eigvector , eigvalue ] = PCA( fea ) ;
-% maxDim = length(eigvalue);
-% fea = eigvector' * fea ;
+%% PCA Projection
+[ eigvector , eigvalue ] = PCA( fea ) ;
+maxDim = length(eigvalue);
+fea = eigvector' * fea ;
 
 % normalize
 for i = 1 : size(fea,2)
@@ -33,30 +32,11 @@ end
 SegmentationMethod = 'LSRd0po_LSR' ;
 % SegmentationMethod = 'LSRpo_LSR' ;
 
-
-
-%% Parameter
-
-switch nCluster
-    case 5
-        para = [0.4] * ones(1,20) ;
-    case 10
-        para = [0.004 ] * ones(1,20) ;
-end
-
-
-
 %% Output results
 fid = 1 ;  % output to the screen
 fprintf( fid , ['Function                   = ' mfilename(currentpath) '.m\n'] ) ;
 fprintf( fid ,  'Data                       = %s, nCluster = %d\n' , 'YaleB' , nCluster ) ;
 fprintf( fid ,  'SegmentationMethod         = %s\n' , SegmentationMethod ) ;
-num_para = length( para ) ;
-num_redDim = length( redDim ) ;
-fprintf( fid , 'para =' ) ;
-for i = 1 : num_para
-    fprintf( fid , '\t%5f' , para(i) ) ;
-end
 fprintf( fid , '\n' ) ;
 
 %% Subspace segmentation
@@ -64,57 +44,31 @@ for maxIter = [200]
     Par.maxIter = maxIter;
     for mu = [1]
         Par.mu = mu;
-        for lambda = [0.1 0.5 1]
+        for lambda = [100]
             Par.lambda = lambda;
             for rho = [0.001]
                 Par.rho = rho;
-                Accuracy = zeros( num_redDim , num_para ) ;
-                for i = 1 : num_redDim
-                    d = redDim( i ) ;
-                    fprintf( 'd = %d', d ) ;
-                    Yfea = fea(1:d,:) ;
-                    for j = 1 : num_para
-                        
-                        switch SegmentationMethod
-                            case 'LSRd0po_LSR'
-                                C = LSRd0po( Yfea , Par ) ;
-                            case 'LSRpo_LSR'
-                                C = LSRpo( Yfea , Par ) ;
-                        end
-                        
-                        for i = 1 : size(C,2)
-                            C(:,i) = C(:,i) / max(abs(C(:,i))) ;
-                        end
-                        nCluster = length( unique( gnd ) ) ;
-                        Z = ( abs(C) + abs(C') ) / 2 ;
-                        idx = clu_ncut(Z,nCluster) ;
-                        Accuracy(i,j) = compacc(idx,gnd) ;
-                        fprintf( fid , '\t%.3f ' , Accuracy(i,j)*100 ) ;
-                    end
-                    fprintf('\n') ;
+                Yfea = fea;
+                
+                switch SegmentationMethod
+                    case 'LSRd0po_LSR'
+                        C = LSRd0po( Yfea , Par ) ;
+                    case 'LSRpo_LSR'
+                        C = LSRpo( Yfea , Par ) ;
                 end
+                
+                for i = 1 : size(C,2)
+                    C(:,i) = C(:,i) / max(abs(C(:,i))) ;
+                end
+                nCluster = length( unique( gnd ) ) ;
+                Z = ( abs(C) + abs(C') ) / 2 ;
+                idx = clu_ncut(Z,nCluster) ;
+                Accuracy = compacc(idx,gnd);
+                fprintf( fid , '\t%.3f \% \n' , Accuracy*100 ) ;
                 
                 %% output
-                fprintf('\n\n');
-                fprintf( fid , 'para =' ) ;
-                for i = 1 : length(para)
-                    fprintf( fid , '\t%5f' , para(i) ) ;
-                end
-                fprintf( fid , '\n' ) ;
-                for i = 1 : length(redDim)
-                    d = redDim( i ) ;
-                    fprintf( 'd = %d', d ) ;
-                    for j = 1 : length(para)
-                        fprintf( fid , '\t%.3f ' , Accuracy(i,j)*100 ) ;
-                    end
-                    fprintf('\n') ;
-                end
-                
-                [maxa, ind] = max( Accuracy*100 )
-                maxpara = para(ind)
-                maxAcc = max( max(Accuracy*100) )
                 matname = sprintf(['C:/Users/csjunxu/Desktop/SC/Results/YaleB_' SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
-                save(matname,'Accuracy','maxAcc');
+                save(matname,'Accuracy');
             end
         end
     end
