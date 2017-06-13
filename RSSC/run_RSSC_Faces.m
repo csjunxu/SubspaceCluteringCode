@@ -6,7 +6,7 @@ alpha = 20;
 ep1 = 9e-3;
 ep2 = 2.7e-4;
 
-for nSet = [2 3 4 5 6 7 8 9 10]
+for nSet = [5]% [2 3 4 5 6 7 8 9 10]
     for i = 1:length(nSet)
         n = nSet(i);
         idx = Ind{n};
@@ -25,7 +25,7 @@ for nSet = [2 3 4 5 6 7 8 9 10]
         end
         avgmissrate(n) = mean(missrateTot{n});
         medmissrate(n) = median(missrateTot{n});
-        save RSSC_Faces.mat missrateTot avgmissrate medmissrate alpha ep1 ep2
+        save SSC_Faces.mat missrateTot avgmissrate medmissrate alpha ep1 ep2
     end
-    save RSSC_Faces.mat missrateTot avgmissrate medmissrate alpha ep1 ep2
+    save SSC_Faces.mat missrateTot avgmissrate medmissrate alpha ep1 ep2
 end
