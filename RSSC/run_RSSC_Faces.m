@@ -25,7 +25,7 @@ for nSet = [5]% [2 3 4 5 6 7 8 9 10]
         end
         avgmissrate(n) = mean(missrateTot{n});
         medmissrate(n) = median(missrateTot{n});
-        save SSC_Faces.mat missrateTot avgmissrate medmissrate alpha ep1 ep2
+        save RSSC_Faces.mat missrateTot avgmissrate medmissrate alpha ep1 ep2
     end
-    save SSC_Faces.mat missrateTot avgmissrate medmissrate alpha ep1 ep2
+    save RSSC_Faces.mat missrateTot avgmissrate medmissrate alpha ep1 ep2
 end

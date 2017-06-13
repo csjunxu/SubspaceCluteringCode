@@ -1,4 +1,4 @@
-function missrate = PSSC(X,r,affine,alpha,outlier,rho,s)
+function missrate = PSSC(X,r,affine,alpha,ep1,ep2,outlier,rho,s)
 
 if (nargin < 8)
     rho = 1;
@@ -24,10 +24,10 @@ else
 end
 
 if (~outlier)
-    CMat = PSSC_admmLasso(Xp,affine,alpha);
+    CMat = PSSC_admmLasso(Xp,affine,alpha,ep1,ep2);
     C = CMat;
 else
-    CMat = PSSC_admmOutlier(Xp,affine,alpha);
+    CMat = PSSC_admmOutlier(Xp,affine,alpha,ep1,ep2);
     N = size(Xp,2);
     C = CMat(1:N,:);
 end

@@ -1,4 +1,4 @@
-function C2 = PSSC_admmOutlier(Y,affine,alpha,thr,maxIter)
+function C2 = PSSC_admmOutlier(Y,affine,alpha,ep1,ep2,thr,maxIter)
 
 if (nargin < 2)
     % default subspaces are linear
@@ -49,11 +49,13 @@ P = [Y eye(D)/gamma];
 mu1 = alpha1 * 1/computeLambda_mat(Y,P);
 mu2 = alpha2 * 1;
 
+W = ones(N+D,N);
+
 if (~affine)
     % initialization
     A = inv(mu1*(P'*P)+mu2*eye(N+D));
     C1 = zeros(N+D,N);
-    Lambda1 = zeros(D,N); 
+    Lambda1 = zeros(D,N);
     Lambda2 = zeros(N+D,N);
     err1 = 10*thr1; err2 = 10*thr2;
     i = 1;
@@ -62,11 +64,13 @@ if (~affine)
         % updating Z
         Z = A * (mu1*P'*(Y+Lambda1/mu1)+mu2*(C1-Lambda2/mu2));
         Z(1:N,:) = Z(1:N,:) - diag(diag(Z(1:N,:)));
-%         Z(Z<0)=0; % added on 13/06/2017
+        %         Z(Z<0)=0; % added on 13/06/2017
         % updating C
-        C2 = max(0,(abs(Z+Lambda2/mu2) - 1/mu2*ones(N+D,N))) .* sign(Z+Lambda2/mu2);
+        C2 = max(0,(abs(Z+Lambda2/mu2) - 1/mu2*W)) .* sign(Z+Lambda2/mu2);
         C2(1:N,:) = C2(1:N,:) - diag(diag(C2(1:N,:)));
         C2(C2<0)=0; % added on 13/06/2017
+        % updating W
+        W = ep2./(abs(C2)+ep1);
         % updating Lagrange multipliers
         Lambda1 = Lambda1 + mu1 * (Y - P * Z);
         Lambda2 = Lambda2 + mu2 * (Z - C2);
@@ -76,7 +80,7 @@ if (~affine)
         %
         C1 = C2;
         i = i + 1;
-%         fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end),err2(end),i);
+        %         fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end),err2(end),i);
     end
     fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end),err2(end),i);
 else
@@ -108,7 +112,7 @@ else
         %
         C1 = C2;
         i = i + 1;
-%         fprintf('err1: %2.4f, err2: %2.4f, err3: %2.4f, iter: %3.0f \n',err1(end),err2(end),err3(end),i);
+        %         fprintf('err1: %2.4f, err2: %2.4f, err3: %2.4f, iter: %3.0f \n',err1(end),err2(end),err3(end),i);
     end
     fprintf('err1: %2.4f, err2: %2.4f, err3: %2.4f, iter: %3.0f \n',err1(end),err2(end),err3(end),i);
 end
