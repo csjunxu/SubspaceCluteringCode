@@ -64,11 +64,11 @@ if (~affine)
         % updating Z
         Z = A * (mu1*P'*(Y+Lambda1/mu1)+mu2*(C1-Lambda2/mu2));
         Z(1:N,:) = Z(1:N,:) - diag(diag(Z(1:N,:)));
-        Z(Z<0)=0; % added on 13/06/2017
+%         Z(Z<0)=0; % added on 13/06/2017
         % updating C
         C2 = max(0,(abs(Z+Lambda2/mu2) - 1/mu2*W)) .* sign(Z+Lambda2/mu2);
         C2(1:N,:) = C2(1:N,:) - diag(diag(C2(1:N,:)));
-        C2(C2<0)=0; % added on 13/06/2017
+%         C2(C2<0)=0; % added on 13/06/2017
         % updating W
         W = ep2./(abs(C2)+ep1);
         % updating Lagrange multipliers
