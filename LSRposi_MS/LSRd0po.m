@@ -43,18 +43,18 @@ while  ( ~terminate )
     else
         A =  P * (X' * X + Par.rho/2 * C + 0.5 * Delta);
     end
-    A = A - diag(diag(A));
+%     A = A - diag(diag(A));
     
     %% update C the data term matrix
     Q = (Par.rho*A - Delta)/(2*Par.lambda+Par.rho);
     C  = solver_BCLS_closedForm(Q);
-    C = C - diag(diag(C));
+%     C = C - diag(diag(C));
     
     %% update Deltas the lagrange multiplier matrix
     Delta = Delta + Par.rho * ( C - A);
     
     %% update rho the penalty parameter scalar
-    Par.rho = min(1e4, Par.mu * Par.rho);
+%     Par.rho = min(1e4, Par.mu * Par.rho);
     
     %% computing errors
     err1(iter+1) = errorCoef(C, A);

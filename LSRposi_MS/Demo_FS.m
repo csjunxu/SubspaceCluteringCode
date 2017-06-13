@@ -18,10 +18,10 @@ redDim = nCluster * 6 ;
 
 
 
-%% PCA Projection
-[ eigvector , eigvalue ] = PCA( fea ) ;
-maxDim = length(eigvalue);
-fea = eigvector' * fea ;
+% %% PCA Projection
+% [ eigvector , eigvalue ] = PCA( fea ) ;
+% maxDim = length(eigvalue);
+% fea = eigvector' * fea ;
 
 % normalize
 for i = 1 : size(fea,2)
@@ -60,16 +60,14 @@ end
 fprintf( fid , '\n' ) ;
 
 %% Subspace segmentation
-
-for mu = [1]
-    Par.mu = mu;
-    for lambda = [0.1 0.5 1]
-        Par.lambda = lambda;
-        for rho = [0.1 0.01 0.05]
-            Par.rho = rho;
-            for maxIter = [200]
-                Par.maxIter = maxIter;
-                
+for maxIter = [200]
+    Par.maxIter = maxIter;
+    for mu = [1]
+        Par.mu = mu;
+        for lambda = [0.1 0.5 1]
+            Par.lambda = lambda;
+            for rho = [0.001]
+                Par.rho = rho;
                 Accuracy = zeros( num_redDim , num_para ) ;
                 for i = 1 : num_redDim
                     d = redDim( i ) ;
