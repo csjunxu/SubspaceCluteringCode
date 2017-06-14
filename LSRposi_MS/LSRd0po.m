@@ -19,9 +19,9 @@ function C = LSRd0po( X , Par )
 
 %% initialization
 
-% A       = eye (N);
+A       = eye (N);
 
-A       = zeros (N, N);
+% A       = zeros (N, N);
 C       = A;
 Delta = C - A;
 % A   = rand (N);
@@ -54,7 +54,7 @@ while  ( ~terminate )
     Delta = Delta + Par.rho * ( C - A);
     
     %% update rho the penalty parameter scalar
-%     Par.rho = min(1e4, Par.mu * Par.rho);
+    Par.rho = min(1e4, Par.mu * Par.rho);
     
     %% computing errors
     err1(iter+1) = errorCoef(C, A);

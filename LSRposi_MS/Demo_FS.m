@@ -15,18 +15,17 @@ num = nCluster * 64 ;    % number of data used for subspace segmentation
 fea = fea(:,1:num) ;
 gnd = gnd(:,1:num) ;
 
-
-
+% writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
+writefilepath = '';
 %% PCA Projection
 [ eigvector , eigvalue ] = PCA( fea ) ;
 maxDim = length(eigvalue);
 fea = eigvector' * fea ;
 
-% normalize
-for i = 1 : size(fea,2)
-    fea(:,i) = fea(:,i) /norm(fea(:,i)) ;
-end
-
+% % normalize
+% for i = 1 : size(fea,2)
+%     fea(:,i) = fea(:,i) /norm(fea(:,i)) ;
+% end
 
 %% Subspace segmentation methods
 SegmentationMethod = 'LSRd0po_LSR' ;
@@ -40,13 +39,13 @@ fprintf( fid ,  'SegmentationMethod         = %s\n' , SegmentationMethod ) ;
 fprintf( fid , '\n' ) ;
 
 %% Subspace segmentation
-for maxIter = [200]
+for maxIter = [100 150 200]
     Par.maxIter = maxIter;
-    for mu = [1]
+    for mu = [1 1.001]
         Par.mu = mu;
-        for lambda = [100]
+        for lambda = [1 10 100]
             Par.lambda = lambda;
-            for rho = [0.001]
+            for rho = [0.001 0.01 0.1 0.5 1]
                 Par.rho = rho;
                 Yfea = fea;
                 
@@ -67,7 +66,7 @@ for maxIter = [200]
                 fprintf( fid , '\t%.3f \% \n' , Accuracy*100 ) ;
                 
                 %% output
-                matname = sprintf(['C:/Users/csjunxu/Desktop/SC/Results/YaleB_' SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
+                matname = sprintf([writefilepath 'YaleB_' SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
                 save(matname,'Accuracy');
             end
         end
