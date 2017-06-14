@@ -33,7 +33,7 @@ redDim = nCluster * 6 ;
 maxDim = length(eigvalue)
 fea = eigvector' * fea ;
 
-% normalize 
+% normalize  
 for i = 1 : size(fea,2)
    fea(:,i) = fea(:,i) /norm(fea(:,i)) ; 
 end
