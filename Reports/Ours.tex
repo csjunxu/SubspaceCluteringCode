@@ -194,7 +194,7 @@ Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$,
 \arg\min_{\bm{C}}
 \frac{\rho}{2}
 \|
-\bm{C}-(\bm{A}_{k+1}-\rho^{-1}\bm{\Delta}
+\bm{C}-(\bm{A}_{k+1}-\rho^{-1}\bm{\Delta}_{k})
 \|_{F}^{2}
 +
 \lambda
@@ -208,53 +208,12 @@ This is a least squares regression problem which has a closed-form solution as
 \begin{split}
 \label{e7}
 \bm{C}_{k+1} 
-&
 =
-\bm{H}-\text{diag}(\bm{H}),
-\\
-(\bm{X}^{\top}\bm{X}+\bm{I})\bm{H}
-&
-=
-\bm{X}^{\top}\bm{P}_{k}+\bm{Q}_{k},
+(\rho+2\lambda)^{-1}(\rho\bm{A}_{k+1}-\bm{\Delta}_{k}).
 \end{split}
 \end{equation}
-where $\bm{P}_{k}=\bm{X}-\bm{E}_{k}-\rho^{-1}\bm{\Delta}_{k}$
-and
-$\bm{Q}_{k}=\bm{A}_{k+1}-\rho^{-1}\bm{\delta}_{k}$.
 
-(3) Obtain $\bm{E}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{E}$, while fixing ($\bm{C}_{k+1},\bm{A}_{k+1},\bm{\Delta}_{k},\bm{\delta}_{k}$). This is equivalent to solve the following problem:
-\begin{equation}
-\begin{split}
-\label{e9}
-&
-\min_{\bm{E}}
-\frac{1}{2}
-\|
-(\bm{X}-\bm{X}\bm{C}_{k+1}-\rho^{-1}\bm{\Delta}_{k})
--
-\bm{E}
-\|_{F}^{2}
-+
-\rho^{-1}
-\|
-\bm{E}
-\|_{1}.
-\end{split}
-\end{equation}
-The solution of $\bm{E}$ can be computed in closed-form as 
-\begin{equation}
-\begin{split}
-\label{e10}
-&
-\bm{E}_{k+1}
-=
-\mathcal{S}_{\rho^{-1}}
-(\bm{X}-\bm{X}\bm{C}_{k+1}-\rho^{-1}\bm{\Delta}_{k}),
-\end{split}
-\end{equation}
-where $\mathcal{S}_{\tau}(x)=\text{sign}(x)*\text{max}(|x|-\tau,0)$ is the soft-thresholding operator.
-
-(4) Obtain the Lagrangian multipliers ($\bm{\Delta}_{k+1},\bm{\delta}_{k+1}$) while fixing ($\bm{C}_{k+1},\bm{A}_{k+1},\bm{E}_{k+1}$):
+(3) Obtain the Lagrangian multipliers $\bm{\Delta}_{k+1}$ while fixing ($\bm{C}_{k+1},\bm{A}_{k+1}$):
 \begin{equation}
 \begin{split}
 \label{e10}
@@ -264,23 +223,11 @@ where $\mathcal{S}_{\tau}(x)=\text{sign}(x)*\text{max}(|x|-\tau,0)$ is the soft-
 \bm{\Delta}_{k}
 +
 \tau\rho
-(\bm{E}_{k+1}-\bm{X}+\bm{X}\bm{C}_{k+1})
-,
-\\
-\bm{\delta}_{k+1}
-&
-=
-\bm{\delta}_{k}
-+
-\tau\rho
 (\bm{C}_{k+1}-\bm{A}_{k+1})
 ,
 \end{split}
 \end{equation}
 where $\tau\in(0,\frac{\sqrt{5}+1}{2})$ is the dual step size and is usually set as $\tau=1$.
-
-(5) Update the penalty parameter $\rho$ as $\rho=\mu\rho$, where $\mu>1$.
-
 
 
 \section{Non-Negatie Collaborative Representation}
