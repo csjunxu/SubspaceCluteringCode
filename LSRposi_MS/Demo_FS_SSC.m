@@ -15,11 +15,11 @@ writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 
 
 %% Subspace segmentation methods
-% SegmentationMethod = 'LSRd0po_LSR' ;
-SegmentationMethod = 'LSRpo_LSR' ;
-% SegmentationMethod = 'LSRd0ne_LSR' ;
-% SegmentationMethod = 'LSRne_LSR' ;
-% SegmentationMethod = 'LSRd0_LSR' ;
+% SegmentationMethod = 'LSRd0po_SSC' ;
+SegmentationMethod = 'LSRpo_SSC' ;
+% SegmentationMethod = 'LSRd0ne_SSC' ;
+% SegmentationMethod = 'LSRne_SSC' ;
+% SegmentationMethod = 'LSRd0_SSC' ;
 %% Subspace segmentation
 for maxIter = [5 10 15 20 25 30]
     Par.maxIter = maxIter;
@@ -43,11 +43,11 @@ for maxIter = [5 10 15 20 25 30]
                             fea = X ;
                             gnd = s{n} ;
                             
-%                             %% PCA Projection
-%                             [ eigvector , eigvalue ] = PCA( fea ) ;
-%                             maxDim = length(eigvalue);
-%                             fea = eigvector' * fea ;
-%                             redDim = nSet * 6 ;
+                            %                             %% PCA Projection
+                            %                             [ eigvector , eigvalue ] = PCA( fea ) ;
+                            %                             maxDim = length(eigvalue);
+                            %                             fea = eigvector' * fea ;
+                            %                             redDim = nSet * 6 ;
                             
                             % normalize
                             for c = 1 : size(fea,2)
@@ -56,15 +56,15 @@ for maxIter = [5 10 15 20 25 30]
                             Yfea = fea;
                             %  Yfea = fea(1:redDim, :) ;
                             switch SegmentationMethod
-                                case 'LSRd0po_LSR'
+                                case 'LSRd0po_SSC'
                                     C = LSRd0po( Yfea , Par ) ;
-                                case 'LSRpo_LSR'
+                                case 'LSRpo_SSC'
                                     C = LSRpo( Yfea , Par ) ;
-                                case 'LSRd0ne_LSR'
+                                case 'LSRd0ne_SSC'
                                     C = LSRd0ne( Yfea , Par ) ;
-                                case 'LSRne_LSR'
+                                case 'LSRne_SSC'
                                     C = LSRne( Yfea , Par ) ;
-                                case 'LSRd0_LSR'
+                                case 'LSRd0_SSC'
                                     C = LSRd0( Yfea , Par ) ;
                             end
                             for k = 1 : size(C,2)
@@ -80,10 +80,10 @@ for maxIter = [5 10 15 20 25 30]
                         end
                         avgmissrate(n) = mean(missrateTot{n});
                         medmissrate(n) = median(missrateTot{n});
-                        matname = sprintf([writefilepath 'YaleB_' SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '.mat']);
+                        matname = sprintf([writefilepath 'YaleB_' SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
                         save(matname,'missrateTot','avgmissrate','medmissrate');
                     end
-                    matname = sprintf([writefilepath 'YaleB_' SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '.mat']);
+                    matname = sprintf([writefilepath 'YaleB_' SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
                     save(matname,'missrateTot','avgmissrate','medmissrate');
                 end
             end
