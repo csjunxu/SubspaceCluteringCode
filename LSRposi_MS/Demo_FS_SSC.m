@@ -20,6 +20,7 @@ SegmentationMethod = 'LSRpo_SSC' ;
 % SegmentationMethod = 'LSRd0ne_SSC' ;
 % SegmentationMethod = 'LSRne_SSC' ;
 % SegmentationMethod = 'LSRd0_SSC' ;
+DR = 0; % dimension reduction 
 %% Subspace segmentation
 for maxIter = [5 10 15 20 25 30]
     Par.maxIter = maxIter;
@@ -43,18 +44,20 @@ for maxIter = [5 10 15 20 25 30]
                             fea = X ;
                             gnd = s{n} ;
                             
-                            %                             %% PCA Projection
-                            %                             [ eigvector , eigvalue ] = PCA( fea ) ;
-                            %                             maxDim = length(eigvalue);
-                            %                             fea = eigvector' * fea ;
-                            %                             redDim = nSet * 6 ;
+                            redDim = size(fea, 1);
+                            if DR == 1
+                                %% PCA Projection
+                                [ eigvector , eigvalue ] = PCA( fea ) ;
+                                maxDim = length(eigvalue);
+                                fea = eigvector' * fea ;
+                                redDim = nSet * 6 ;
+                            end
                             
                             % normalize
                             for c = 1 : size(fea,2)
                                 fea(:,c) = fea(:,c) /norm(fea(:,c)) ;
                             end
-                            Yfea = fea;
-                            %  Yfea = fea(1:redDim, :) ;
+                            Yfea = fea(1:redDim, :) ;
                             switch SegmentationMethod
                                 case 'LSRd0po_SSC'
                                     C = LSRd0po( Yfea , Par ) ;
@@ -80,10 +83,10 @@ for maxIter = [5 10 15 20 25 30]
                         end
                         avgmissrate(n) = mean(missrateTot{n});
                         medmissrate(n) = median(missrateTot{n});
-                        matname = sprintf([writefilepath 'YaleB_' SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
+                        matname = sprintf([writefilepath 'YaleB_' SegmentationMethod '_DR' num2str(DR) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
                         save(matname,'missrateTot','avgmissrate','medmissrate');
                     end
-                    matname = sprintf([writefilepath 'YaleB_' SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
+                    matname = sprintf([writefilepath 'YaleB_' SegmentationMethod '_DR' num2str(DR) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
                     save(matname,'missrateTot','avgmissrate','medmissrate');
                 end
             end
