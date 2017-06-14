@@ -43,11 +43,11 @@ for maxIter = [5 10 15 20 25 30]
                             fea = X ;
                             gnd = s{n} ;
                             
-                            %% PCA Projection
-                            [ eigvector , eigvalue ] = PCA( fea ) ;
-                            maxDim = length(eigvalue);
-                            fea = eigvector' * fea ;
-                            redDim = nSet * 6 ;
+%                             %% PCA Projection
+%                             [ eigvector , eigvalue ] = PCA( fea ) ;
+%                             maxDim = length(eigvalue);
+%                             fea = eigvector' * fea ;
+%                             redDim = nSet * 6 ;
                             
                             % normalize
                             for c = 1 : size(fea,2)
