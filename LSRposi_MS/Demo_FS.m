@@ -29,8 +29,8 @@ for i = 1 : size(fea,2)
 end
 
 %% Subspace segmentation methods
-% SegmentationMethod = 'LSRd0po_LSR' ;
-SegmentationMethod = 'LSRpo_LSR' ;
+SegmentationMethod = 'LSRd0po_LSR' ;
+% SegmentationMethod = 'LSRpo_LSR' ;
 
 %% Output results
 fid = 1 ;  % output to the screen

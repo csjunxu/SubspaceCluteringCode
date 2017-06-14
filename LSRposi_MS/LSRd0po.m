@@ -48,7 +48,7 @@ while  ( ~terminate )
     %% update C the data term matrix
     Q = (Par.rho*A - Delta)/(2*Par.lambda+Par.rho);
     C  = solver_BCLS_closedForm(Q);
-    C = C - diag(diag(C));
+%     C = C - diag(diag(C));
     
     %% update Deltas the lagrange multiplier matrix
     Delta = Delta + Par.rho * ( C - A);
