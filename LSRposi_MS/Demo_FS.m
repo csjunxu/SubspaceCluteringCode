@@ -29,11 +29,11 @@ for i = 1 : size(fea,2)
 end
 
 %% Subspace segmentation methods
-SegmentationMethod = 'LSRd0po_LSR' ;
+% SegmentationMethod = 'LSRd0po_LSR' ;
 % SegmentationMethod = 'LSRpo_LSR' ;
 % SegmentationMethod = 'LSRd0ne_LSR' ;
 % SegmentationMethod = 'LSRne_LSR' ;
-% SegmentationMethod = 'LSRd0_LSR' ;
+SegmentationMethod = 'LSRd0_LSR' ;
 
 %% Parameter
 switch nCluster
