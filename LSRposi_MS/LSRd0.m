@@ -19,13 +19,11 @@ function C = LSRd0( X , Par )
 
 %% initialization
 
-% A       = eye (N);
-
+% A   = eye (N);
+% A   = rand (N);
 A       = zeros (N, N);
 C       = A;
 Delta = C - A;
-% A   = rand (N);
-% XA = X * A;
 
 %%
 tol   = 1e-4;
