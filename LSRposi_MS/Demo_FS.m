@@ -29,8 +29,8 @@ for i = 1 : size(fea,2)
 end
 
 %% Subspace segmentation methods
-SegmentationMethod = 'LSRd0po_LSR' ;
-% SegmentationMethod = 'LSRpo_LSR' ;
+% SegmentationMethod = 'LSRd0po_LSR' ;
+SegmentationMethod = 'LSRpo_LSR' ;
 % SegmentationMethod = 'LSRd0ne_LSR' ;
 % SegmentationMethod = 'LSRne_LSR' ;
 % SegmentationMethod = 'LSRd0_LSR' ;
@@ -53,11 +53,11 @@ num_redDim = length( redDim ) ;
 fprintf( fid , '\n' ) ;
 
 %% Subspace segmentation
-for maxIter = [10 15 20 25 30]
+for maxIter = [5 10 15 20 25 30]
     Par.maxIter = maxIter;
     for mu = [1]
         Par.mu = mu;
-        for lambda = [.1 .11 .12 .09 .08 .13 .14 .07 .06 .15 .05]
+        for lambda = [.05 .04 .03 .02 .01]
             Par.lambda = lambda;
             for rho = [0.02]
                 Par.rho = rho;
