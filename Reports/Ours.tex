@@ -229,11 +229,13 @@ This is a least squares regression problem which has a closed-form solution as
 \end{equation}
 where $\tau\in(0,\frac{\sqrt{5}+1}{2})$ is the dual step size and is usually set as $\tau=1$.
 
+\textbf{Convergency analysis?}
 
 \section{Non-Negatie Collaborative Representation}
 
 This model enforces non-negative representation and hence produce sparse solutions, in the sense that it results only a few non-negative coefficients.
 
+The performance of this method is much better than the original least squares regression (LSR) based subspace clustering method proposed by Lu et al. \cite{lsr}.
 
 \section{Large Scale Subset Selection Via Woodbury Identity}
 
