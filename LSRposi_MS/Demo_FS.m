@@ -39,13 +39,13 @@ fprintf( fid ,  'SegmentationMethod         = %s\n' , SegmentationMethod ) ;
 fprintf( fid , '\n' ) ;
 
 %% Subspace segmentation
-for maxIter = [20 50 100 150 200]
+for maxIter = [10 15 20 25 30]
     Par.maxIter = maxIter;
     for mu = [1]
         Par.mu = mu;
-        for lambda = [1 2 3 0.5 0.2 0.1]
+        for lambda = [.1 .2 .3 .4 .5]
             Par.lambda = lambda;
-            for rho = [0.01 0.02]
+            for rho = [0.01 0.02 0.03]
                 Par.rho = rho;
                 Yfea = fea;
                 
