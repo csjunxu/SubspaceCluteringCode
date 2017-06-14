@@ -10,7 +10,7 @@ fprintf( [ mfilename(currentpath) ' is going, please wait...\n' ] ) ;
 
 %% Data YaleB
 load 'C:\Users\csjunxu\Desktop\SC\2012-ECCV-LSR\LSR_FS\Data\YaleB.mat'              % load YaleB dataset
-nCluster = 5 ;           % number of subspace, 5 or 10 used in our paper
+nCluster = 10 ;           % number of subspace, 5 or 10 used in our paper
 num = nCluster * 64 ;    % number of data used for subspace segmentation
 fea = fea(:,1:num) ;
 gnd = gnd(:,1:num) ;
@@ -29,11 +29,11 @@ for i = 1 : size(fea,2)
 end
 
 %% Subspace segmentation methods
-% SegmentationMethod = 'LSRd0po_LSR' ;
+SegmentationMethod = 'LSRd0po_LSR' ;
 % SegmentationMethod = 'LSRpo_LSR' ;
 % SegmentationMethod = 'LSRd0ne_LSR' ;
 % SegmentationMethod = 'LSRne_LSR' ;
-SegmentationMethod = 'LSRd0_LSR' ;
+% SegmentationMethod = 'LSRd0_LSR' ;
 
 %% Parameter
 switch nCluster
