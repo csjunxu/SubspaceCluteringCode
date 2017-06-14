@@ -9,6 +9,7 @@ fprintf( [ mfilename(currentpath) ' Begins.\n' ] ) ;
 fprintf( [ mfilename(currentpath) ' is going, please wait...\n' ] ) ;
 
 %% Data YaleB
+% load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleBCrop025.mat';
 load 'C:\Users\csjunxu\Desktop\SC\2012-ECCV-LSR\LSR_FS\Data\YaleB.mat'              % load YaleB dataset
 nCluster = 10 ;           % number of subspace, 5 or 10 used in our paper
 num = nCluster * 64 ;    % number of data used for subspace segmentation
