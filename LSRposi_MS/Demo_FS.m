@@ -22,10 +22,10 @@ writefilepath = '';
 maxDim = length(eigvalue);
 fea = eigvector' * fea ;
 
-% % normalize
-% for i = 1 : size(fea,2)
-%     fea(:,i) = fea(:,i) /norm(fea(:,i)) ;
-% end
+% normalize
+for i = 1 : size(fea,2)
+    fea(:,i) = fea(:,i) /norm(fea(:,i)) ;
+end
 
 %% Subspace segmentation methods
 SegmentationMethod = 'LSRd0po_LSR' ;
@@ -39,13 +39,13 @@ fprintf( fid ,  'SegmentationMethod         = %s\n' , SegmentationMethod ) ;
 fprintf( fid , '\n' ) ;
 
 %% Subspace segmentation
-for maxIter = [100 150 200]
+for maxIter = [20 50 100 150 200]
     Par.maxIter = maxIter;
-    for mu = [1 1.001]
+    for mu = [1]
         Par.mu = mu;
-        for lambda = [1 10 100]
+        for lambda = [1 2 3 0.5 0.2 0.1]
             Par.lambda = lambda;
-            for rho = [0.001 0.01 0.1 0.5 1]
+            for rho = [0.01 0.02]
                 Par.rho = rho;
                 Yfea = fea;
                 

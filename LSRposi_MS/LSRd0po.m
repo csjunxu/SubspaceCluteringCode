@@ -19,9 +19,9 @@ function C = LSRd0po( X , Par )
 
 %% initialization
 
-A       = eye (N);
+% A       = eye (N);
 
-% A       = zeros (N, N);
+A       = zeros (N, N);
 C       = A;
 Delta = C - A;
 % A   = rand (N);
