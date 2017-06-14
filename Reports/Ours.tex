@@ -194,14 +194,12 @@ Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$,
 \arg\min_{\bm{C}}
 \frac{\rho}{2}
 \|
-\bm{E}_{k}-\bm{X}+\bm{X}\bm{C}+\rho^{-1}\bm{\Delta}_{k}
+\bm{C}-(\bm{A}_{k+1}-\rho^{-1}\bm{\Delta}
 \|_{F}^{2}
-\\
-&
 +
-\frac{\rho}{2}
+\lambda
 \|
-\bm{C}-\bm{A}_{k+1}+\rho^{-1}\bm{\delta}_{k}
+\bm{C}
 \|_{F}^{2}
 \end{split}
 \end{equation}
