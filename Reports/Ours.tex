@@ -165,7 +165,7 @@ whose solution for $\bm{A}$ coincides with the solution of Eq. (\ref{e1}). By in
 \|_{F}^{2}
 \end{split}
 \end{equation}
-Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$, by $\bm{\Delta}_{k}$ the Lagrangian multipliers at iteration $k$, and by $\rho_{k}$ the penalty parameter at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
+Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$, by $\bm{\Delta}_{k}$ the Lagrangian multipliers at iteration $k$, and by $\rho$ the penalty parameter at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
 
 (1) Obtain $\bm{A}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{A}$, while fixing ($\bm{C}_{k},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
 \begin{equation}
@@ -184,7 +184,7 @@ Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$,
 \end{split}
 \end{equation}
 
-(2) Obtain $\bm{C}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{C}$, while fixing ($\bm{A}_{k+1},\bm{E}_{k},\bm{\Delta}_{k},\bm{\delta}_{k}$). This is equivalent to solve the following problem:
+(2) Obtain $\bm{C}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{C}$, while fixing ($\bm{A}_{k+1},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
 \begin{equation}
 \begin{split}
 \label{e6}
@@ -192,16 +192,16 @@ Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$,
 \bm{C}_{k+1}
 =
 \arg\min_{\bm{C}}
-\frac{\rho_{k}}{2}
+\frac{\rho}{2}
 \|
-\bm{E}_{k}-\bm{X}+\bm{X}\bm{C}+\rho_{k}^{-1}\bm{\Delta}_{k}
+\bm{E}_{k}-\bm{X}+\bm{X}\bm{C}+\rho^{-1}\bm{\Delta}_{k}
 \|_{F}^{2}
 \\
 &
 +
-\frac{\rho_{k}}{2}
+\frac{\rho}{2}
 \|
-\bm{C}-\bm{A}_{k+1}+\rho_{k}^{-1}\bm{\delta}_{k}
+\bm{C}-\bm{A}_{k+1}+\rho^{-1}\bm{\delta}_{k}
 \|_{F}^{2}
 \end{split}
 \end{equation}
@@ -220,9 +220,9 @@ This is a least squares regression problem which has a closed-form solution as
 \bm{X}^{\top}\bm{P}_{k}+\bm{Q}_{k},
 \end{split}
 \end{equation}
-where $\bm{P}_{k}=\bm{X}-\bm{E}_{k}-\rho_{k}^{-1}\bm{\Delta}_{k}$
+where $\bm{P}_{k}=\bm{X}-\bm{E}_{k}-\rho^{-1}\bm{\Delta}_{k}$
 and
-$\bm{Q}_{k}=\bm{A}_{k+1}-\rho_{k}^{-1}\bm{\delta}_{k}$.
+$\bm{Q}_{k}=\bm{A}_{k+1}-\rho^{-1}\bm{\delta}_{k}$.
 
 (3) Obtain $\bm{E}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{E}$, while fixing ($\bm{C}_{k+1},\bm{A}_{k+1},\bm{\Delta}_{k},\bm{\delta}_{k}$). This is equivalent to solve the following problem:
 \begin{equation}
@@ -232,12 +232,12 @@ $\bm{Q}_{k}=\bm{A}_{k+1}-\rho_{k}^{-1}\bm{\delta}_{k}$.
 \min_{\bm{E}}
 \frac{1}{2}
 \|
-(\bm{X}-\bm{X}\bm{C}_{k+1}-\rho_{k}^{-1}\bm{\Delta}_{k})
+(\bm{X}-\bm{X}\bm{C}_{k+1}-\rho^{-1}\bm{\Delta}_{k})
 -
 \bm{E}
 \|_{F}^{2}
 +
-\rho_{k}^{-1}
+\rho^{-1}
 \|
 \bm{E}
 \|_{1}.
@@ -250,8 +250,8 @@ The solution of $\bm{E}$ can be computed in closed-form as
 &
 \bm{E}_{k+1}
 =
-\mathcal{S}_{\rho_{k}^{-1}}
-(\bm{X}-\bm{X}\bm{C}_{k+1}-\rho_{k}^{-1}\bm{\Delta}_{k}),
+\mathcal{S}_{\rho^{-1}}
+(\bm{X}-\bm{X}\bm{C}_{k+1}-\rho^{-1}\bm{\Delta}_{k}),
 \end{split}
 \end{equation}
 where $\mathcal{S}_{\tau}(x)=\text{sign}(x)*\text{max}(|x|-\tau,0)$ is the soft-thresholding operator.
@@ -265,7 +265,7 @@ where $\mathcal{S}_{\tau}(x)=\text{sign}(x)*\text{max}(|x|-\tau,0)$ is the soft-
 =
 \bm{\Delta}_{k}
 +
-\tau\rho_{k}
+\tau\rho
 (\bm{E}_{k+1}-\bm{X}+\bm{X}\bm{C}_{k+1})
 ,
 \\
@@ -274,14 +274,14 @@ where $\mathcal{S}_{\tau}(x)=\text{sign}(x)*\text{max}(|x|-\tau,0)$ is the soft-
 =
 \bm{\delta}_{k}
 +
-\tau\rho_{k}
+\tau\rho
 (\bm{C}_{k+1}-\bm{A}_{k+1})
 ,
 \end{split}
 \end{equation}
 where $\tau\in(0,\frac{\sqrt{5}+1}{2})$ is the dual step size and is usually set as $\tau=1$.
 
-(5) Update the penalty parameter $\rho$ as $\rho_{k+1}=\mu\rho_{k}$, where $\mu>1$.
+(5) Update the penalty parameter $\rho$ as $\rho=\mu\rho$, where $\mu>1$.
 
 
 
@@ -390,7 +390,7 @@ whose solution for $\bm{A}$ coincides with the solution of Eq. (\ref{e3}). By in
 \|_{F}^{2}
 \end{split}
 \end{equation}
-Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$, by $\bm{\Delta}_{k}$ the Lagrangian multipliers at iteration $k$, and by $\rho_{k}$ the penalty parameter at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
+Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$, by $\bm{\Delta}_{k}$ the Lagrangian multipliers at iteration $k$, and by $\rho$ the penalty parameter at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
 
 (1) Obtain $\bm{A}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{A}$, while fixing ($\bm{C}_{k},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
 \begin{equation}
@@ -410,7 +410,7 @@ Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$,
 -(
 \bm{C}_{k}
 +
-\rho_{k}^{-1}
+\rho^{-1}
 \bm{\Delta}_{k}
 )
 \|_{F}^{2},
@@ -422,10 +422,10 @@ which is equalivalently to solve the following problem
 \label{e8}
 \bm{A}
 =
-(\bm{X}^{\top}\bm{X}+\frac{\rho_{k}}{2}\bm{I})^{-1}
+(\bm{X}^{\top}\bm{X}+\frac{\rho}{2}\bm{I})^{-1}
 (\bm{X}^{\top}\bm{X}
 +
-\frac{\rho_{k}}{2}
+\frac{\rho}{2}
 \bm{C}_{k}
 +
 \frac{1}{2}
@@ -436,19 +436,19 @@ which is equalivalently to solve the following problem
 Since the matrices $\bm{X}^{\top}\bm{X}$ is of $N\times N$ dimension. It is computational expensive when $N$ is very large. By employing the Woodburry Identity mentioned above, we can have 
 \begin{equation}
 (
-\frac{\rho_{k}}{2}\bm{I}
+\frac{\rho}{2}\bm{I}
 +
 \bm{X}^{\top}\bm{X}
 )^{-1}
 =
-\frac{2}{\rho_{k}}\bm{I}
+\frac{2}{\rho}\bm{I}
 -
-(\frac{2}{\rho_{k}})^{2}
+(\frac{2}{\rho})^{2}
 \bm{X}^{\top}
 (
 \bm{I}
 +
-\frac{2}{\rho_{k}}\bm{X}\bm{X}^{\top}
+\frac{2}{\rho}\bm{X}\bm{X}^{\top}
 )^{-1}
 \bm{X}
 .
@@ -461,14 +461,14 @@ and transform this problem as
 =
 &
 (
-\frac{2}{\rho_{k}}\bm{I}
+\frac{2}{\rho}\bm{I}
 -
-(\frac{2}{\rho_{k}})^{2}
+(\frac{2}{\rho})^{2}
 \bm{X}^{\top}
 (
 \bm{I}
 +
-\frac{2}{\rho_{k}}\bm{X}\bm{X}^{\top}
+\frac{2}{\rho}\bm{X}\bm{X}^{\top}
 )^{-1}
 \bm{X}
 )
@@ -477,7 +477,7 @@ and transform this problem as
 *
 (\bm{X}^{\top}\bm{X}
 +
-\frac{\rho_{k}}{2}
+\frac{\rho}{2}
 \bm{C}_{k}
 +
 \frac{1}{2}
@@ -495,12 +495,12 @@ which will save a lot of computational costs.
 \min_{\bm{C}}
 \frac{1}{2}
 \|
-(\bm{A}_{k+1}-\rho_{k}^{-1}\bm{\Delta}{k})
+(\bm{A}_{k+1}-\rho^{-1}\bm{\Delta}{k})
 -
 \bm{C}
 \|_{F}^{2}
 +
-\frac{\lambda}{\rho_{k}}
+\frac{\lambda}{\rho}
 \|
 \bm{C}
 \|_{p,1}.
@@ -514,12 +514,12 @@ Since the $\ell_{p,1}$ norm is separable with respect to each row, we can write 
 \sum_{i=1}^{M}
 \frac{1}{2}
 \|
-(\bm{A}_{k+1})_{i*}-\rho_{k}^{-1}(\bm{\Delta}_{k})_{i*}
+(\bm{A}_{k+1})_{i*}-\rho^{-1}(\bm{\Delta}_{k})_{i*}
 -
 \bm{C}_{i*}
 \|_{2}^{2}
 +
-\frac{\lambda}{\rho_{k}}
+\frac{\lambda}{\rho}
 \|
 \bm{C}_{i*}
 \|_{p},
@@ -537,13 +537,13 @@ where $\bm{F}_{i*}$ is the $i$th row of the matrix $\bm{F}$. Since this step is 
 =
 \bm{\Delta}_{k}
 +
-\rho_{k}
+\rho
 (\bm{C}_{k+1}-\bm{A}_{k+1})
 .
 \end{split}
 \end{equation}
 
-(5) Update the penalty parameter $\rho$ as $\rho_{k+1}=\mu\rho_{k}$, where $\mu>1$.
+(5) Update the penalty parameter $\rho$ as $\rho=\mu\rho$, where $\mu>1$.
 
 
 \section{Robust Large Scale Subset Selection via Dissimilarity based Outlier Detection}
@@ -627,7 +627,7 @@ By introducing a Lagrangian multiplier $\bm{\Delta}$, the Lagrangian function of
 \|_{F}^{2}
 \end{split}
 \end{equation}
-Denote by ($\bm{A}_{k},\bm{C}_{k}$) the optimization variables at iteration $k$, by $\bm{\Delta}_{k}$ the Lagrangian multiplier at iteration $k$, and by $\rho_{k}$ the penalty parameter at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
+Denote by ($\bm{A}_{k},\bm{C}_{k}$) the optimization variables at iteration $k$, by $\bm{\Delta}_{k}$ the Lagrangian multiplier at iteration $k$, and by $\rho$ the penalty parameter at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
 
 (1) Obtain $\bm{A}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{A}$, while fixing ($\bm{C}_{k},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
 \begin{equation}
@@ -648,7 +648,7 @@ Denote by ($\bm{A}_{k},\bm{C}_{k}$) the optimization variables at iteration $k$,
 -(
 \bm{C}_{k}
 -
-\rho_{k}^{-1}
+\rho^{-1}
 \bm{\Delta}_{k}
 )
 \|_{F}^{2},
@@ -660,16 +660,16 @@ which is equalivalently to solve the following problem
 \label{e8}
 \bm{X}^{\top}\bm{X}\bm{A}\bm{D}\bm{D}^{\top}
 +
-\frac{\rho_{k}}{2}
+\frac{\rho}{2}
 \bm{A}
 =
 \bm{X}^{\top}\bm{X}\bm{D}\bm{D}^{\top}
 +
-\frac{\rho_{k}}{2}
+\frac{\rho}{2}
 (
 \bm{C}_{k}
 -
-\rho_{k}^{-1}
+\rho^{-1}
 \bm{\Delta}_{k}
 )
 \end{split}
@@ -684,12 +684,12 @@ Since the matrices $\bm{X}^{\top}\bm{X}$ and $\bm{D}^{\top}\bm{D}$ are positive 
 \min_{\bm{C}}
 \frac{1}{2}
 \|
-(\bm{A}_{k+1}+\rho_{k}^{-1}\bm{\Delta}{k})
+(\bm{A}_{k+1}+\rho^{-1}\bm{\Delta}{k})
 -
 \bm{C}
 \|_{F}^{2}
 +
-\frac{\lambda}{\rho_{k}}
+\frac{\lambda}{\rho}
 \|
 \bm{C}
 \|_{p,1}.
@@ -703,12 +703,12 @@ Since the $\ell_{p,1}$ norm is separable with respect to each row, we can write 
 \sum_{i=1}^{M}
 \frac{1}{2}
 \|
-(\bm{A}_{k+1})_{i*}+\rho_{k}^{-1}(\bm{\Delta}_{k})_{i*}
+(\bm{A}_{k+1})_{i*}+\rho^{-1}(\bm{\Delta}_{k})_{i*}
 -
 \bm{C}_{i*}
 \|_{2}^{2}
 +
-\frac{\lambda}{\rho_{k}}
+\frac{\lambda}{\rho}
 \|
 \bm{C}_{i*}
 \|_{p},
@@ -726,13 +726,13 @@ where $\bm{F}_{i*}$ is the $i$th row of the matrix $\bm{F}$. Since this step is 
 =
 \bm{\Delta}_{k}
 +
-\rho_{k}
+\rho
 (\bm{C}_{k+1}-\bm{A}_{k+1})
 .
 \end{split}
 \end{equation}
 
-(5) Update the penalty parameter $\rho$ as $\rho_{k+1}=\mu\rho_{k}$, where $\mu>1$.
+(5) Update the penalty parameter $\rho$ as $\rho=\mu\rho$, where $\mu>1$.
 
 
 \section{Large Scale Subset Selection Via Row-Column Separation}
@@ -815,7 +815,7 @@ whose solution for $\bm{A}$ coincides with the solution of Eq. (\ref{e3}). By in
 \|_{F}^{2}
 \end{split}
 \end{equation}
-Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$, by $\bm{\Delta}_{k}$ the Lagrangian multipliers at iteration $k$, and by $\rho_{k}$ the penalty parameter at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
+Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$, by $\bm{\Delta}_{k}$ the Lagrangian multipliers at iteration $k$, and by $\rho$ the penalty parameter at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
 
 (1) Obtain $\bm{A}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{A}$, while fixing ($\bm{C}_{k},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
 \begin{equation}
@@ -834,12 +834,12 @@ Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$,
 \|
 \bm{C}_{k}
 +
-\rho_{k}^{-1}\bm{\Delta}_{k}
+\rho^{-1}\bm{\Delta}_{k}
 -
 \bm{J}
 \|_{F}^{2}
 +
-\frac{\lambda}{\rho_{k}}
+\frac{\lambda}{\rho}
 \|
 \bm{J}
 \|_{p,1}.
@@ -855,9 +855,9 @@ Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$,
 \bm{X}-\bm{X}\bm{C}
 \|_{F}^{2}
 +
-\frac{\rho_{k}}{2}
+\frac{\rho}{2}
 \|
-\bm{C}-\bm{A}_{k+1}+\frac{1}{\rho_{k}}\bm{\Delta}_{k}
+\bm{C}-\bm{A}_{k+1}+\frac{1}{\rho}\bm{\Delta}_{k}
 \|_{F}^{2}
 \end{split}
 \end{equation}
@@ -868,8 +868,8 @@ This is a least squares regression problem which has a closed-form solution as
 \bm{C}_{k+1} 
 &
 =
-(\bm{X}^{\top}\bm{X}+\frac{\rho_{k}}{2}\bm{I})^{-1}
-(\bm{X}^{\top}\bm{X}+\frac{\rho_{k}}{2}\bm{A}_{k+1}-\frac{1}{2}\bm{\Delta}_{k})
+(\bm{X}^{\top}\bm{X}+\frac{\rho}{2}\bm{I})^{-1}
+(\bm{X}^{\top}\bm{X}+\frac{\rho}{2}\bm{A}_{k+1}-\frac{1}{2}\bm{\Delta}_{k})
 .
 \end{split}
 \end{equation}
@@ -883,13 +883,13 @@ This is a least squares regression problem which has a closed-form solution as
 =
 \bm{\Delta}_{k}
 +
-\rho_{k}
+\rho
 (\bm{C}_{k+1}-\bm{A}_{k+1})
 .
 \end{split}
 \end{equation}
 
-(5) Update the penalty parameter $\rho$ as $\rho_{k+1}=\mu\rho_{k}$, where $\mu>1$.
+(5) Update the penalty parameter $\rho$ as $\rho=\mu\rho$, where $\mu>1$.
 
 
 {

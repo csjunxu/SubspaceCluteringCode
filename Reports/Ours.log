@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  14 JUN 2017 15:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  14 JUN 2017 16:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -557,16 +557,7 @@ Overfull \hbox (17.29482pt too wide) detected at line 316
  []
 
 [2]
-Overfull \hbox (8.61363pt too wide) detected at line 455
-[]\OT1/cmr/m/n/10 ([]\OML/cmm/b/it/10 I \OT1/cmr/m/n/10 + \OML/cmm/b/it/10 X[]X
-\OT1/cmr/m/n/10 )[] = []\OML/cmm/b/it/10 I \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10
- ([])[]\OML/cmm/b/it/10 X[]\OT1/cmr/m/n/10 (\OML/cmm/b/it/10 I \OT1/cmr/m/n/10 
-+ []\OML/cmm/b/it/10 XX[]\OT1/cmr/m/n/10 )[]\OML/cmm/b/it/10 X\OML/cmm/m/it/10 
-:
- []
-
-
-Overfull \hbox (9.13731pt too wide) in paragraph at lines 527--527
+Overfull \hbox (4.88036pt too wide) in paragraph at lines 527--527
 [] 
  []
 
@@ -577,22 +568,17 @@ Underfull \hbox (badness 1460) in paragraph at lines 594--596
  []
 
 
-Overfull \hbox (20.94847pt too wide) in paragraph at lines 676--676
+Overfull \hbox (11.10814pt too wide) in paragraph at lines 676--676
 [] 
  []
 
 [3]
-Overfull \hbox (9.13731pt too wide) in paragraph at lines 716--716
+Overfull \hbox (4.88036pt too wide) in paragraph at lines 716--716
 [] 
  []
 
 
 Overfull \hbox (4.03062pt too wide) in paragraph at lines 817--817
-[] 
- []
-
-
-Overfull \hbox (3.79605pt too wide) in paragraph at lines 875--875
 [] 
  []
 
@@ -618,39 +604,35 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 901.
  ) 
 Here is how much of TeX's memory you used:
- 7274 strings out of 493091
- 103777 string characters out of 6134517
- 200268 words of memory out of 5000000
+ 7273 strings out of 493091
+ 103764 string characters out of 6134517
+ 199268 words of memory out of 5000000
  10565 multiletter control sequences out of 15000+600000
  34853 words of font info for 105 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  34i,17n,28p,384b,462s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{equation.7.31} has been referenced but does not e
-xist, replaced by a fixed one
-
-{c:/Software/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/Software/t
-exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Software/t
-exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/Software/t
-exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Software/t
-exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Software/t
-exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/Software/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/Software/tex
-live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/Software/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><c:/Softwa
-re/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Softwar
-e/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/Software
-/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/Software/t
-exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/Software/tex
-live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Software/tex
-live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/Software/texl
-ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/Software/texli
-ve/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/t
-exmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist
-/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Ours.pdf (5 pages, 178899 bytes).
+{c:/Software/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/Software
+/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Software
+/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/Software
+/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Software
+/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Software
+/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/Software/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/Software
+/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><c:/Sof
+tware/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Soft
+ware/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/Softw
+are/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/Softwar
+e/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/Software/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Software/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/Software/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/Software/te
+xlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/201
+5/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-d
+ist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Ours.pdf (5 pages, 171322 bytes).
 PDF statistics:
- 178 PDF objects out of 1000 (max. 8388607)
- 151 compressed objects within 2 object streams
- 55 named destinations out of 1000 (max. 500000)
+ 172 PDF objects out of 1000 (max. 8388607)
+ 146 compressed objects within 2 object streams
+ 54 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
