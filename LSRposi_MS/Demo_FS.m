@@ -10,7 +10,7 @@ fprintf( [ mfilename(currentpath) ' is going, please wait...\n' ] ) ;
 
 %% Data YaleB
 load 'C:\Users\csjunxu\Desktop\SC\2012-ECCV-LSR\LSR_FS\Data\YaleB.mat'              % load YaleB dataset
-nCluster = 10 ;           % number of subspace, 5 or 10 used in our paper
+nCluster = 5 ;           % number of subspace, 5 or 10 used in our paper
 num = nCluster * 64 ;    % number of data used for subspace segmentation
 fea = fea(:,1:num) ;
 gnd = gnd(:,1:num) ;
@@ -57,7 +57,7 @@ for maxIter = [5 10 15 20 25 30]
     Par.maxIter = maxIter;
     for mu = [1]
         Par.mu = mu;
-        for lambda = [.05 .04 .03 .02 .01]
+        for lambda = [.009:-.001:.001]
             Par.lambda = lambda;
             for rho = [0.02]
                 Par.rho = rho;
