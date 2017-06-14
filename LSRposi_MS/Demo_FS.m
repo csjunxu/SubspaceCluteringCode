@@ -30,7 +30,10 @@ end
 
 %% Subspace segmentation methods
 % SegmentationMethod = 'LSRd0po_LSR' ;
-SegmentationMethod = 'LSRpo_LSR' ;
+% SegmentationMethod = 'LSRpo_LSR' ;
+% SegmentationMethod = 'LSRd0ne_LSR' ;
+SegmentationMethod = 'LSRne_LSR' ;
+
 
 %% Parameter
 switch nCluster
@@ -69,6 +72,10 @@ for maxIter = [10 15 20 25 30]
                                 C = LSRd0po( Yfea , Par ) ;
                             case 'LSRpo_LSR'
                                 C = LSRpo( Yfea , Par ) ;
+                            case 'LSRd0ne_LSR'
+                                C = LSRd0ne( Yfea , Par ) ;
+                            case 'LSRne_LSR'
+                                C = LSRne( Yfea , Par ) ;
                         end
                         for k = 1 : size(C,2)
                             C(:, k) = C(:, k) / max(abs(C(:, k))) ;
