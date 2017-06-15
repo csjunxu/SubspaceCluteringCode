@@ -86,7 +86,7 @@ for maxIter = [2 5 10 15 20 25 30]
                 AllmeanAcc = mean(meanAcci*100);
                 fprintf('Total Mean Accuracy  is %.3f%%.\n ' , AllmeanAcc) ;
                 matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(redDim) '_nCluster' num2str(nSet) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(lambda) '.mat']);
-                save(matname, 'accuracy', 'meanAcc');
+                save(matname, 'accuracy', 'meanAcci', 'AllmeanAcc');
             end
         end
     end
