@@ -16,15 +16,15 @@ nSet = [2:1:10];
 
 
 %% Subspace segmentation
-for maxIter = [2 5 10 15 20 25 30]
-    Par.maxIter = maxIter;
-    for lambda = [.00001 .00005 .0001 .0005 .001:.001:.01]
-        Par.lambda = lambda;
-        for rho = [0.02 0.01 0.03]
-            Par.rho = rho;
-            for set = 1:length(nSet)
-                n = nSet(set);
-                index = Ind{n};
+for set = 1:length(nSet)
+    n = nSet(set);
+    index = Ind{n};
+    for maxIter = [2 5 10 15 20 25 30]
+        Par.maxIter = maxIter;
+        for lambda = [.00001 .00005 .0001 .0005 .001:.001:.01]
+            Par.lambda = lambda;
+            for rho = [0.02 0.01 0.03]
+                Par.rho = rho;
                 for i = 1:size(index,1)
                     fea = [];
                     gnd = [];
@@ -55,7 +55,7 @@ for maxIter = [2 5 10 15 20 25 30]
                     % SegmentationMethod = 'LSRd0_LSR' ;
                     
                     %% Subspace Clustering
-                    accuracy = zeros(size(index, 1), Repeat) ;
+                    missrate = zeros(size(index, 1), Repeat) ;
                     fprintf( 'dimension = %d \n', redDim ) ;
                     Yfea = fea(1:redDim, :) ;
                     for j = 1 : Repeat
@@ -76,17 +76,18 @@ for maxIter = [2 5 10 15 20 25 30]
                         end
                         Z = ( abs(C) + abs(C') ) / 2 ;
                         idx = clu_ncut(Z,n) ;
-                        accuracy(i, j) = compacc(idx,gnd);
-                        fprintf('%.3f%% \n' , accuracy(i, j)*100) ;
+                        missrate(i, j) = 1 - compacc(idx,gnd);
+                        fprintf('%.3f%% \n' , missrate(i, j)*100) ;
                     end
-                    meanAcci = mean(accuracy(i, :)*100);
-                    fprintf('Mean Accuracy of %d/%d is %.3f%%.\n ' , i, size(index, 1), meanAcci) ;
+                    missrateTot{n}(i) = mean(missrate(i, :)*100);
+                    fprintf('Mean Accuracy of %d/%d is %.3f%%.\n ' , i, size(index, 1), missrateTot{n}(i)) ;
                 end
                 %% output
-                AllmeanAcc = mean(meanAcci*100);
-                fprintf('Total Mean Accuracy  is %.3f%%.\n ' , AllmeanAcc) ;
-                matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(redDim) '_nCluster' num2str(nSet) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(lambda) '.mat']);
-                save(matname, 'accuracy', 'meanAcci', 'AllmeanAcc');
+                avgmissrate(n) = mean(missrateTot{n});
+                medmissrate(n) = median(missrateTot{n});
+                fprintf('Total mean missrate  is %.3f%%.\n ' , avgmissrate(n)) ;
+                matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(redDim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(lambda) '.mat']);
+                save(matname,'missrateTot','avgmissrate','medmissrate');
             end
         end
     end
