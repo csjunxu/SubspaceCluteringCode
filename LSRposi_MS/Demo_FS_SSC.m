@@ -35,7 +35,7 @@ for maxIter = [5 10 15 20 25 30]
                         n = nSet(i);
                         index = Ind{n};
                         for j = 1:size(index,1)
-                            X = [];
+                            X = []; 
                             for p = 1:n
                                 X = [X Y(:,:,index(j,p))];
                             end
