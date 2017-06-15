@@ -13,8 +13,6 @@ DR = 1; % perform dimension reduction or not
 
 %% Data YaleB
 nSet = [2:1:10];
-
-
 %% Subspace segmentation
 for set = 1:length(nSet)
     n = nSet(set);
@@ -23,7 +21,7 @@ for set = 1:length(nSet)
         Par.maxIter = maxIter;
         for lambda = [.00001 .00005 .0001 .0005 .001:.001:.01]
             Par.lambda = lambda;
-            for rho = [0.02 0.01 0.03]
+            for rho = [0.01 0.02 0.03 0.04 0.05 0.1]
                 Par.rho = rho;
                 for i = 1:size(index,1)
                     fea = [];
