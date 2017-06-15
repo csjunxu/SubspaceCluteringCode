@@ -236,7 +236,12 @@ This model enforces non-negative representation and hence produce sparse solutio
 
 The performance of this method is much better than the original least squares regression (LSR) based subspace clustering method proposed by Lu et al. \cite{lsr}.
 
-The LSR model can be reformulated as a collaborative representation model \cite{crc} for subspace clustering with an additional constraint of $\text{diag}(\bm{A})=\bm{0}$. The constraint of $\text{diag}(\bm{A})=\bm{0}$ is used to avoid the samples to represent themselves.
+The LSR model in \cite{lsr} can be reformulated as a collaborative representation model \cite{crc} for subspace clustering with an additional constraint of $\text{diag}(\bm{A})=\bm{0}$. In this section, we want to mention that the coefficient matrix $\bm{C}$ with additional constraint could benefit the performance of subspace clustering. Motivated by the non-negative coefficient should share positive relationship while negative coefficients share negative relationship, we argue that non-negative representational coefficients should better represent the data points from the same subspace, while negative coefficients correspond to points from different subspaces. By this way, the negative coefficients will negatively influence the relationship among the points in the same subsapce and hence degrade the performance of the model on subspace clustering. Based on these observations, in this section, we propose to add an constraint on the coefficient matrix $\bm{A}$ that the elements in $\bm{A}$ should be non-negative, i.e., $\bm{A}>0$. Hence, the proposed non-negative collaborative representation model can be formulated as follows: 
+\begin{equation}
+\min_{\bm{A}}
+\end{equation}
+
+
 
 By introducing auxiliary variables into the optimization program, we can set 
 $
