@@ -1,12 +1,15 @@
 clear;
 
+% %% YaleB = 'YaleB.mat';
+% load 'YaleBa.mat';
+
 %% USPS
 load 'USPS.mat';
 fea = fea';
 
-
-% %% YaleB = 'YaleB.mat';
-% load 'YaleBa.mat';
+% %% MNIST
+% load 'MNIST.mat';
+% fea = fea';
 
 
 
