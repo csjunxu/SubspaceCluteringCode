@@ -8,7 +8,6 @@
 % Copyright @ Can-Yi Lu, 2012
 %--------------------------------------------------------------------------
 
-
 clear ;
 
 load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'              % load YaleB dataset
