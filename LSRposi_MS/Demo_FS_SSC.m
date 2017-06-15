@@ -20,22 +20,23 @@ SegmentationMethod = 'LSRpo_SSC' ;
 % SegmentationMethod = 'LSRd0ne_SSC' ;
 % SegmentationMethod = 'LSRne_SSC' ;
 % SegmentationMethod = 'LSRd0_SSC' ;
-DR = 0; % dimension reduction 
+DR = 1; % dimension reduction
 %% Subspace segmentation
-for maxIter = [5 10 15 20 25 30]
-    Par.maxIter = maxIter;
-    for mu = [1]
-        Par.mu = mu;
-        for lambda = [.11:.01:.2 .25:.05:1]
-            Par.lambda = lambda;
-            for rho = [0.02]
-                Par.rho = rho;
-                for nSet = 2 %[2 3 4 5 6 7 8 9 10]
-                    for i = 1:length(nSet)
-                        n = nSet(i);
-                        index = Ind{n};
+
+for nSet = [2 3 4 5 6 7 8 9 10]
+    for i = 1:length(nSet)
+        n = nSet(i);
+        index = Ind{n};
+        for maxIter = [5 10 15 20 25 30]
+            Par.maxIter = maxIter;
+            for mu = [1]
+                Par.mu = mu;
+                for lambda =  [1e-10 5e-10 1e-9 5e-9 1e-8 5e-8 1e-7 5e-7 1e-6 5e-6 1e-5 5e-5 1e-4 5e-4]
+                    Par.lambda = lambda;
+                    for rho = [0.1:0.1:1]
+                        Par.rho = rho;
                         for j = 1:size(index,1)
-                            X = []; 
+                            X = [];
                             for p = 1:n
                                 X = [X Y(:,:,index(j,p))];
                             end
