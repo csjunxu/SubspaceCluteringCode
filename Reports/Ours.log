@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  15 JUN 2017 17:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  15 JUN 2017 17:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -551,7 +551,17 @@ Underfull \hbox (badness 1303) in paragraph at lines 235--236
  []
 
 
-Overfull \hbox (17.29482pt too wide) detected at line 262
+Overfull \hbox (7.91953pt too wide) in paragraph at lines 302--302
+[] 
+ []
+
+
+Overfull \hbox (4.13103pt too wide) in paragraph at lines 340--340
+[] 
+ []
+
+
+Overfull \hbox (17.29482pt too wide) detected at line 396
 []\OT1/cmr/m/n/10 (\OML/cmm/b/it/10 A \OT1/cmr/m/n/10 + \OML/cmm/b/it/10 UCV\OT
 1/cmr/m/n/10 )[] = \OML/cmm/b/it/10 A[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/b/it/10 A
 []U\OT1/cmr/m/n/10 (\OML/cmm/b/it/10 C[] \OT1/cmr/m/n/10 + \OML/cmm/b/it/10 VA[
@@ -559,78 +569,88 @@ Overfull \hbox (17.29482pt too wide) detected at line 262
  []
 
 [2]
-Overfull \hbox (4.88036pt too wide) in paragraph at lines 473--473
+Overfull \hbox (4.88036pt too wide) in paragraph at lines 607--607
 [] 
  []
 
 
-Underfull \hbox (badness 1460) in paragraph at lines 540--542
+Underfull \hbox (badness 1460) in paragraph at lines 674--676
 \OT1/ptm/m/n/10 By in-tro-duc-ing a La-grangian mul-ti-plier $\OT1/cmr/bx/n/10 
 ^^A$\OT1/ptm/m/n/10 , the La-
  []
 
-
-Overfull \hbox (11.10814pt too wide) in paragraph at lines 622--622
-[] 
- []
-
-
-Overfull \hbox (4.88036pt too wide) in paragraph at lines 662--662
-[] 
- []
-
 [3]
-Overfull \hbox (4.03062pt too wide) in paragraph at lines 763--763
+Overfull \hbox (11.10814pt too wide) in paragraph at lines 756--756
 [] 
  []
 
-(./Ours.bbl (./Ours.brf)
+
+Overfull \hbox (4.88036pt too wide) in paragraph at lines 796--796
+[] 
+ []
+
+
+Overfull \hbox (4.03062pt too wide) in paragraph at lines 897--897
+[] 
+ []
+
+[4] (./Ours.bbl (./Ours.brf)
 \tf@brf=\write3
 \openout3 = `Ours.brf'.
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 847.
- [4]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 847.
- (./Ours.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 847.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 847.
-Package rerunfilecheck Info: File `Ours.brf' has not changed.
-(rerunfilecheck)             Checksum: 4A7DC003C7C01A1A99D44AC0579FA20B;143.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 981.
+ [5
 
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 981.
+ (./Ours.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 981.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 981.
+
+
+Package rerunfilecheck Warning: File `Ours.brf' has changed.
+(rerunfilecheck)                Rerun to get bibliographical references right.
+
+Package rerunfilecheck Info: Checksums for `Ours.brf':
+(rerunfilecheck)             Before: 4A7DC003C7C01A1A99D44AC0579FA20B;143
+(rerunfilecheck)             After:  84CFBE902C30965E8A870169D7B22B44;178.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 847.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 981.
  ) 
 Here is how much of TeX's memory you used:
- 7270 strings out of 493091
- 103734 string characters out of 6134517
- 199160 words of memory out of 5000000
+ 7278 strings out of 493091
+ 103831 string characters out of 6134517
+ 200160 words of memory out of 5000000
  10564 multiletter control sequences out of 15000+600000
  35960 words of font info for 106 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  34i,17n,28p,384b,331s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/Software/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/Software
-/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Software
-/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/Software
-/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Software
-/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Software
-/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/Software/
-texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/Software
-/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><c:/Sof
-tware/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Soft
-ware/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/Softw
-are/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/Softwar
-e/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Softwar
-e/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/Software
-/texlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/
-2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texm
-f-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Ours.pdf (4 pages, 152280 bytes).
+pdfTeX warning (dest): name{equation.8.29} has been referenced but does not e
+xist, replaced by a fixed one
+
+{c:/Software/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/Software/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Software/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/Software/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Software/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Software/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/Software/te
+xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/Software/t
+exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><c:/Softw
+are/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Softwa
+re/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/Softwar
+e/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/Software/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Software/
+texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/Software/t
+exlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/20
+15/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-
+dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Ours.pdf (5 pages, 155197 bytes).
 PDF statistics:
- 160 PDF objects out of 1000 (max. 8388607)
- 137 compressed objects within 2 object streams
- 51 named destinations out of 1000 (max. 500000)
+ 176 PDF objects out of 1000 (max. 8388607)
+ 152 compressed objects within 2 object streams
+ 59 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

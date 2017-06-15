@@ -236,6 +236,140 @@ This model enforces non-negative representation and hence produce sparse solutio
 
 The performance of this method is much better than the original least squares regression (LSR) based subspace clustering method proposed by Lu et al. \cite{lsr}.
 
+The LSR model can be reformulated as a collaborative representation model \cite{crc} for subspace clustering with an additional constraint of $\text{diag}(\bm{A})=\bm{0}$. The constraint of $\text{diag}(\bm{A})=\bm{0}$ is used to avoid the samples to represent themselves.
+
+By introducing auxiliary variables into the optimization program, we can set 
+$
+\bm{C}
+=
+\bm{A}
+$.
+The LSR model (\ref{e1}) can be transformed into
+\begin{equation}
+\begin{split}
+\label{e3}
+&
+\min_{\bm{A},\bm{C}}
+\|
+\bm{X}
+-
+\bm{X}\bm{A}
+\|_{F}^{F}
++
+\lambda
+\|
+\bm{C}
+\|_{F}^{2}
+\\
+& 
+\text{s.t.}
+\ 
+\bm{C}=\bm{A}-\text{diag}(\bm{A})
+,
+\end{split}
+\end{equation}
+whose solution for $\bm{A}$ coincides with the solution of Eq. (\ref{e1}). By introducing a Lagrangian multipliers $\bm{\Delta}$ and a penalty parameter $\rho$, the Lagrangian function of the Eq. (\ref{e3}) can be written as
+\begin{equation}
+\begin{split}
+\label{e4}
+&
+\mathcal{L}
+(\bm{A},\bm{C},\bm{\Delta},\rho)
+=
+\|
+\bm{X}
+-
+\bm{X}\bm{A}
+\|_{F}^{F}
++
+\lambda
+\|
+\bm{C}
+\|_{F}^{2}
+\\
+&
++
+\langle
+\bm{\Delta},
+\bm{C}-(\bm{A}-\text{diag}(\bm{A}))
+\rangle
++
+\frac{\rho}{2}
+\|
+\bm{C}-(\bm{A}-\text{diag}(\bm{A}))
+\|_{F}^{2}
+\end{split}
+\end{equation}
+Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$, by $\bm{\Delta}_{k}$ the Lagrangian multipliers at iteration $k$, and by $\rho$ the penalty parameter at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
+
+(1) Obtain $\bm{A}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{A}$, while fixing ($\bm{C}_{k},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
+\begin{equation}
+\begin{split}
+\label{e8}
+&
+\bm{A}_{k+1}
+=
+\bm{J}-\text{diag}(\bm{J}),
+\\
+&
+\bm{J}
+=
+(\bm{X}^{\top}\bm{X}+\frac{\rho}{2}\bm{I})^{-1}
+(\bm{X}^{\top}\bm{X}+\frac{\rho}{2}\bm{C}_{k}+\frac{1}{2}\bm{\Delta}_{k})
+\end{split}
+\end{equation}
+
+(2) Obtain $\bm{C}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{C}$, while fixing ($\bm{A}_{k+1},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
+\begin{equation}
+\begin{split}
+\label{e6}
+&
+\bm{C}_{k+1}
+=
+\arg\min_{\bm{C}}
+\frac{\rho}{2}
+\|
+\bm{C}-(\bm{A}_{k+1}-\rho^{-1}\bm{\Delta}_{k})
+\|_{F}^{2}
++
+\lambda
+\|
+\bm{C}
+\|_{F}^{2}
+\end{split}
+\end{equation}
+This is a least squares regression problem which has a closed-form solution as 
+\begin{equation}
+\begin{split}
+\label{e7}
+\bm{C}_{k+1} 
+=
+(\rho+2\lambda)^{-1}(\rho\bm{A}_{k+1}-\bm{\Delta}_{k}).
+\end{split}
+\end{equation}
+
+(3) Obtain the Lagrangian multipliers $\bm{\Delta}_{k+1}$ while fixing ($\bm{C}_{k+1},\bm{A}_{k+1}$):
+\begin{equation}
+\begin{split}
+\label{e10}
+\bm{\Delta}_{k+1}
+&
+=
+\bm{\Delta}_{k}
++
+\rho
+(\bm{C}_{k+1}-\bm{A}_{k+1})
+.
+\end{split}
+\end{equation}
+
+\textbf{Convergency analysis?}
+
+
+
+
+
+
 \section{Large Scale Subset Selection Via Woodbury Identity}
 
 The Woodbury Identity is 
