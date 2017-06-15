@@ -22,6 +22,7 @@ for maxIter = [2 5 10 15 20 25 30]
         Par.lambda = lambda;
         for rho = [0.02 0.01 0.03]
             Par.rho = rho;
+            
             for set = 1:length(nSet)
                 n = nSet(set);
                 index = Ind{n};
@@ -29,11 +30,11 @@ for maxIter = [2 5 10 15 20 25 30]
                     fea = [];
                     gnd = [];
                     for p = 1:n
-                        fea = [fea Y{index(i, p), 1}];
-                        gnd= [gnd p * ones(1, length(S{index(i, p)}))];
+                        fea = [fea Y{p, 1}];
+                        gnd= [gnd p * ones(1, length(S{p}))];
                     end
                     [D, N] = size(fea);
-                    fprintf( '%d: %d\n', size(index, 1), i ) ;
+                    
                     redDim = size(fea, 1);
                     if DR == 1
                         %% PCA Projection
@@ -55,7 +56,7 @@ for maxIter = [2 5 10 15 20 25 30]
                     % SegmentationMethod = 'LSRd0_LSR' ;
                     
                     %% Subspace Clustering
-                    accuracy = zeros(size(index, 1), Repeat) ;
+                    accuracy = zeros(Repeat, 1) ;
                     fprintf( 'dimension = %d \n', redDim ) ;
                     Yfea = fea(1:redDim, :) ;
                     for j = 1 : Repeat
@@ -76,15 +77,14 @@ for maxIter = [2 5 10 15 20 25 30]
                         end
                         Z = ( abs(C) + abs(C') ) / 2 ;
                         idx = clu_ncut(Z,n) ;
-                        accuracy(i, j) = compacc(idx,gnd);
-                        fprintf('%.3f%% \n' , accuracy(i, j)*100) ;
+                        accuracy(j) = compacc(idx,gnd);
+                        fprintf('%.3f ' , accuracy(j)*100) ;
                     end
-                    meanAcci = mean(accuracy(i, :)*100);
-                    fprintf('Mean Accuracy of %d/%d is %.3f%%.\n ' , i, size(index, 1), meanAcci) ;
+                    fprintf('\n') ;
                 end
                 %% output
-                AllmeanAcc = mean(meanAcci*100);
-                fprintf('Total Mean Accuracy  is %.3f%%.\n ' , AllmeanAcc) ;
+                meanAcc = mean(accuracy*100);
+                fprintf('mean Accura%.3f ' , accuracy(j)*100) ;
                 matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(redDim) '_nCluster' num2str(nSet) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(lambda) '.mat']);
                 save(matname, 'accuracy', 'meanAcc');
             end
