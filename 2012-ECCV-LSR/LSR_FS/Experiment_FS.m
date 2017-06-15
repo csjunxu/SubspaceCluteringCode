@@ -19,7 +19,7 @@ fprintf( [ mfilename(currentpath) ' Begins.\n' ] ) ;
 fprintf( [ mfilename(currentpath) ' is going, please wait...\n' ] ) ;
 
 
-for nCluster = [2 3 4];           % number of subspace, 5 or 10 used in our paper
+for nCluster = [5:1:10];           % number of subspace, 5 or 10 used in our paper
     %% Data YaleB
     load 'C:\Users\csjunxu\Desktop\SC\2012-ECCV-LSR\LSR_FS\Data\YaleB.mat'              % load YaleB dataset
     
