@@ -46,7 +46,7 @@ while  ( ~terminate )
     %% update C the data term matrix
     Q = (Par.rho*A - Delta)/(2*Par.lambda+Par.rho);
     C  = solver_BCLS_closedForm(Q);
-
+    
     
     %% update Deltas the lagrange multiplier matrix
     Delta = Delta + Par.rho * ( C - A);
@@ -61,9 +61,9 @@ while  ( ~terminate )
         terminate = true;
 %         fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
     else
-        %         if (mod(iter, Par.maxIter)==0)
-%         fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
-        %         end
+%         if (mod(iter, Par.maxIter)==0)
+%             fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
+%         end
     end
     
     %         %% convergence conditions

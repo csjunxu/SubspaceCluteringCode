@@ -9,8 +9,8 @@ fprintf( [ mfilename(currentpath) ' Begins.\n' ] ) ;
 fprintf( [ mfilename(currentpath) ' is going, please wait...\n' ] ) ;
 
 %% Data YaleB
-load 'C:\Users\csjunxu\Desktop\SC\2012-ECCV-LSR\LSR_FS\Data\YaleB.mat'              % load YaleB dataset
 for nCluster = [2 3 4];           % number of subspace, 5 or 10 used in our paper
+    load 'C:\Users\csjunxu\Desktop\SC\2012-ECCV-LSR\LSR_FS\Data\YaleB.mat'              % load YaleB dataset
     num = nCluster * 64 ;    % number of data used for subspace segmentation
     fea = fea(:,1:num) ;
     gnd = gnd(:,1:num) ;
@@ -48,11 +48,11 @@ for nCluster = [2 3 4];           % number of subspace, 5 or 10 used in our pape
     fprintf( fid , '\n' ) ;
     
     %% Subspace segmentation
-    for maxIter = [5 10 15 20 25 30]
+    for maxIter = [2 5 10 15 20 25 30]
         Par.maxIter = maxIter;
         for mu = [1]
             Par.mu = mu;
-            for lambda = [.0009:-.0001:.0001]
+            for lambda = [.00001 .00005 .0001 .0005 .001:.001:.01]
                 Par.lambda = lambda;
                 for rho = [0.02]
                     Par.rho = rho;
@@ -98,7 +98,7 @@ for nCluster = [2 3 4];           % number of subspace, 5 or 10 used in our pape
                     [maxa ind] = max( Accuracy*100 )
                     maxAcc = max( max(Accuracy*100) )
                     %% output
-                    matname = sprintf([writefilepath 'YaleB_LSR_' SegmentationMethod '_nCluster' num2str(nCluster) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
+                    matname = sprintf([writefilepath 'YaleB_LSR_' SegmentationMethod '_DR' num2str(redDim) '_nCluster' num2str(nCluster) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
                     save(matname, 'Accuracy', 'maxAcc');
                 end
             end
