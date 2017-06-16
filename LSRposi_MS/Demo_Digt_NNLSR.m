@@ -18,10 +18,10 @@ nSet = [2:1:10];
 %% Subspace segmentation
 for maxIter = [5 10 15 20 25 30]
     Par.maxIter = maxIter;
-    for lambda = [1:1:10]
-        Par.lambda = 10^(-lambda);
-        for rho = [0.1:0.1:0.5]
-            Par.rho = rho;
+    for rho = [0.1:0.1:0.5]
+        Par.rho = rho;
+        for lambda = [1:1:10]
+            Par.lambda = 10^(-lambda);
             for set = [1 2] %1:length(nSet)
                 n = nSet(set);
                 index = Ind{n};

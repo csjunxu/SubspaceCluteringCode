@@ -28,18 +28,18 @@ nSet = [2:1:10];
 
 
 %% Subspace segmentation
-for set = 1:length(nSet)
-    n = nSet(set);
-    index = Ind{n};
-    %% Parameter
-    switch n
-        case 5
-            para = [0.4] * ones(1,20) ;
-        case 10
-            para = [0.004 ] * ones(1,20) ;
-    end
-    for lambda = [1e-6 5e-6 1e-5 5e-5 1e-4 5e-4 1e-3 5e-3 1e-2 5e-2 .1 .5 1 5]
-        para = lambda * ones(1,Repeat) ;
+%% Parameter
+switch n
+    case 5
+        para = [0.4] * ones(1,20) ;
+    case 10
+        para = [0.004 ] * ones(1,20) ;
+end
+for lambda = [1e-6 5e-6 1e-5 5e-5 1e-4 5e-4 1e-3 5e-3 1e-2 5e-2 .1 .5 1 5]
+    para = lambda * ones(1,Repeat) ;
+    for set = 1:length(nSet)
+        n = nSet(set);
+        index = Ind{n};
         for i = 1:size(index,1)
             fea = [];
             gnd = [];
