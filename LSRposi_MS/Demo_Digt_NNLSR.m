@@ -9,7 +9,7 @@ load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat'   % load USPS dataset
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % writefilepath = '';
 
-Repeat = 10; %number of repeations
+Repeat = 1; %number of repeations
 DR = 1; % perform dimension reduction or not
 
 

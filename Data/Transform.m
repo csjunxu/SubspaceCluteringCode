@@ -21,6 +21,7 @@ for i = 1:nSet
     Y{i, 1} = fea(:, gnd==i);
     S{i, 1} = gnd(find(gnd==i));
 end
+Ind = USPSInd;
 
-save USPSa.mat Y S USPSInd;
+save USPS_Crop.mat Y S Ind;
     
