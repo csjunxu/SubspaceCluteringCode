@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Ours.aux
 The style file: unsrt.bst
 Database file #1: egbib.bib
-You've used 2 entries,
+You've used 3 entries,
             1791 wiz_defined-function locations,
-            459 strings with 3856 characters,
-and the built_in function-call counts, 747 in all, are:
-= -- 72
-> -- 31
+            466 strings with 3946 characters,
+and the built_in function-call counts, 923 in all, are:
+= -- 88
+> -- 39
 < -- 2
-+ -- 11
-- -- 9
-* -- 46
-:= -- 110
-add.period$ -- 6
-call.type$ -- 2
-change.case$ -- 2
++ -- 14
+- -- 11
+* -- 54
+:= -- 138
+add.period$ -- 9
+call.type$ -- 3
+change.case$ -- 3
 chr.to.int$ -- 0
-cite$ -- 2
-duplicate$ -- 36
-empty$ -- 59
-format.name$ -- 9
-if$ -- 173
+cite$ -- 3
+duplicate$ -- 46
+empty$ -- 78
+format.name$ -- 11
+if$ -- 215
 int.to.chr$ -- 0
-int.to.str$ -- 2
-missing$ -- 2
-newline$ -- 13
-num.names$ -- 2
-pop$ -- 6
+int.to.str$ -- 3
+missing$ -- 4
+newline$ -- 18
+num.names$ -- 3
+pop$ -- 11
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 30
+skip$ -- 33
 stack$ -- 0
 substring$ -- 64
-swap$ -- 20
+swap$ -- 21
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 8
-width$ -- 3
-write$ -- 24
+while$ -- 9
+width$ -- 4
+write$ -- 36

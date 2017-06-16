@@ -170,7 +170,7 @@ Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$,
 (1) Obtain $\bm{A}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{A}$, while fixing ($\bm{C}_{k},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
 \begin{equation}
 \begin{split}
-\label{e8}
+\label{e5}
 &
 \bm{A}_{k+1}
 =
@@ -216,7 +216,7 @@ This is a least squares regression problem which has a closed-form solution as
 (3) Obtain the Lagrangian multipliers $\bm{\Delta}_{k+1}$ while fixing ($\bm{C}_{k+1},\bm{A}_{k+1}$):
 \begin{equation}
 \begin{split}
-\label{e10}
+\label{e8}
 \bm{\Delta}_{k+1}
 &
 =
@@ -335,7 +335,7 @@ After initializing the $\bm{A},\bm{C},\bm{\Delta}$ as zero matrices, the ADMM al
 (1) Obtain $\bm{A}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{A}$, while fixing ($\bm{C}_{k},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
 \begin{equation}
 \begin{split}
-\label{e8}
+\label{e12}
 &
 \bm{A}_{k+1}
 =
@@ -352,36 +352,29 @@ After initializing the $\bm{A},\bm{C},\bm{\Delta}$ as zero matrices, the ADMM al
 (2) Obtain $\bm{C}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{C}$, while fixing ($\bm{A}_{k+1},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
 \begin{equation}
 \begin{split}
-\label{e6}
-&
+\label{e13}
 \bm{C}_{k+1}
 =
+&
 \arg\min_{\bm{C}}
-\frac{\rho}{2}
 \|
-\bm{C}-(\bm{A}_{k+1}-\rho^{-1}\bm{\Delta}_{k})
+\bm{C}-(2\lambda+\rho)^{-1}(\rho\bm{A}_{k+1}-\bm{\Delta}_{k})
 \|_{F}^{2}
-+
-\lambda
-\|
-\bm{C}
-\|_{F}^{2}
+\\
+&
+\quad
+\text{s.t.}
+\quad 
+\bm{C}\ge0
+.
 \end{split}
 \end{equation}
-This is a least squares regression problem which has a closed-form solution as 
-\begin{equation}
-\begin{split}
-\label{e7}
-\bm{C}_{k+1} 
-=
-(\rho+2\lambda)^{-1}(\rho\bm{A}_{k+1}-\bm{\Delta}_{k}).
-\end{split}
-\end{equation}
+This is a least square problem with feasible region of $\bm{C}\ge0$. This can be solved by active set method \cite{Nocedal2006NO}.
 
 (3) Obtain the Lagrangian multipliers $\bm{\Delta}_{k+1}$ while fixing ($\bm{C}_{k+1},\bm{A}_{k+1}$):
 \begin{equation}
 \begin{split}
-\label{e10}
+\label{e14}
 \bm{\Delta}_{k+1}
 &
 =
@@ -397,7 +390,7 @@ This is a least squares regression problem which has a closed-form solution as
 
 
 
-
+\textbf{The above solution is slow when the number of column of $\bm{X}$ is much larger than its number of rows, i.e., when $N>d$. where $d$ is the dimension of features for each sample and $N$ is the number of samples in $\bm{X}$.} Hence, we propose the following solution via \textsl{Woodbury Identity} to reduce the computational cost for the inversion of the solution in Eq. (\ref{e12}).
 
 
 \section{Large Scale Subset Selection Via Woodbury Identity}

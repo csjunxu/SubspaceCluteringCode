@@ -13,4 +13,9 @@ Lei Zhang, Meng Yang, and Xiangchu Feng.
   face recognition?
 \newblock {\em ICCV}, pages 471--478, 2011.
 
+\bibitem{Nocedal2006NO}
+J.~Nocedal and S.~J. Wright.
+\newblock {\em Numerical Optimization}.
+\newblock Springer, New York, 2nd edition, 2006.
+
 \end{thebibliography}
