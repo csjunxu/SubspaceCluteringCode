@@ -239,6 +239,7 @@ The performance of this method is much better than the original least squares re
 The LSR model in \cite{lsr} can be reformulated as a collaborative representation model \cite{crc} for subspace clustering with an additional constraint of $\text{diag}(\bm{A})=\bm{0}$. In this section, we want to mention that the coefficient matrix $\bm{C}$ with additional constraint could benefit the performance of subspace clustering. Motivated by the non-negative coefficient should share positive relationship while negative coefficients share negative relationship, we argue that non-negative representational coefficients should better represent the data points from the same subspace, while negative coefficients correspond to points from different subspaces. By this way, the negative coefficients will negatively influence the relationship among the points in the same subsapce and hence degrade the performance of the model on subspace clustering. Based on these observations, in this section, we propose to add an constraint on the coefficient matrix $\bm{A}$ that the elements in $\bm{A}$ should be non-negative, i.e., $\bm{A}>0$. Hence, the proposed non-negative collaborative representation model can be formulated as follows: 
 \begin{equation}
 \begin{split}
+\label{e9}
 &
 \min_{\bm{A}}
 \|
@@ -256,11 +257,13 @@ The LSR model in \cite{lsr} can be reformulated as a collaborative representatio
 \text{s.t.}
 \quad
 &
-\text{diag}(\bm{A})=\bm{0}, \bm{A}_{i,j}>0, \forall i, j,
+\text{diag}(\bm{A})=\bm{0}
+,
+\bm{A}\ge0
+,
 \end{split}
 \end{equation}
-where $\bm{A}_{i,j}$ is the $i$th row and $j$th column element of $\bm{A}$.
-
+where $\bm{A}\ge0$ means that each element of $\bm{A}$ is non-negative.
 
 By introducing auxiliary variables into the optimization program, we can set 
 $
@@ -271,7 +274,7 @@ $.
 The LSR model (\ref{e1}) can be transformed into
 \begin{equation}
 \begin{split}
-\label{e3}
+\label{e10}
 &
 \min_{\bm{A},\bm{C}}
 \|
@@ -290,9 +293,11 @@ The LSR model (\ref{e1}) can be transformed into
 \ 
 \bm{C}=\bm{A}-\text{diag}(\bm{A})
 ,
+\bm{C}\ge0
+,
 \end{split}
 \end{equation}
-whose solution for $\bm{A}$ coincides with the solution of Eq. (\ref{e1}). By introducing a Lagrangian multipliers $\bm{\Delta}$ and a penalty parameter $\rho$, the Lagrangian function of the Eq. (\ref{e3}) can be written as
+whose solution for $\bm{A}$ coincides with the solution of Eq. (\ref{e9}). By introducing a Lagrangian multipliers $\bm{\Delta}$ and a penalty parameter $\rho$, the Lagrangian function of the Eq. (\ref{e3}) can be written as
 \begin{equation}
 \begin{split}
 \label{e4}
