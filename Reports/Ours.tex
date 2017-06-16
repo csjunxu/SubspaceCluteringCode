@@ -300,7 +300,7 @@ The LSR model (\ref{e1}) can be transformed into
 whose solution for $\bm{A}$ coincides with the solution of Eq. (\ref{e9}). By introducing a Lagrangian multipliers $\bm{\Delta}$ and a penalty parameter $\rho$, the Lagrangian function of the Eq. (\ref{e3}) can be written as
 \begin{equation}
 \begin{split}
-\label{e4}
+\label{e11}
 &
 \mathcal{L}
 (\bm{A},\bm{C},\bm{\Delta},\rho)
@@ -329,7 +329,8 @@ whose solution for $\bm{A}$ coincides with the solution of Eq. (\ref{e9}). By in
 \|_{F}^{2}
 \end{split}
 \end{equation}
-Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$, by $\bm{\Delta}_{k}$ the Lagrangian multipliers at iteration $k$, and by $\rho$ the penalty parameter at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
+
+After initializing the $\bm{A},\bm{C},\bm{\Delta}$ as zero matrices, the ADMM algorithm iterates consist of 1) minimizing $\mathcal{L}$ with respect to $\bm{A}$ while fixing the other variables, and 2) minimizing $\mathcal{L}$ with respect to $\bm{C}$ subject to the constraint $\bm{C}\ge0$ while fixing the other variables; 3) updating the Lagrangian variable $\bm{\Delta}$ while fixing the other variables. Specifically, denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$, by $\bm{\Delta}_{k}$ the Lagrangian multipliers at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
 
 (1) Obtain $\bm{A}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{A}$, while fixing ($\bm{C}_{k},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
 \begin{equation}
