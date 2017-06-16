@@ -91,7 +91,7 @@ has a form of closed solution as
 
 In subspace clustering community, the LSR method \cite{lsr} proposed by Lu et al. can be formulated as follows:
 \begin{equation}
-\label{e1}
+\label{e3}
 \min_{\bm{A}}
 \|
 \bm{X}
@@ -110,7 +110,7 @@ In subspace clustering community, the LSR method \cite{lsr} proposed by Lu et al
 \end{equation}
 Here we denote by $\text{diag}(\bm{A})$ both a diagonal matrix whose diagonal elements are the diagonal entries of $\bm{A}$ and the vector consisted of the diagonal elements. According to \cite{lsr}, the above problem has the optimal solution as 
 \begin{equation}
-\label{e2}
+\label{e4}
 \hat{\bm{A}}
 =
 -\bm{\bm{Z}}(\text{diag}(\bm{Z}))
@@ -137,7 +137,7 @@ $.
 The LSR model (\ref{e1}) can be transformed into
 \begin{equation}
 \begin{split}
-\label{e3}
+\label{e5}
 &
 \min_{\bm{A},\bm{C}}
 \|
@@ -161,7 +161,7 @@ The LSR model (\ref{e1}) can be transformed into
 whose solution for $\bm{A}$ coincides with the solution of Eq. (\ref{e1}). By introducing a Lagrangian multipliers $\bm{\Delta}$ and a penalty parameter $\rho$, the Lagrangian function of the Eq. (\ref{e3}) can be written as
 \begin{equation}
 \begin{split}
-\label{e4}
+\label{e6}
 &
 \mathcal{L}
 (\bm{A},\bm{C},\bm{\Delta},\rho)
@@ -195,7 +195,7 @@ Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$,
 (1) Obtain $\bm{A}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{A}$, while fixing ($\bm{C}_{k},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
 \begin{equation}
 \begin{split}
-\label{e5}
+\label{e7}
 &
 \bm{A}_{k+1}
 =
@@ -212,7 +212,7 @@ Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$,
 (2) Obtain $\bm{C}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{C}$, while fixing ($\bm{A}_{k+1},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
 \begin{equation}
 \begin{split}
-\label{e6}
+\label{e8}
 &
 \bm{C}_{k+1}
 =
@@ -231,7 +231,7 @@ Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$,
 This is a least squares regression problem which has a closed-form solution as 
 \begin{equation}
 \begin{split}
-\label{e7}
+\label{e9}
 \bm{C}_{k+1} 
 =
 (\rho+2\lambda)^{-1}(\rho\bm{A}_{k+1}-\bm{\Delta}_{k}).
@@ -241,7 +241,7 @@ This is a least squares regression problem which has a closed-form solution as
 (3) Obtain the Lagrangian multipliers $\bm{\Delta}_{k+1}$ while fixing ($\bm{C}_{k+1},\bm{A}_{k+1}$):
 \begin{equation}
 \begin{split}
-\label{e8}
+\label{e10}
 \bm{\Delta}_{k+1}
 &
 =
@@ -264,7 +264,7 @@ The performance of this method is much better than the original least squares re
 The LSR model in \cite{lsr} can be reformulated as a collaborative representation model \cite{crc} for subspace clustering with an additional constraint of $\text{diag}(\bm{A})=\bm{0}$. In this section, we want to mention that the coefficient matrix $\bm{C}$ with additional constraint could benefit the performance of subspace clustering. Motivated by the non-negative coefficient should share positive relationship while negative coefficients share negative relationship, we argue that non-negative representational coefficients should better represent the data points from the same subspace, while negative coefficients correspond to points from different subspaces. By this way, the negative coefficients will negatively influence the relationship among the points in the same subsapce and hence degrade the performance of the model on subspace clustering. Based on these observations, in this section, we propose to add an constraint on the coefficient matrix $\bm{A}$ that the elements in $\bm{A}$ should be non-negative, i.e., $\bm{A}>0$. Hence, the proposed non-negative collaborative representation model can be formulated as follows: 
 \begin{equation}
 \begin{split}
-\label{e9}
+\label{e11}
 &
 \min_{\bm{A}}
 \|
@@ -299,7 +299,7 @@ $.
 The LSR model (\ref{e1}) can be transformed into
 \begin{equation}
 \begin{split}
-\label{e10}
+\label{e12}
 &
 \min_{\bm{A},\bm{C}}
 \|
@@ -325,7 +325,7 @@ The LSR model (\ref{e1}) can be transformed into
 whose solution for $\bm{A}$ coincides with the solution of Eq. (\ref{e9}). By introducing a Lagrangian multipliers $\bm{\Delta}$ and a penalty parameter $\rho$, the Lagrangian function of the Eq. (\ref{e3}) can be written as
 \begin{equation}
 \begin{split}
-\label{e11}
+\label{e13}
 &
 \mathcal{L}
 (\bm{A},\bm{C},\bm{\Delta},\rho)
@@ -360,7 +360,7 @@ After initializing the $\bm{A},\bm{C},\bm{\Delta}$ as zero matrices, the ADMM al
 (1) Obtain $\bm{A}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{A}$, while fixing ($\bm{C}_{k},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
 \begin{equation}
 \begin{split}
-\label{e12}
+\label{e14}
 &
 \bm{A}_{k+1}
 =
@@ -377,7 +377,7 @@ After initializing the $\bm{A},\bm{C},\bm{\Delta}$ as zero matrices, the ADMM al
 (2) Obtain $\bm{C}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{C}$, while fixing ($\bm{A}_{k+1},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
 \begin{equation}
 \begin{split}
-\label{e13}
+\label{e15}
 \bm{C}_{k+1}
 =
 &
@@ -399,7 +399,7 @@ This is a least square problem with feasible region of $\bm{C}\ge0$. This can be
 (3) Obtain the Lagrangian multipliers $\bm{\Delta}_{k+1}$ while fixing ($\bm{C}_{k+1},\bm{A}_{k+1}$):
 \begin{equation}
 \begin{split}
-\label{e14}
+\label{e16}
 \bm{\Delta}_{k+1}
 &
 =
@@ -443,108 +443,19 @@ The Woodbury Identity is
 .
 \end{equation}
 
-Then the model above can be 
-\begin{equation}
-\label{e2}
-\min_{\bm{A}}
-\|
-\bm{X}
--
-\bm{X}\bm{A}
-\|_{F}^{2}
-+
-\lambda
-\|
-\bm{A}
-\|_{p,1}
-.
-\end{equation}
-By introducing an auxiliary variable $\bm{C}$ into the optimization program, we can get
+Then the first step of updating $\bm{A}$ can be formulated as follows;
+
+(1) Obtain $\bm{A}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{A}$, while fixing ($\bm{C}_{k},\bm{\Delta}_{k}$). This is equalivalently to solve the following problem
 \begin{equation}
 \begin{split}
-\label{e3}
+\label{e18}
 &
-\min_{\bm{A},\bm{C}}
-\|
-\bm{X}
--
-\bm{X}\bm{A}
-\|_{F}^{2}
-+
-\lambda
-\|
-\bm{C}
-\|_{p,1}
-\ 
-\text{s.t.}
-\ 
-\bm{C}=\bm{A}
-,
-\end{split}
-\end{equation}
-whose solution for $\bm{A}$ coincides with the solution of Eq. (\ref{e3}). By introducing two Lagrangian multipliers $\bm{\Delta}$, the Lagrangian function of the Eq. (\ref{e3}) can be written as
-\begin{equation}
-\begin{split}
-\label{e5}
-&
-\mathcal{L}
-(\bm{A},\bm{C},\bm{\Delta},\rho)
+\bm{A}_{k+1}
 =
-\|
-\bm{X}
--
-\bm{X}\bm{A}
-\|_{F}^{2}
-+
-\lambda
-\|
-\bm{C}
-\|_{p,1}
+\bm{J}-\text{diag}(\bm{J}),
 \\
 &
-+
-\langle
-\bm{\Delta},
-\bm{C}-\bm{A}
-\rangle
-+
-\frac{\rho}{2}
-\|
-\bm{C}-\bm{A}
-\|_{F}^{2}
-\end{split}
-\end{equation}
-Denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$, by $\bm{\Delta}_{k}$ the Lagrangian multipliers at iteration $k$, and by $\rho$ the penalty parameter at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
-
-(1) Obtain $\bm{A}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{A}$, while fixing ($\bm{C}_{k},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
-\begin{equation}
-\begin{split}
-\label{e8}
-&
-\min_{\bm{A}}
-\|
-\bm{X}
--
-\bm{X}\bm{A}
-\|_{F}^{2}
-+
-\frac{\rho}{2}
-\|
-\bm{A}
--(
-\bm{C}_{k}
-+
-\rho^{-1}
-\bm{\Delta}_{k}
-)
-\|_{F}^{2},
-\end{split}
-\end{equation}
-which is equalivalently to solve the following problem
-\begin{equation}
-\begin{split}
-\label{e8}
-\bm{A}
+\bm{J}
 =
 (\bm{X}^{\top}\bm{X}+\frac{\rho}{2}\bm{I})^{-1}
 (\bm{X}^{\top}\bm{X}
@@ -559,6 +470,7 @@ which is equalivalently to solve the following problem
 \end{equation}
 Since the matrices $\bm{X}^{\top}\bm{X}$ is of $N\times N$ dimension. It is computational expensive when $N$ is very large. By employing the Woodburry Identity mentioned above, we can have 
 \begin{equation}
+\label{e19}
 (
 \frac{\rho}{2}\bm{I}
 +
@@ -580,8 +492,8 @@ Since the matrices $\bm{X}^{\top}\bm{X}$ is of $N\times N$ dimension. It is comp
 and transform this problem as
 \begin{equation}
 \begin{split}
-\label{e8}
-\bm{A}
+\label{e20}
+\bm{J}
 =
 &
 (
@@ -611,66 +523,10 @@ and transform this problem as
 \end{equation}
 which will save a lot of computational costs.
 
-
-(2) Obtain $\bm{C}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{C}$, while fixing ($\bm{A}_{k+1},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
-\begin{equation}
-\begin{split}
-\label{e6}
-\min_{\bm{C}}
-\frac{1}{2}
-\|
-(\bm{A}_{k+1}-\rho^{-1}\bm{\Delta}{k})
--
-\bm{C}
-\|_{F}^{2}
-+
-\frac{\lambda}{\rho}
-\|
-\bm{C}
-\|_{p,1}.
-\end{split}
-\end{equation}
-Since the $\ell_{p,1}$ norm is separable with respect to each row, we can write the above problem as 
-\begin{equation}
-\begin{split}
-\label{e6}
-\min_{\bm{C}}
-\sum_{i=1}^{M}
-\frac{1}{2}
-\|
-(\bm{A}_{k+1})_{i*}-\rho^{-1}(\bm{\Delta}_{k})_{i*}
--
-\bm{C}_{i*}
-\|_{2}^{2}
-+
-\frac{\lambda}{\rho}
-\|
-\bm{C}_{i*}
-\|_{p},
-\end{split}
-\end{equation}
-where $\bm{F}_{i*}$ is the $i$th row of the matrix $\bm{F}$. Since this step is separable w.r.t. each row, we can employ parallel processing resources and reduce its computational time.
+The other parts are just the same as the previous section.
 
 
-(3) Obtain the Lagrangian multipliers ($\bm{\Delta}_{k+1}$) while fixing ($\bm{C}_{k+1},\bm{A}_{k+1}$):
-\begin{equation}
-\begin{split}
-\label{e10}
-\bm{\Delta}_{k+1}
-&
-=
-\bm{\Delta}_{k}
-+
-\rho
-(\bm{C}_{k+1}-\bm{A}_{k+1})
-.
-\end{split}
-\end{equation}
-
-(5) Update the penalty parameter $\rho$ as $\rho=\mu\rho$, where $\mu>1$.
-
-
-\section{Robust Large Scale Subset Selection via Dissimilarity based Outlier Detection}
+\section{Robust Large Scale Subset Selection via Dissimilarity based Outlier Detection?}
 
 
 We can also introduce a dissimiarlity based matrix $\bm{D}$ to replace the $\ell_{p}$ or $\ell_{2,1}$ norms to ensure robustness. This can also remore the additional term $\bm{Z}$ on modeling the outliers with the restriction of $\ell_{1}$ norm. The matrix $\bm{D}$ should better be diagonal matrix. How to design the matrix $\bm{D}$ is another problem need to be solved.

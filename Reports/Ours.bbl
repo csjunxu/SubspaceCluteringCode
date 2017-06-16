@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{prml}
+Christopher Bishop.
+\newblock {\em Pattern Recognition and Machine Learning}.
+\newblock Springer-Verlag, New York, 1st edition, 2006.
+
 \bibitem{lsr}
 Can-Yi Lu, Hai Min, Zhong-Qiu Zhao, Lin Zhu, De-Shuang Huang, and Shuicheng
   Yan.
