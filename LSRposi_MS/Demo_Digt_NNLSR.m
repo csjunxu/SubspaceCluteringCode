@@ -2,8 +2,8 @@
 clear ;
 
 % load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'  % load YaleB dataset
-load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat'   % load USPS dataset   
-% load 'C:\Users\csjunxu\Desktop\SC\Datasets\MNIST_Crop.mat' % load MNIST dataset 
+load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat'   % load USPS dataset
+% load 'C:\Users\csjunxu\Desktop\SC\Datasets\MNIST_Crop.mat' % load MNIST dataset
 
 
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
@@ -16,15 +16,15 @@ DR = 1; % perform dimension reduction or not
 %% Data YaleB
 nSet = [2:1:10];
 %% Subspace segmentation
-for set = 1:length(nSet)
-    n = nSet(set);
-    index = Ind{n};
-    for maxIter = [5 10 15 20 25 30]
-        Par.maxIter = maxIter;
-        for lambda = [1:1:10]
-            Par.lambda = 10^(-lambda);
-            for rho = [0.1:0.1:0.5]
-                Par.rho = rho;
+for maxIter = [5 10 15 20 25 30]
+    Par.maxIter = maxIter;
+    for lambda = [1:1:10]
+        Par.lambda = 10^(-lambda);
+        for rho = [0.1:0.1:0.5]
+            Par.rho = rho;
+            for set = [1 2] %1:length(nSet)
+                n = nSet(set);
+                index = Ind{n};
                 for i = 1:size(index,1)
                     fea = [];
                     gnd = [];
