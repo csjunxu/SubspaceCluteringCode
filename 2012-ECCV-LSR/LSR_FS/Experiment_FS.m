@@ -22,20 +22,18 @@ SegmentationMethod = 'LSR2' ;     % LSR2 by (18) in our paper
 Repeat = 10; %number of repeations
 DR = 1; % perform dimension reduction or not
 
-
 %% Data YaleB
 nSet = [2:1:10];
-
-
 %% Subspace segmentation
 %% Parameter
-switch n
-    case 5
-        para = [0.4] * ones(1,20) ;
-    case 10
-        para = [0.004 ] * ones(1,20) ;
-end
-for lambda = [1e-6 5e-6 1e-5 5e-5 1e-4 5e-4 1e-3 5e-3 1e-2 5e-2 .1 .5 1 5]
+% switch n
+%     case 5
+%         para = [0.4] * ones(1,20) ;
+%     case 10
+%         para = [0.004 ] * ones(1,20) ;
+% end
+dim = 6;
+for lambda = [.05 .1 .2 .3]
     para = lambda * ones(1,Repeat) ;
     for set = 1:length(nSet)
         n = nSet(set);
@@ -55,7 +53,7 @@ for lambda = [1e-6 5e-6 1e-5 5e-5 1e-4 5e-4 1e-3 5e-3 1e-2 5e-2 .1 .5 1 5]
                 [ eigvector , eigvalue ] = PCA( fea ) ;
                 maxDim = length(eigvalue);
                 fea = eigvector' * fea ;
-                redDim = n * 6 ;
+                redDim = n * dim ;
             end
             %% normalize
             for c = 1 : size(fea,2)
@@ -81,7 +79,7 @@ for lambda = [1e-6 5e-6 1e-5 5e-5 1e-4 5e-4 1e-3 5e-3 1e-2 5e-2 .1 .5 1 5]
         avgmissrate(n) = mean(missrateTot{n});
         medmissrate(n) = median(missrateTot{n});
         fprintf('Total mean missrate  is %.3f%%.\n ' , avgmissrate(n)) ;
-        matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(redDim) '_lambda' num2str(lambda) '.mat']);
+        matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(dim) '_lambda' num2str(lambda) '.mat']);
         save(matname,'missrateTot','avgmissrate','medmissrate');
     end
 end
