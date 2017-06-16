@@ -10,8 +10,8 @@
 
 clear ;
 addpath('LSR');
-load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'              % load YaleB dataset
-% load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat'   % load USPS dataset
+% load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'              % load YaleB dataset
+load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat'   % load USPS dataset
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % writefilepath = '';
 
@@ -19,7 +19,7 @@ writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % SegmentationMethod = 'LSR1' ;     % LSR1 by (16) in our paper
 SegmentationMethod = 'LSR2' ;     % LSR2 by (18) in our paper
 
-Repeat = 10; %number of repeations
+Repeat = 1; %number of repeations
 DR = 1; % perform dimension reduction or not
 
 %% Data YaleB
@@ -79,7 +79,7 @@ for lambda = [.05 .1 .2 .3]
         avgmissrate(n) = mean(missrateTot{n});
         medmissrate(n) = median(missrateTot{n});
         fprintf('Total mean missrate  is %.3f%%.\n ' , avgmissrate(n)) ;
-        matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(dim) '_lambda' num2str(lambda) '.mat']);
+        matname = sprintf([writefilepath 'USPS_Crop_' SegmentationMethod '_DR' num2str(dim) '_lambda' num2str(lambda) '.mat']);
         save(matname,'missrateTot','avgmissrate','medmissrate');
     end
 end
