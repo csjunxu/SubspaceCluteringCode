@@ -394,7 +394,7 @@ After initializing the $\bm{A},\bm{C},\bm{\Delta}$ as zero matrices, the ADMM al
 .
 \end{split}
 \end{equation}
-This is a least square problem with feasible region of $\bm{C}\ge0$. This can be solved by active set method \cite{Nocedal2006NO}.
+This is a non-negative least squares problem which can be solved by many solves developed via active set method \cite{Nocedal2006NO}.
 
 (3) Obtain the Lagrangian multipliers $\bm{\Delta}_{k+1}$ while fixing ($\bm{C}_{k+1},\bm{A}_{k+1}$):
 \begin{equation}
@@ -868,8 +868,6 @@ This is a least squares regression problem which has a closed-form solution as
 .
 \end{split}
 \end{equation}
-
-(5) Update the penalty parameter $\rho$ as $\rho=\mu\rho$, where $\mu>1$.
 
 
 {

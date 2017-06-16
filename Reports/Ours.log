@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  16 JUN 2017 09:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  16 JUN 2017 11:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -565,21 +565,21 @@ Overfull \hbox (4.03062pt too wide) in paragraph at lines 797--797
 \openout3 = `Ours.brf'.
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 881.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 879.
  [5
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 881.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 879.
  (./Ours.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 881.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 881.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 879.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 879.
 Package rerunfilecheck Info: File `Ours.brf' has not changed.
 (rerunfilecheck)             Checksum: 2A8F5229E71F7AB7B148B6A20B0A649F;301.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 881.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 879.
  ) 
 Here is how much of TeX's memory you used:
  7299 strings out of 493091
@@ -606,7 +606,7 @@ e/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/Software
 2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fo
 nts/type1/urw/times/utmri8a.pfb>
-Output written on Ours.pdf (5 pages, 172059 bytes).
+Output written on Ours.pdf (5 pages, 171961 bytes).
 PDF statistics:
  181 PDF objects out of 1000 (max. 8388607)
  156 compressed objects within 2 object streams
