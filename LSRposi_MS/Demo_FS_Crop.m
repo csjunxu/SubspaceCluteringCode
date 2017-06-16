@@ -17,11 +17,11 @@ nSet = [2:1:10];
 for set = 1:length(nSet)
     n = nSet(set);
     index = Ind{n};
-    for maxIter = [5 10 15 20 25 30]
+    for maxIter = [10 15 20 25 30]
         Par.maxIter = maxIter;
-        for lambda = [1e-10 5e-10 1e-9 5e-9 1e-8 5e-8 1e-7 5e-7 1e-6 5e-6 1e-5 5e-5 1e-4 5e-4]
-            Par.lambda = lambda;
-            for rho = [0.1:0.1:1]
+        for lambda = [1:1:10]
+            Par.lambda = 10^(-lambda);
+            for rho = [0.1:0.1:0.5]
                 Par.rho = rho;
                 for i = 1:size(index,1)
                     fea = [];
@@ -84,7 +84,7 @@ for set = 1:length(nSet)
                 avgmissrate(n) = mean(missrateTot{n});
                 medmissrate(n) = median(missrateTot{n});
                 fprintf('Total mean missrate  is %.3f%%.\n ' , avgmissrate(n)) ;
-                matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(redDim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(lambda) '.mat']);
+                matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(redDim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
                 save(matname,'missrateTot','avgmissrate','medmissrate');
             end
         end
