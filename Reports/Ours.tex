@@ -64,7 +64,32 @@
 \end{itemize}
 
 \section{LSR Model}
-The least squares regression (LSR) model \cite{lsr} is proposed by Lu et al. can be formulated as follows:
+It is widely known that the least squares regression (LSR) model \cite{prml}, which can be expressed as follows:
+\begin{equation}
+\label{e1}
+\min_{\bm{A}}
+\|
+\bm{X}
+-
+\bm{X}\bm{A}
+\|_{F}^{2}
++
+\lambda
+\|
+\bm{A}
+\|_{F}^{2}
+,
+\end{equation}
+has a form of closed solution as
+\begin{equation}
+\label{e2}
+\hat{\bm{A}}
+=
+(\bm{X}^{\top}\bm{X}+\lambda\bm{I})^{-1}\bm{X}^{\top}\bm{X}.
+\end{equation}
+
+
+In subspace clustering community, the LSR method \cite{lsr} proposed by Lu et al. can be formulated as follows:
 \begin{equation}
 \label{e1}
 \min_{\bm{A}}
@@ -417,10 +442,6 @@ The Woodbury Identity is
 \bm{V}\bm{A}^{-1}
 .
 \end{equation}
-
-
-
-We can also restrict that $\text{diag}(\bm{A})=\bm{0}$ to avoid the samples to be self-represented. However, I want to mention that the proposed model solved by ADMM algorithm with three variables and does not have convergence results.
 
 Then the model above can be 
 \begin{equation}
