@@ -1,11 +1,13 @@
 
 clear ;
 
-load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'              % load YaleB dataset
+% load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'  % load YaleB dataset
+load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat'   % load USPS dataset   
+% load 'C:\Users\csjunxu\Desktop\SC\Datasets\MNIST_Crop.mat' % load MNIST dataset 
+
+
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % writefilepath = '';
-
-
 
 Repeat = 10; %number of repeations
 DR = 1; % perform dimension reduction or not
@@ -17,7 +19,7 @@ nSet = [2:1:10];
 for set = 1:length(nSet)
     n = nSet(set);
     index = Ind{n};
-    for maxIter = [10 15 20 25 30]
+    for maxIter = [5 10 15 20 25 30]
         Par.maxIter = maxIter;
         for lambda = [1:1:10]
             Par.lambda = 10^(-lambda);
@@ -84,7 +86,7 @@ for set = 1:length(nSet)
                 avgmissrate(n) = mean(missrateTot{n});
                 medmissrate(n) = median(missrateTot{n});
                 fprintf('Total mean missrate  is %.3f%%.\n ' , avgmissrate(n)) ;
-                matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(redDim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
+                matname = sprintf([writefilepath 'USPS_Crop_' SegmentationMethod '_DR' num2str(redDim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
                 save(matname,'missrateTot','avgmissrate','medmissrate');
             end
         end
