@@ -78,7 +78,7 @@ for lambda = [.05 .06 .04]
         avgmissrate(n) = mean(missrateTot{n});
         medmissrate(n) = median(missrateTot{n});
         fprintf('Total mean missrate  is %.3f%%.\n ' , avgmissrate(n)) ;
-        matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(dim) '_dim' num2str(dim) '_lambda' num2str(lambda) '.mat']);
+        matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_lambda' num2str(lambda) '.mat']);
         save(matname,'missrateTot','avgmissrate','medmissrate');
     end
 end

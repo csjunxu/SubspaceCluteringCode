@@ -8,22 +8,22 @@ load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleBCrop025.mat';
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 
 %% Subspace segmentation methods
-% SegmentationMethod = 'LSRd0po_SSC' ;
-SegmentationMethod = 'LSRpo_SSC' ;
+% SegmentationMethod = 'ANNLSRd0_SSC' ;
+SegmentationMethod = 'ANNLSR_SSC' ;
 % SegmentationMethod = 'LSRd0ne_SSC' ;
 % SegmentationMethod = 'LSRne_SSC' ;
 % SegmentationMethod = 'LSRd0_SSC' ;
 DR = 1; % dimension reduction
 dim = 6;
 %% Subspace segmentation
-for maxIter = [10 15]
+for maxIter = [10 5 15]
     Par.maxIter = maxIter;
     for mu = [1]
         Par.mu = mu;
         for rho = [0.1:0.1:0.5]
             Par.rho = rho;
-            for lambda = [2:1:6]
-                Par.lambda = 10^(-lambda);
+            for lambda = [2:1:5]
+                Par.lambda = lambda*10^(-2);
                 for nSet = [2 3 5 8 10]
                     for i = 1:length(nSet)
                         n = nSet(i);
@@ -53,10 +53,10 @@ for maxIter = [10 15]
                             end
                             Yfea = fea(1:redDim, :) ;
                             switch SegmentationMethod
-                                case 'LSRd0po_SSC'
-                                    C = LSRd0po( Yfea , Par ) ;
-                                case 'LSRpo_SSC'
-                                    C = LSRpo( Yfea , Par ) ;
+                                case 'ANNLSR_SSC'
+                                    C = ANNLSR( Yfea , Par ) ;
+                                case 'ANNLSRd0_SSC'
+                                    C = ANNLSRd0( Yfea , Par ) ;
                                 case 'LSRd0ne_SSC'
                                     C = LSRd0ne( Yfea , Par ) ;
                                 case 'LSRne_SSC'
