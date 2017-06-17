@@ -41,11 +41,11 @@ SegmentationMethod = 'NNLSR_LSR' ;
 
 for mu = [1]  
     Par.mu = mu;
-    for maxIter = [5 10 20 50 100 200]
+    for maxIter = [10 20 50 100 200]
         Par.maxIter = maxIter;
-        for rho = [0.01 0.001]
+        for rho = [.01 .005 0.001]
             Par.rho = rho;
-            for lambda = [1.1:.1:1.5]
+            for lambda = [1 .5 1.5]
                 Par.lambda = lambda*10^(-3);
                 maxNumGroup = 5;
                 for i = 1:maxNumGroup

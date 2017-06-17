@@ -47,10 +47,10 @@ while  ( ~terminate )
     
     %% update C the data term matrix
     Q = (Par.rho*A - Delta)/(2*Par.lambda+Par.rho);
-%     C  = solver_BCLS_closedForm(Q);
+    %     C  = solver_BCLS_closedForm(Q);
     C = zeros(size(Q));
     for i = 1:size(Q, 2)
-        C(:, i) = lsqnonneg(eye(N), Q(:, i)); 
+        C(:, i) = lsqnonneg(eye(N), Q(:, i));
         % sum to 1 is not included, slower than solver_BCLS_closedForm
     end
     
@@ -65,11 +65,11 @@ while  ( ~terminate )
     err2(iter+1) = errorLinSys(X, A);
     if (  (err1(iter+1) >= err1(iter) && err2(iter+1)<=tol) ||  iter >= Par.maxIter  )
         terminate = true;
-        %         fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
+        fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
     else
-        %         if (mod(iter, Par.maxIter)==0)
-        %             fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
-        %         end
+        if (mod(iter, Par.maxIter)==0)
+            fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
+        end
     end
     
     %         %% convergence conditions

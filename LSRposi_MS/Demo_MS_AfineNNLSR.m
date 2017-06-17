@@ -1,11 +1,5 @@
 clear ;
-% close all;
-currentpath = cd ;
-AddedPath = genpath( currentpath ) ;
-addpath( AddedPath ) ;
-fprintf('\n\n**************************************   %s   *************************************\n' , datestr(now) );
-fprintf( [ mfilename(currentpath) ' Begins.\n' ] ) ;
-fprintf( [ mfilename(currentpath) ' is going, please wait...\n' ] ) ;
+
 
 %% reduced dimension
 ProjRank = 12 ;
@@ -16,8 +10,9 @@ seq3 = seqs(3:end);
 % Save the data loaded in struct "data" 
 data = struct('ProjX', {}, 'name',{}, 'ids',{});
 
-resultdir = 'C:/Users/csjunxu/Desktop/SC/Results/';
+dataset = 'Hopkins155';
 
+resultdir = 'C:/Users/csjunxu/Desktop/SC/Results/';
 
 for i=1:length(seq3)
     fname = seq3(i).name;
@@ -42,33 +37,19 @@ clear seq3;
 
 
 %% Subspace segmentation methods
-% SegmentationMethod = 'LSR1' ;     % LSR1 by (16) in our paper
-% SegmentationMethod = 'LSR2' ;     % LSR2 by (18) in our paper
 
-SegmentationMethod = 'LSRd0po_LSR' ;
-% SegmentationMethod = 'LSRpo_LSR' ;
-
-%% Parameter
-switch SegmentationMethod
-    case 'LSR1'
-        lambda = 4.8*1e-3 ;
-    case 'LSR2'
-        lambda = 4.6*1e-3 ;
-    case 'LSRd0po'
-        lambda = 4.8*1e-3 ;
-    case 'LSRpo'
-        lambda = 4.6*1e-3 ;
-end
+SegmentationMethod = 'ANNLSRd0_LSR' ;
+% SegmentationMethod = 'ANNLSR_LSR' ;
 
 
 for mu = [1]
     Par.mu = mu;
-    for maxIter = [200 500 1000]
+    for maxIter = [5 10 15 20 50 100 200]
         Par.maxIter = maxIter;
-        for rho = [0.01:0.01:0.1]
+        for rho = [.01 .005 0.001 .02 ]
             Par.rho = rho;
-            for lambda = [1e-5:1e-5:5e-5]
-                Par.lambda = lambda;
+            for lambda = [1 .5 .1 2]
+                Par.lambda = lambda*10^(-3);
                 maxNumGroup = 5;
                 for i = 1:maxNumGroup
                     num(i) = 0;
@@ -81,9 +62,9 @@ for mu = [1]
                     K = length( unique( gnd ) ) ;
                     n = max(gnd);
                     switch SegmentationMethod
-                        case 'LSRd0po_LSR'
+                        case 'ANNLSRd0_LSR'
                             C = LSRd0po( ProjX , Par ) ;
-                        case 'LSRpo_LSR'
+                        case 'ANNLSR_LSR'
                             C = LSRpo( ProjX , Par ) ;
                     end
                     nCluster = length( unique( gnd ) ) ;
@@ -107,7 +88,7 @@ for mu = [1]
                 end
                 avgallmissrate = sum(allmissrate)/length(allmissrate);
                 medallmissrate = median(allmissrate);
-                matname = sprintf([resultdir SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
+                matname = sprintf([resultdir dataset '_' SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(lambda) '.mat']);
                 save(matname,'avgallmissrate','medallmissrate','missrateTot','avgmissrate','medmissrate');
             end
         end
