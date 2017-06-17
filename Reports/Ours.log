@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  17 JUN 2017 15:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  17 JUN 2017 15:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -563,31 +563,34 @@ Overfull \hbox (4.03062pt too wide) in paragraph at lines 797--797
 [] 
  []
 
-[4] (./Ours.bbl (./Ours.brf)
+[4]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 878.
+ (./Ours.bbl (./Ours.brf)
 \tf@brf=\write3
 \openout3 = `Ours.brf'.
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 887.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 898.
  [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 887.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 898.
  (./Ours.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 887.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 887.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 898.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 898.
 Package rerunfilecheck Info: File `Ours.brf' has not changed.
 (rerunfilecheck)             Checksum: 79A21D3C209B29990C507FE991A6AA97;394.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 887.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 898.
  ) 
 Here is how much of TeX's memory you used:
- 7334 strings out of 493091
- 104520 string characters out of 6134517
+ 7339 strings out of 493091
+ 104583 string characters out of 6134517
  199897 words of memory out of 5000000
- 10611 multiletter control sequences out of 15000+600000
- 40735 words of font info for 120 fonts, out of 8000000 for 9000
+ 10613 multiletter control sequences out of 15000+600000
+ 42361 words of font info for 122 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  34i,17n,28p,1184b,335s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Software/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/Software
@@ -610,10 +613,10 @@ re/texlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texliv
 e/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/te
 xmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/
 fonts/type1/urw/times/utmri8a.pfb>
-Output written on Ours.pdf (5 pages, 197850 bytes).
+Output written on Ours.pdf (5 pages, 198410 bytes).
 PDF statistics:
- 200 PDF objects out of 1000 (max. 8388607)
- 172 compressed objects within 2 object streams
- 58 named destinations out of 1000 (max. 500000)
+ 202 PDF objects out of 1000 (max. 8388607)
+ 174 compressed objects within 2 object streams
+ 60 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
