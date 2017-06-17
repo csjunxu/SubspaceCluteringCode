@@ -67,9 +67,9 @@ while  ( ~terminate )
         terminate = true;
                 fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
     else
-                if (mod(iter, Par.maxIter)==0)
+%                 if (mod(iter, Par.maxIter)==0)
                     fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
-                end
+%                 end
     end
     
     %         %% convergence conditions
