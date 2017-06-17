@@ -33,6 +33,10 @@ nCluster = 2; % number of subjects.
 load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'              % load YaleB dataset
 dim = 6;
 
+SegmentationMethod = 'SSC_OMP';
+% writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
+writefilepath = '';
+
 
 % dimension reduction
 reduceDimension = @(data) dimReduction_PCA(data, dim*nCluster); % 0
@@ -46,7 +50,6 @@ genLabel = @(affinity, nCluster) SpectralClustering(affinity, nCluster, 'Eig_Sol
 
 %% Clustering
 Repeat = 1; %number of repeations
-results = zeros(nExperiment, 6); %results
 
 for nSet = [2 3 5 8 10];
     n = nSet;
@@ -60,7 +63,8 @@ for nSet = [2 3 5 8 10];
         end
         [D, N] = size(fea);
         fprintf( '%d: %d\n', size(index, 1), i ) ;
-        for j = 1 : Repeat         
+        missrate = zeros(size(index, 1), Repeat) ;
+        for j = 1 : Repeat
             N = length(gnd);
             % clustering
             tic;
@@ -92,10 +96,17 @@ for nSet = [2 3 5 8 10];
             dataValue = [iExperiment, perc, ssr, conn, accr, time];
             fprintf(dataformat, dataValue);
             % record
-            results(iExperiment, :) = dataValue;
+            missrate(i, j) = 1 - accr;
+            fprintf('%.3f%% \n' , missrate(i, j)*100) ;
         end
         % output
-        dataValue = mean(results, 1);
-        fprintf('\nAverage: perc = %f, ssr = %f, conn = %f, accr = %f, time = %f\n', dataValue(2:end));
+        missrateTot{n}(i) = mean(missrate(i, :)*100);
+        fprintf('Mean Accuracy of %d/%d is %.3f%%.\n ' , i, size(index, 1), missrateTot{n}(i)) ;
     end
+    %% output
+    avgmissrate(n) = mean(missrateTot{n});
+    medmissrate(n) = median(missrateTot{n});
+    fprintf('Total mean missrate  is %.3f%%.\n ' , avgmissrate(n)) ;
+    matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_lambda' num2str(lambda) '.mat']);
+    save(matname,'missrateTot','avgmissrate','medmissrate');
 end
