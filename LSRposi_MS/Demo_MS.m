@@ -13,7 +13,7 @@ data = struct('ProjX', {}, 'name',{}, 'ids',{});
 dataset = 'Hopkins155';
 
 resultdir = 'C:/Users/csjunxu/Desktop/SC/Results/';
-
+ 
 for i=1:length(seq3)
     fname = seq3(i).name;
     fdir = [datadir '/' fname];
