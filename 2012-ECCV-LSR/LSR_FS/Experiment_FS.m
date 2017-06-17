@@ -10,8 +10,8 @@
 
 clear ;
 addpath('LSR');
-load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'              % load YaleB dataset
-% load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat'   % load USPS dataset
+% load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'              % load YaleB dataset
+load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat'   % load USPS dataset
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % writefilepath = '';
 
@@ -32,7 +32,7 @@ dim = 6;
 %         para = [0.004 ] * ones(1,20) ;
 % end
 
-for lambda = [.05 .1 .2 .3]
+for lambda = [.05 .06 .04]
     para = lambda * ones(1,Repeat) ;
     for nSet = [2 3 5 8 10];
         n = nSet;
