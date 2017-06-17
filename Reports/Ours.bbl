@@ -9,8 +9,8 @@ Martin Slawski, Matthias Hein, et~al.
 \bibitem{kim2007interior}
 Seung-Jean Kim, Kwangmoo Koh, Michael Lustig, Stephen Boyd, and Dimitry
   Gorinevsky.
-\newblock An interior-point method for large-scale $\backslash$
-  $\ell_1$-regularized least squares.
+\newblock An interior-point method for large-scale $\ell_{1}$-regularized least
+  squares.
 \newblock {\em IEEE journal of selected topics in signal processing},
   1(4):606--617, 2007.
 
