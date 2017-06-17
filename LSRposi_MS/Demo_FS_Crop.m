@@ -10,9 +10,9 @@ DR = 1; % perform dimension reduction or not
 dim = 6;
 
 %% Subspace segmentation
-for maxIter = [10 15]
+for maxIter = [5 10 15]
     Par.maxIter = maxIter;
-    for rho = [0.1:0.1:0.5]
+    for rho = [0.5:-0.1:0.1]
         Par.rho = rho;
         for lambda = [3:1:6]
             Par.lambda = 10^(-lambda);
@@ -80,7 +80,7 @@ for maxIter = [10 15]
                 avgmissrate(n) = mean(missrateTot{n});
                 medmissrate(n) = median(missrateTot{n});
                 fprintf('Total mean missrate  is %.3f%%.\n ' , avgmissrate(n)) ;
-                matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(redDim) '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
+                matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
                 save(matname,'missrateTot','avgmissrate','medmissrate');
             end
         end
