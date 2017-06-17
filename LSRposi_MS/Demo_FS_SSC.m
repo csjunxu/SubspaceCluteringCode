@@ -1,18 +1,11 @@
 
 clear ;
 
-% error is too high
-% possible solutions
-% 1. originally, the number of iteration may not be enough at 200.
-% 2. Simulate the settings of SSC
-
-clear all;
-
 load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleBCrop025.mat';
+% load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat'   % load USPS dataset
+
 
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
-
-
 
 %% Subspace segmentation methods
 % SegmentationMethod = 'LSRd0po_SSC' ;
@@ -21,8 +14,9 @@ SegmentationMethod = 'LSRpo_SSC' ;
 % SegmentationMethod = 'LSRne_SSC' ;
 % SegmentationMethod = 'LSRd0_SSC' ;
 DR = 1; % dimension reduction
+dim = 6;
 %% Subspace segmentation
-for maxIter = [5 10 15 20 25 30]
+for maxIter = [10 15]
     Par.maxIter = maxIter;
     for mu = [1]
         Par.mu = mu;
@@ -50,7 +44,7 @@ for maxIter = [5 10 15 20 25 30]
                                 [ eigvector , eigvalue ] = PCA( fea ) ;
                                 maxDim = length(eigvalue);
                                 fea = eigvector' * fea ;
-                                redDim = nSet * 6 ;
+                                redDim = nSet * dim ;
                             end
                             
                             % normalize
@@ -83,10 +77,10 @@ for maxIter = [5 10 15 20 25 30]
                         end
                         avgmissrate(n) = mean(missrateTot{n});
                         medmissrate(n) = median(missrateTot{n});
-                        matname = sprintf([writefilepath 'YaleB_' SegmentationMethod '_DR' num2str(DR) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(Par.lambda) '.mat']);
+                        matname = sprintf([writefilepath 'YaleB_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(Par.lambda) '.mat']);
                         save(matname,'missrateTot','avgmissrate','medmissrate');
                     end
-                    matname = sprintf([writefilepath 'YaleB_' SegmentationMethod '_DR' num2str(DR) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(Par.lambda) '.mat']);
+                    matname = sprintf([writefilepath 'YaleB_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(Par.lambda) '.mat']);
                     save(matname,'missrateTot','avgmissrate','medmissrate');
                 end
             end

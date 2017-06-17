@@ -16,7 +16,7 @@ DR = 1; % perform dimension reduction or not
 %% Data YaleB
 
 %% Subspace segmentation
-for maxIter = [10 15 20 25 30]
+for maxIter = [10 15 20]
     Par.maxIter = maxIter;
     for rho = [0.1:0.1:0.5]
         Par.rho = rho;
