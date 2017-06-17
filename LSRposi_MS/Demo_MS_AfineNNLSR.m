@@ -38,8 +38,8 @@ clear seq3;
 
 %% Subspace segmentation methods
 
-SegmentationMethod = 'ANNLSRd0_LSR' ;
-% SegmentationMethod = 'ANNLSR_LSR' ;
+% SegmentationMethod = 'ANNLSRd0_LSR' ;
+SegmentationMethod = 'ANNLSR_LSR' ;
 
 
 for mu = [1]
