@@ -1,4 +1,4 @@
-function C = NNLSR( X , Par )
+function C = ANNLSR( X , Par )
 
 % Input
 % X           Data matrix, dim * num
@@ -17,6 +17,7 @@ function C = NNLSR( X , Par )
 [L, N] = size (X);
 
 %% initialization
+
 % A       = eye (N);
 % A   = rand (N);
 A       = zeros (N, N);
@@ -44,12 +45,12 @@ while  ( ~terminate )
     
     %% update C the data term matrix
     Q = (Par.rho*A - Delta)/(2*Par.lambda+Par.rho);
-    %     C  = solver_BCLS_closedForm(Q);
-    C = zeros(size(Q));
-    for i = 1:size(Q, 2)
-        C(:, i) = lsqnonneg(eye(N), Q(:, i));
-        % sum to 1 is not included, slower than solver_BCLS_closedForm
-    end
+    C  = solver_BCLS_closedForm(Q);
+%     C2 = zeros(size(Q));
+%     for i = 1:size(Q, 2)
+%         C2(:, i) = lsqnonneg(eye(N), Q(:, i)); 
+%         % sum to 1 is not included, slower than solver_BCLS_closedForm
+%     end
     
     %% update Deltas the lagrange multiplier matrix
     Delta = Delta + Par.rho * ( C - A);
@@ -62,11 +63,11 @@ while  ( ~terminate )
     err2(iter+1) = errorLinSys(X, A);
     if (  (err1(iter+1) >= err1(iter) && err2(iter+1)<=tol) ||  iter >= Par.maxIter  )
         terminate = true;
-        fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
+%                 fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
     else
-        if (mod(iter, Par.maxIter)==0)
-            fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
-        end
+%                 if (mod(iter, Par.maxIter)==0)
+%                     fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
+%                 end
     end
     
     %         %% convergence conditions

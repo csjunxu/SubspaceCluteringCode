@@ -7,7 +7,7 @@ datadir = 'C:/Users/csjunxu/Desktop/SC/Datasets/Hopkins155/';
 seqs = dir(datadir);
 % Get rid of the two directories: "." and ".."
 seq3 = seqs(3:end);
-% Save the data loaded in struct "data" 
+% Save the data loaded in struct "data"
 data = struct('ProjX', {}, 'name',{}, 'ids',{});
 
 dataset = 'Hopkins155';
@@ -37,10 +37,14 @@ clear seq3;
 
 
 %% Subspace segmentation methods
+% SegmentationMethod = 'LSR' ;
+% SegmentationMethod = 'LSRd0' ;
 
+SegmentationMethod = 'NNLSR_LSR' ;
+% SegmentationMethod = 'NNLSRd0_LSR' ;
+
+% SegmentationMethod = 'ANNLSR_LSR' ;
 % SegmentationMethod = 'ANNLSRd0_LSR' ;
-SegmentationMethod = 'ANNLSR_LSR' ;
-
 
 for mu = [1]
     Par.mu = mu;
@@ -62,10 +66,18 @@ for mu = [1]
                     K = length( unique( gnd ) ) ;
                     n = max(gnd);
                     switch SegmentationMethod
-                        case 'ANNLSRd0_LSR'
-                            C = LSRd0po( ProjX , Par ) ;
+                        case 'LSR'
+                            C = LSR2( ProjX , Par.lambda ) ;
+                        case 'LSRd0'
+                            C = LSR1( ProjX , Par.lambda ) ;
+                        case 'NNLSR_LSR'
+                            C = NNLSR( ProjX , Par ) ;
+                        case 'NNLSRd0_LSR'
+                            C = NNLSRd0( ProjX , Par ) ;
                         case 'ANNLSR_LSR'
-                            C = LSRpo( ProjX , Par ) ;
+                            C = ANNLSR( ProjX , Par ) ;
+                        case 'ANNLSRd0_LSR'
+                            C = ANNLSRd0( ProjX , Par ) ;
                     end
                     nCluster = length( unique( gnd ) ) ;
                     Z = ( abs(C) + abs(C') ) / 2 ;
