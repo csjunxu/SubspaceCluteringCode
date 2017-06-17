@@ -32,9 +32,11 @@ iter    = 1;
 % objErr = zeros(Par.maxIter, 1);
 err1(1) = inf; err2(1) = inf;
 terminate = false;
-
-XTXinv = (X' * X + Par.rho/2 * eye(N))\eye(N);
-P = (2/Par.rho * eye(N) - (2/Par.rho)^2 * X' / (2/Par.rho * (X * X') + eye(L)) * X );
+if N < L
+    XTXinv = (X' * X + Par.rho/2 * eye(N))\eye(N);
+else
+    P = (2/Par.rho * eye(N) - (2/Par.rho)^2 * X' / (2/Par.rho * (X * X') + eye(L)) * X );
+end
 while  ( ~terminate )
     %% update A the coefficient matrix
     if N < L
@@ -51,19 +53,19 @@ while  ( ~terminate )
     %% update Deltas the lagrange multiplier matrix
     Delta = Delta + Par.rho * ( C - A);
     
-%     %% update rho the penalty parameter scalar
-%     Par.rho = min(1e4, Par.mu * Par.rho);
+    %     %% update rho the penalty parameter scalar
+    %     Par.rho = min(1e4, Par.mu * Par.rho);
     
     %% computing errors
     err1(iter+1) = errorCoef(C, A);
     err2(iter+1) = errorLinSys(X, A);
     if (  (err1(iter+1) >= err1(iter) && err2(iter+1)<=tol) ||  iter >= Par.maxIter  )
         terminate = true;
-%         fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
+        %         fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
     else
-%         if (mod(iter, Par.maxIter)==0)
-%             fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
-%         end
+        %         if (mod(iter, Par.maxIter)==0)
+        %             fprintf('err1: %2.4f, err2: %2.4f, iter: %3.0f \n',err1(end), err2(end), iter);
+        %         end
     end
     
     %         %% convergence conditions
