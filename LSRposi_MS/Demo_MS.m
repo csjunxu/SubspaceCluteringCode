@@ -7,7 +7,7 @@ datadir = 'C:/Users/csjunxu/Desktop/SC/Datasets/Hopkins155/';
 seqs = dir(datadir);
 % Get rid of the two directories: "." and ".."
 seq3 = seqs(3:end);
-% Save the data loaded in struct "data"
+% Save the data loaded in struct "data "
 data = struct('ProjX', {}, 'name',{}, 'ids',{});
 
 dataset = 'Hopkins155';
