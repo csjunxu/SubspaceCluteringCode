@@ -34,10 +34,6 @@ load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'              % load Y
 dim = 6;
 
 
-load ExtendedYaleB.mat EYALEB_DATA EYALEB_LABEL
-N_subject = length(unique(EYALEB_LABEL));
-
-
 % dimension reduction
 reduceDimension = @(data) dimReduction_PCA(data, dim*nCluster); % 0
 % normalization
@@ -49,7 +45,7 @@ genLabel = @(affinity, nCluster) SpectralClustering(affinity, nCluster, 'Eig_Sol
 
 
 %% Clustering
-nExperiment = 1;
+Repeat = 1; %number of repeations
 results = zeros(nExperiment, 6); %results
 
 for nSet = [2 3 5 8 10];
@@ -64,26 +60,18 @@ for nSet = [2 3 5 8 10];
         end
         [D, N] = size(fea);
         fprintf( '%d: %d\n', size(index, 1), i ) ;
-        for iExperiment = 1:nExperiment
-            % prepare data
-            rng(iExperiment * 38 + nCluster);
-            subjectIdx = randperm(N_subject, nCluster); % select #nCluster subjects
-            datapointIdx = find(ismember(EYALEB_LABEL, subjectIdx));
-            X = double(EYALEB_DATA(:, datapointIdx)); % data
-            s = EYALEB_LABEL(datapointIdx); % label
-            
-            
-            N = length(s);
+        for j = 1 : Repeat         
+            N = length(gnd);
             % clustering
             tic;
             %     fprintf('Dimension reduction...\n')
-            X = reduceDimension(X);
+            fea = reduceDimension(fea);
             % normalization
             %     fprintf('Normalization...\n')
-            X = normalizeColumn(X);
+            fea = normalizeColumn(fea);
             % generate representation
             %     fprintf('Representation...\n')
-            R = buildRepresentation(X);
+            R = buildRepresentation(fea);
             % generate affinity
             %     fprintf('Affinity...\n')
             R(1:N+1:end) = 0;
@@ -95,10 +83,10 @@ for nSet = [2 3 5 8 10];
             time = toc;
             
             % Evaluation
-            perc = evalSSR_perc( R, s );
-            ssr = evalSSR_error( R, s );
-            conn = evalConn( A, s);
-            accr  = evalAccuracy(s, groups);
+            perc = evalSSR_perc( R, gnd );
+            ssr = evalSSR_error( R, gnd );
+            conn = evalConn( A, gnd);
+            accr  = evalAccuracy(gnd, groups);
             % output
             dataformat = '%d-th experiment: perc = %f, ssr = %f, conn = %f, accr = %f, time = %f\n';
             dataValue = [iExperiment, perc, ssr, conn, accr, time];
