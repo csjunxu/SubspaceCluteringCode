@@ -34,8 +34,11 @@ iter    = 1;
 err1(1) = inf; err2(1) = inf;
 terminate = false;
 
-XTXinv = (X' * X + Par.rho/2 * eye(N))\eye(N);
-P = (2/Par.rho * eye(N) - (2/Par.rho)^2 * X' / (2/Par.rho * (X * X') + eye(L)) * X );
+if N < L
+    XTXinv = (X' * X + Par.rho/2 * eye(N))\eye(N);
+else
+    P = (2/Par.rho * eye(N) - (2/Par.rho)^2 * X' / (2/Par.rho * (X * X') + eye(L)) * X );
+end
 while  ( ~terminate )
     %% update A the coefficient matrix
     if N < L
