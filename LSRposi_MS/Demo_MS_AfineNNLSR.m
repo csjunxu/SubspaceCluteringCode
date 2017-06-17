@@ -44,11 +44,11 @@ SegmentationMethod = 'ANNLSR_LSR' ;
 
 for mu = [1]
     Par.mu = mu;
-    for maxIter = [5 10 15 20 50 100 200]
+    for maxIter = [5 10 15]
         Par.maxIter = maxIter;
-        for rho = [.01 .005 0.001 .02 ]
+        for rho = [.01 .005 0.001 .02 .03]
             Par.rho = rho;
-            for lambda = [1 .5 .1 2]
+            for lambda = [1 2 3 4 5 10 .1 .2 .3 .4 .5]
                 Par.lambda = lambda*10^(-3);
                 maxNumGroup = 5;
                 for i = 1:maxNumGroup
