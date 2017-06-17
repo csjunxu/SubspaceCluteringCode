@@ -14,15 +14,15 @@ DR = 1; % perform dimension reduction or not
 %% Data YaleB
 nSet = [2:1:10];
 %% Subspace segmentation
-for set = 1:length(nSet)
-    n = nSet(set);
-    index = Ind{n};
-    for maxIter = [10 15 20 25 30]
-        Par.maxIter = maxIter;
-        for rho = [0.1:0.1:0.5]
-            Par.rho = rho;
-            for lambda = [2:1:10]
-                Par.lambda = 10^(-lambda);
+for maxIter = [10 15 20 25 30]
+    Par.maxIter = maxIter;
+    for rho = [0.1:0.1:0.5]
+        Par.rho = rho;
+        for lambda = [2:1:10]
+            Par.lambda = 10^(-lambda);
+            for set = 1:length(nSet)
+                n = nSet(set);
+                index = Ind{n};
                 for i = 1:size(index,1)
                     fea = [];
                     gnd = [];
