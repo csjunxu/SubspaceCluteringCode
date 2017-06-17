@@ -10,9 +10,9 @@ DR = 1; % perform dimension reduction or not
 dim = 6;
 
 %% Subspace segmentation
-for maxIter = [5 10 15]
+for maxIter = [10 5 15]
     Par.maxIter = maxIter;
-    for rho = [0.5:-0.1:0.1]
+    for rho = [0.5:-0.1:0.3]
         Par.rho = rho;
         for lambda = [3:1:6]
             Par.lambda = 10^(-lambda);
