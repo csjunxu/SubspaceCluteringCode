@@ -19,7 +19,7 @@ writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % SegmentationMethod = 'LSR1' ;     % LSR1 by (16) in our paper
 SegmentationMethod = 'LSR2' ;     % LSR2 by (18) in our paper
 
-Repeat = 10; %number of repeations
+Repeat = 1; %number of repeations
 DR = 1; % perform dimension reduction or not
 dim = 6;
 
