@@ -11,9 +11,7 @@ writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 
 Repeat = 1; %number of repeations
 DR = 1; % perform dimension reduction or not
-
-
-%% Data YaleB
+dim = 6;
 
 %% Subspace segmentation
 for maxIter = [10 15 20]
@@ -40,7 +38,7 @@ for maxIter = [10 15 20]
                         [ eigvector , eigvalue ] = PCA( fea ) ;
                         maxDim = length(eigvalue);
                         fea = eigvector' * fea ;
-                        redDim = n * 6 ;
+                        redDim = n * dim ;
                     end
                     %% normalize
                     for c = 1 : size(fea,2)
@@ -86,7 +84,7 @@ for maxIter = [10 15 20]
                 avgmissrate(n) = mean(missrateTot{n});
                 medmissrate(n) = median(missrateTot{n});
                 fprintf('Total mean missrate  is %.3f%%.\n ' , avgmissrate(n)) ;
-                matname = sprintf([writefilepath 'USPS_Crop_' SegmentationMethod '_DR' num2str(redDim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
+                matname = sprintf([writefilepath 'USPS_Crop_' SegmentationMethod '_DR' num2str(redDim) '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
                 save(matname,'missrateTot','avgmissrate','medmissrate');
             end
         end

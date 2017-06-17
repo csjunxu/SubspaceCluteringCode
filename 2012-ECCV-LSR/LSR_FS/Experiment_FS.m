@@ -21,9 +21,8 @@ SegmentationMethod = 'LSR2' ;     % LSR2 by (18) in our paper
 
 Repeat = 10; %number of repeations
 DR = 1; % perform dimension reduction or not
+dim = 6;
 
-%% Data YaleB
-nSet = [2:1:10];
 %% Subspace segmentation
 %% Parameter
 % switch n
@@ -32,11 +31,11 @@ nSet = [2:1:10];
 %     case 10
 %         para = [0.004 ] * ones(1,20) ;
 % end
-dim = 6;
+
 for lambda = [.05 .1 .2 .3]
     para = lambda * ones(1,Repeat) ;
-    for set = 1:length(nSet)
-        n = nSet(set);
+    for nSet = [2 3 5 8 10];
+        n = nSet;
         index = Ind{n};
         for i = 1:size(index,1)
             fea = [];
