@@ -1,5 +1,19 @@
 \begin{thebibliography}{1}
 
+\bibitem{slawski2013non}
+Martin Slawski, Matthias Hein, et~al.
+\newblock Non-negative least squares for high-dimensional linear models:
+  Consistency and sparse recovery without regularization.
+\newblock {\em Electronic Journal of Statistics}, 7:3004--3056, 2013.
+
+\bibitem{kim2007interior}
+Seung-Jean Kim, Kwangmoo Koh, Michael Lustig, Stephen Boyd, and Dimitry
+  Gorinevsky.
+\newblock An interior-point method for large-scale $\backslash$
+  $\ell_1$-regularized least squares.
+\newblock {\em IEEE journal of selected topics in signal processing},
+  1(4):606--617, 2007.
+
 \bibitem{prml}
 Christopher Bishop.
 \newblock {\em Pattern Recognition and Machine Learning}.
