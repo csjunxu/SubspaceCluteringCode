@@ -42,6 +42,7 @@ clear seq3;
 
 % SegmentationMethod = 'NNLSR_LSR' ;
 SegmentationMethod = 'NNLSRd0_LSR' ;
+% find a fast solver is still in process
 
 % SegmentationMethod = 'ANNLSR_LSR' ;
 % SegmentationMethod = 'ANNLSRd0_LSR' ;
