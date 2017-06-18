@@ -8,6 +8,7 @@ seqs = dir(datadir);
 seq3 = seqs(3:end);
 % Save the data loaded in struct "data "
 data = struct('ProjX', {}, 'name',{}, 'ids',{});
+addpath('fnnls');
 
 dataset = 'Hopkins155';
 
@@ -40,9 +41,9 @@ clear seq3;
 % SegmentationMethod = 'LSRd0' ;
 
 % SegmentationMethod = 'NNLSR_LSR' ;
-% SegmentationMethod = 'NNLSRd0_LSR' ;
+SegmentationMethod = 'NNLSRd0_LSR' ;
 
-SegmentationMethod = 'ANNLSR_LSR' ;
+% SegmentationMethod = 'ANNLSR_LSR' ;
 % SegmentationMethod = 'ANNLSRd0_LSR' ;
 
 for mu = [1]
