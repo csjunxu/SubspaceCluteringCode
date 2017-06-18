@@ -5,12 +5,12 @@ load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'              % load Y
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % writefilepath = '';
 
-Repeat = 10; %number of repeations
+Repeat = 1; %number of repeations
 DR = 1; % perform dimension reduction or not
 dim = 6;
 
 %% Subspace segmentation
-for maxIter = [10 5 15]
+for maxIter = [5 10 15]
     Par.maxIter = maxIter;
     for rho = [0.05 0.06 0.04 0.07 0.03]
         Par.rho = rho;
