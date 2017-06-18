@@ -28,7 +28,9 @@
 % EYALEB_LABEL is a 1 by N vector. Each entry is the label for the
 % corresponding column in EYALEB_DATA.
 
-load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'              % load YaleB dataset
+% load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'   % load YaleB dataset
+load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat'   % load USPS dataset
+
 dim = 6;
 
 SegmentationMethod = 'SSC_OMP';
