@@ -20,7 +20,7 @@ for alpha = [5 10 15 20 25 30 40 50]
             gnd = [];
             for p = 1:n
                 fea = [fea Y{index(i, p), 1}];
-                gnd= [gnd p * ones(1, length(S{index(i, p)}))];
+                gnd= [gnd p*ones(1, length(S{index(i, p)}))];
             end
             [D,N] = size(fea);
             
