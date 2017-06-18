@@ -68,8 +68,8 @@ for mu = [1]
                         case 'LSR'
                             C = LSR( ProjX , Par ) ;
                         case 'LSRd0'
-                            C = LSRd0( ProjX , Par.lambda ) ; % solved by ADMM
-                            % C = LSR1( ProjX , Par.lambda ) ;
+                            C = LSRd0( ProjX , Par ) ; % solved by ADMM
+                            % C = LSR1( ProjX , Par.lambda ) ; % proposed by Lu
                         case 'NNLSR_LSR'                   % non-negative
                             C = NNLSR( ProjX , Par ) ;
                         case 'NNLSRd0_LSR'               % non-negative, sum to 1
