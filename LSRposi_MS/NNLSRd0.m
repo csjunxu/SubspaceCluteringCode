@@ -48,17 +48,17 @@ while  ( ~terminate )
     
     %% update C the data term matrix
     Q = (Par.rho*A - Delta)/(2*Par.lambda+Par.rho);
+    C2 = zeros(size(Q));
+    tic
+    for i = 1:size(Q, 2)
+        [C2(:, i), ~] = fnnls(eye(N), Q(:, i),tol);
+    end
+    toc
     C1 = zeros(size(Q));
     tic
     for i = 1:size(Q, 2)
         C1(:, i) = lsqnonneg(eye(N), Q(:, i));
         % sum to 1 is not included, slow
-    end
-    toc
-    C2 = zeros(size(Q));
-    tic
-    for i = 1:size(Q, 2)
-        [C2(:, i), ~] = fnnls(eye(N), Q(:, i),tol);
     end
     toc
     C = C - diag(diag(C));
