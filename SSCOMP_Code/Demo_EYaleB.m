@@ -34,8 +34,8 @@ load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'              % load Y
 dim = 6;
 
 SegmentationMethod = 'SSC_OMP';
-% writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
-writefilepath = '';
+writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
+% writefilepath = '';
 
 
 % dimension reduction
@@ -85,23 +85,18 @@ for nSet = [2 3 5 8 10];
             %     fprintf('Generate label...\n')
             groups = genLabel(A, nCluster);
             time = toc;
-            
             % Evaluation
             perc = evalSSR_perc( R, gnd );
             ssr = evalSSR_error( R, gnd );
             conn = evalConn( A, gnd);
             accr  = evalAccuracy(gnd, groups);
-            % output
-            dataformat = '%d-th experiment: perc = %f, ssr = %f, conn = %f, accr = %f, time = %f\n';
-            dataValue = [iExperiment, perc, ssr, conn, accr, time];
-            fprintf(dataformat, dataValue);
             % record
             missrate(i, j) = 1 - accr;
             fprintf('%.3f%% \n' , missrate(i, j)*100) ;
         end
         % output
         missrateTot{n}(i) = mean(missrate(i, :)*100);
-        fprintf('Mean Accuracy of %d/%d is %.3f%%.\n ' , i, size(index, 1), missrateTot{n}(i)) ;
+        fprintf('Mean missrate of %d/%d is %.3f%%.\n ' , i, size(index, 1), missrateTot{n}(i)) ;
     end
     %% output
     avgmissrate(n) = mean(missrateTot{n});
