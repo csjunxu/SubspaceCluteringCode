@@ -55,7 +55,7 @@ for mu = [1]
                 Par.lambda = lambda*10^(-3);
                 maxNumGroup = 5;
                 for i = 1:maxNumGroup
-                    num(i) = 0;s
+                    num(i) = 0;
                 end
                 %%
                 errs = zeros(length(data),1);
