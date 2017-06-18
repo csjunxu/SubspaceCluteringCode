@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  18 JUN 2017 00:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  18 JUN 2017 10:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -587,11 +587,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 906.
 Here is how much of TeX's memory you used:
  7342 strings out of 493091
  104617 string characters out of 6134517
- 200897 words of memory out of 5000000
+ 199897 words of memory out of 5000000
  10613 multiletter control sequences out of 15000+600000
  42361 words of font info for 122 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,17n,28p,1184b,474s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,17n,28p,1175b,474s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Software/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/Software
@@ -607,15 +607,14 @@ re/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/Software/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Software/t
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/Software/te
-xlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/Softwa
-re/texlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texliv
-e/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/te
-xmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/
-fonts/type1/urw/times/utmri8a.pfb>
-Output written on Ours.pdf (6 pages, 200317 bytes).
+xlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/201
+5/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-d
+ist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts
+/type1/urw/times/utmri8a.pfb>
+Output written on Ours.pdf (6 pages, 193157 bytes).
 PDF statistics:
- 208 PDF objects out of 1000 (max. 8388607)
- 179 compressed objects within 2 object streams
+ 204 PDF objects out of 1000 (max. 8388607)
+ 176 compressed objects within 2 object streams
  63 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

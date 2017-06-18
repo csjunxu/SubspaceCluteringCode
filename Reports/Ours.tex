@@ -265,7 +265,7 @@ This model enforces non-negative representation and hence produce sparse solutio
 
 The performance of this method is much better than the original least squares regression (LSR) based subspace clustering method proposed by Lu et al. \cite{lsr}.
 
-The LSR model in \cite{lsr} can be reformulated as a collaborative representation model \cite{crc} for subspace clustering with an additional constraint of $\text{diag}(\bm{A})=\bm{0}$. In this section, we want to mention that the coefficient matrix $\bm{C}$ with additional constraint could benefit the performance of subspace clustering. Motivated by the non-negative coefficient should share positive relationship while negative coefficients share negative relationship, we argue that non-negative representational coefficients should better represent the data points from the same subspace, while negative coefficients correspond to points from different subspaces. By this way, the negative coefficients will negatively influence the relationship among the points in the same subsapce and hence degrade the performance of the model on subspace clustering. Based on these observations, in this section, we propose to add an constraint on the coefficient matrix $\bm{A}$ that the elements in $\bm{A}$ should be non-negative, i.e., $\bm{A}\succcurlyeq0$. Hence, the proposed non-negative collaborative representation model can be formulated as follows: 
+The LSR model in \cite{lsr} can be reformulated as a collaborative representation model \cite{crc} for subspace clustering with an additional constraint of $\text{diag}(\bm{A})=\bm{0}$. In this section, we want to mention that the coefficient matrix $\bm{C}$ with additional constraint could benefit the performance of subspace clustering. Motivated by the non-negative coefficient should share positive relationship while negative coefficients share negative relationship, we argue that non-negative representational coefficients should better represent the data points from the same subspace, while negative coefficients correspond to points from different subspaces. By this way, the negative coefficients will negatively influence the relationship among the points in the same subsapce and hence degrade the performance of the model on subspace clustering. Based on these observations, in this section, we propose to add an constraint on the coefficient matrix $\bm{A}$ that the elements in $\bm{A}$ should be non-negative, i.e., $\bm{A}\ge0$. Hence, the proposed non-negative collaborative representation model can be formulated as follows: 
 \begin{equation}
 \begin{split}
 \label{e11}
@@ -288,11 +288,11 @@ The LSR model in \cite{lsr} can be reformulated as a collaborative representatio
 &
 \text{diag}(\bm{A})=\bm{0}
 ,
-\bm{A}\succcurlyeq0
+\bm{A}\ge0
 ,
 \end{split}
 \end{equation}
-where $\bm{A}\succcurlyeq0$ means that each element of $\bm{A}$ is non-negative.
+where $\bm{A}\ge0$ means that each element of $\bm{A}$ is non-negative.
 
 By introducing auxiliary variables into the optimization program, we can set 
 $
@@ -322,7 +322,7 @@ The LSR model (\ref{e1}) can be transformed into
 \ 
 \bm{C}=\bm{A}-\text{diag}(\bm{A})
 ,
-\bm{C}\succcurlyeq0
+\bm{C}\ge0
 ,
 \end{split}
 \end{equation}
@@ -359,7 +359,7 @@ whose solution for $\bm{A}$ coincides with the solution of Eq. (\ref{e9}). By in
 \end{split}
 \end{equation}
 
-After initializing the $\bm{A},\bm{C},\bm{\Delta}$ as zero matrices, the ADMM algorithm iterates consist of 1) minimizing $\mathcal{L}$ with respect to $\bm{A}$ while fixing the other variables, and 2) minimizing $\mathcal{L}$ with respect to $\bm{C}$ subject to the constraint $\bm{C}\succcurlyeq0$ while fixing the other variables; 3) updating the Lagrangian variable $\bm{\Delta}$ while fixing the other variables. Specifically, denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$, by $\bm{\Delta}_{k}$ the Lagrangian multipliers at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
+In this case, the matrix containing only zeros is a feasible starting point as it contains no negative values. After initializing the $\bm{A},\bm{C},\bm{\Delta}$ as zero matrices, the ADMM algorithm iterates consist of 1) minimizing $\mathcal{L}$ with respect to $\bm{A}$ while fixing the other variables, and 2) minimizing $\mathcal{L}$ with respect to $\bm{C}$ subject to the constraint $\bm{C}\ge0$ while fixing the other variables; 3) updating the Lagrangian variable $\bm{\Delta}$ while fixing the other variables. Specifically, denote by ($\bm{C}_{k},\bm{A}_{k}$) the optimization variables at iteration $k$, by $\bm{\Delta}_{k}$ the Lagrangian multipliers at iteration $k$. Taking detivatives of $\mathcal{L}$ with respect to the variables and setting the derivatives to be zeros, we can alternatively update the variables as follows:
 
 (1) Obtain $\bm{A}_{k+1}$ by minimizing $\mathcal{L}$ with respect to $\bm{A}$, while fixing ($\bm{C}_{k},\bm{\Delta}_{k}$). This is equivalent to solve the following problem:
 \begin{equation}
@@ -394,7 +394,7 @@ After initializing the $\bm{A},\bm{C},\bm{\Delta}$ as zero matrices, the ADMM al
 \quad
 \text{s.t.}
 \quad 
-\bm{C}\succcurlyeq 0
+\bm{C}\ge 0
 .
 \end{split}
 \end{equation}
