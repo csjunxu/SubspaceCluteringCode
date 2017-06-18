@@ -39,22 +39,22 @@ clear seq3;
 % SegmentationMethod = 'LSR' ;
 % SegmentationMethod = 'LSRd0' ;
 
-SegmentationMethod = 'NNLSR_LSR' ;
+% SegmentationMethod = 'NNLSR_LSR' ;
 % SegmentationMethod = 'NNLSRd0_LSR' ;
 
-% SegmentationMethod = 'ANNLSR_LSR' ;
+SegmentationMethod = 'ANNLSR_LSR' ;
 % SegmentationMethod = 'ANNLSRd0_LSR' ;
 
 for mu = [1]
     Par.mu = mu;
     for maxIter = [5 10 15]
         Par.maxIter = maxIter;
-        for rho = [.01 .005 0.001 .02 .03]
+        for rho = [.006 .005 0.004]
             Par.rho = rho;
             for lambda = [1 2 3 4 5 10 .1 .2 .3 .4 .5]
                 Par.lambda = lambda*10^(-3);
                 maxNumGroup = 5;
-                for i = 1:maxNumGroup
+             s   for i = 1:maxNumGroup
                     num(i) = 0;
                 end
                 %%
