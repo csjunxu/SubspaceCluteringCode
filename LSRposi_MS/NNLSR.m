@@ -17,9 +17,9 @@ function C = NNLSR( X , Par )
 [L, N] = size (X);
 
 %% initialization
-% A       = eye (N);
+% A       = eye (N);    % satisfy ANN consttraint
 % A   = rand (N);
-A       = zeros (N, N);
+A       = zeros (N, N); % satisfy NN constraint
 C       = A;
 Delta = C - A;
 
