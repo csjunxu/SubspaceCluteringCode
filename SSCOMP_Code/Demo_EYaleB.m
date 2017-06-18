@@ -31,14 +31,14 @@
 % load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'   % load YaleB dataset
 load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat'   % load USPS dataset
 
-dim = 6;
-
+dataset = 'USPS_CROP';
 SegmentationMethod = 'SSC_OMP';
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % writefilepath = '';
 
-%% Clustering
 Repeat = 1; %number of repeations
+DR = 1;
+dim = 6;
 for K = [4 5 6 7 8 9 10]
     for thr = [1e-8 1e-7 1e-6 1e-5 1e-4 1e-3]
         for nSet = [2 3 5 8 10];
@@ -59,7 +59,9 @@ for K = [4 5 6 7 8 9 10]
                     % clustering
                     tic;
                     %     fprintf('Dimension reduction...\n')
-                    fea = dimReduction_PCA(fea, dim*n);
+                    if DR==1
+                        fea = dimReduction_PCA(fea, dim*n);
+                    end
                     % normalization
                     %     fprintf('Normalization...\n')
                     fea = cnormalize_inplace(fea);
@@ -92,7 +94,7 @@ for K = [4 5 6 7 8 9 10]
             avgmissrate(n) = mean(missrateTot{n});
             medmissrate(n) = median(missrateTot{n});
             fprintf('Total mean missrate  is %.3f%%.\n ' , avgmissrate(n)) ;
-            matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_K' num2str(K) '_thr' num2str(thr) '.mat']);
+            matname = sprintf([writefilepath dataset '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_K' num2str(K) '_thr' num2str(thr) '.mat']);
             save(matname,'missrateTot','avgmissrate','medmissrate');
         end
     end
