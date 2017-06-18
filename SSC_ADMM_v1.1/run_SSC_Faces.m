@@ -12,7 +12,7 @@
 
 clear all, close all
 
-load YaleBCrop025.mat
+load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleBCrop025.mat';
 
 alpha = 20;
 
