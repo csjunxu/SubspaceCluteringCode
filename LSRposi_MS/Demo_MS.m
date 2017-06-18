@@ -54,8 +54,8 @@ for mu = [1]
             for lambda = [1 2 3 4 5 10 .1 .2 .3 .4 .5]
                 Par.lambda = lambda*10^(-3);
                 maxNumGroup = 5;
-             s   for i = 1:maxNumGroup
-                    num(i) = 0;
+                for i = 1:maxNumGroup
+                    num(i) = 0;s
                 end
                 %%
                 errs = zeros(length(data),1);
