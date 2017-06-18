@@ -12,9 +12,9 @@ dim = 6;
 %% Subspace segmentation
 for maxIter = [10 5 15]
     Par.maxIter = maxIter;
-    for rho = [0.5:-0.1:0.3]
+    for rho = [0.05 0.06 0.04 0.07 0.03]
         Par.rho = rho;
-        for lambda = [3:1:6]
+        for lambda = [2:1:6]
             Par.lambda = 10^(-lambda);
             for nSet = [2 3 5 8 10]
                 n = nSet;
