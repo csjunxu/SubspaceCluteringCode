@@ -19,8 +19,6 @@
 % chong.you1987@gmail.com
 
 %% Settings
-% setup
-nCluster = 2; % number of subjects.
 
 %% Load data
 % Data is preprocessed and saved in the .mat file.
@@ -37,71 +35,63 @@ SegmentationMethod = 'SSC_OMP';
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % writefilepath = '';
 
-
-% dimension reduction
-reduceDimension = @(data) dimReduction_PCA(data, dim*nCluster); % 0
-% normalization
-normalizeColumn = @(data) cnormalize_inplace(data);
-% representation
-buildRepresentation = @(data) OMP_mat_func(data, 5, 1e-6); % second parameter is sparsity
-% spectral clustering
-genLabel = @(affinity, nCluster) SpectralClustering(affinity, nCluster, 'Eig_Solver', 'eigs');
-
-
 %% Clustering
 Repeat = 1; %number of repeations
-
-for nSet = [2 3 5 8 10];
-    n = nSet;
-    index = Ind{n};
-    for i = 1:size(index,1)
-        fea = [];
-        gnd = [];
-        for p = 1:n
-            fea = [fea Y{index(i, p), 1}];
-            gnd= [gnd p * ones(1, length(S{index(i, p)}))];
+for K = [4 5 6 7 8 9 10]
+    for thr = [1e-8 1e-7 1e-6 1e-5 1e-4 1e-3]
+        for nSet = [2 3 5 8 10];
+            n = nSet;
+            index = Ind{n};
+            for i = 1:size(index,1)
+                fea = [];
+                gnd = [];
+                for p = 1:n
+                    fea = [fea Y{index(i, p), 1}];
+                    gnd= [gnd p * ones(1, length(S{index(i, p)}))];
+                end
+                [D, N] = size(fea);
+                fprintf( '%d: %d\n', size(index, 1), i ) ;
+                missrate = zeros(size(index, 1), Repeat) ;
+                for j = 1 : Repeat
+                    N = length(gnd);
+                    % clustering
+                    tic;
+                    %     fprintf('Dimension reduction...\n')
+                    fea = dimReduction_PCA(fea, dim*n);
+                    % normalization
+                    %     fprintf('Normalization...\n')
+                    fea = cnormalize_inplace(fea);
+                    % generate representation
+                    %     fprintf('Representation...\n')
+                    R = OMP_mat_func(fea, K, thr);
+                    % generate affinity
+                    %     fprintf('Affinity...\n')
+                    R(1:N+1:end) = 0;
+                    % R = cnormalize(R, Inf);
+                    A = abs(R) + abs(R)';
+                    % generate label
+                    %     fprintf('Generate label...\n')
+                    groups = SpectralClustering(A, n, 'Eig_Solver', 'eigs');
+                    time = toc;
+                    % Evaluation
+                    perc = evalSSR_perc( R, gnd );
+                    ssr = evalSSR_error( R, gnd );
+                    conn = evalConn( A, gnd);
+                    accr  = evalAccuracy(gnd, groups);
+                    % record
+                    missrate(i, j) = 1 - accr;
+                    fprintf('%.3f%% \n' , missrate(i, j)*100) ;
+                end
+                % output
+                missrateTot{n}(i) = mean(missrate(i, :)*100);
+                fprintf('Mean missrate of %d/%d is %.3f%%.\n ' , i, size(index, 1), missrateTot{n}(i)) ;
+            end
+            %% output
+            avgmissrate(n) = mean(missrateTot{n});
+            medmissrate(n) = median(missrateTot{n});
+            fprintf('Total mean missrate  is %.3f%%.\n ' , avgmissrate(n)) ;
+            matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_K' num2str(K) '_thr' num2str(thr) '.mat']);
+            save(matname,'missrateTot','avgmissrate','medmissrate');
         end
-        [D, N] = size(fea);
-        fprintf( '%d: %d\n', size(index, 1), i ) ;
-        missrate = zeros(size(index, 1), Repeat) ;
-        for j = 1 : Repeat
-            N = length(gnd);
-            % clustering
-            tic;
-            %     fprintf('Dimension reduction...\n')
-            fea = reduceDimension(fea);
-            % normalization
-            %     fprintf('Normalization...\n')
-            fea = normalizeColumn(fea);
-            % generate representation
-            %     fprintf('Representation...\n')
-            R = buildRepresentation(fea);
-            % generate affinity
-            %     fprintf('Affinity...\n')
-            R(1:N+1:end) = 0;
-            % R = cnormalize(R, Inf);
-            A = abs(R) + abs(R)';
-            % generate label
-            %     fprintf('Generate label...\n')
-            groups = genLabel(A, nCluster);
-            time = toc;
-            % Evaluation
-            perc = evalSSR_perc( R, gnd );
-            ssr = evalSSR_error( R, gnd );
-            conn = evalConn( A, gnd);
-            accr  = evalAccuracy(gnd, groups);
-            % record
-            missrate(i, j) = 1 - accr;
-            fprintf('%.3f%% \n' , missrate(i, j)*100) ;
-        end
-        % output
-        missrateTot{n}(i) = mean(missrate(i, :)*100);
-        fprintf('Mean missrate of %d/%d is %.3f%%.\n ' , i, size(index, 1), missrateTot{n}(i)) ;
     end
-    %% output
-    avgmissrate(n) = mean(missrateTot{n});
-    medmissrate(n) = median(missrateTot{n});
-    fprintf('Total mean missrate  is %.3f%%.\n ' , avgmissrate(n)) ;
-    matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_lambda' num2str(lambda) '.mat']);
-    save(matname,'missrateTot','avgmissrate','medmissrate');
 end

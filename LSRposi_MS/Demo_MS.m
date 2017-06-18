@@ -1,6 +1,5 @@
 clear ;
 
-
 %% reduced dimension
 ProjRank = 12 ;
 datadir = 'C:/Users/csjunxu/Desktop/SC/Datasets/Hopkins155/';
@@ -67,16 +66,17 @@ for mu = [1]
                     n = max(gnd);
                     switch SegmentationMethod
                         case 'LSR'
-                            C = LSR2( ProjX , Par.lambda ) ;
+                            C = LSR( ProjX , Par ) ;
                         case 'LSRd0'
-                            C = LSR1( ProjX , Par.lambda ) ;
-                        case 'NNLSR_LSR'
+                            C = LSRd0( ProjX , Par.lambda ) ; % solved by ADMM
+                            % C = LSR1( ProjX , Par.lambda ) ;
+                        case 'NNLSR_LSR'                   % non-negative
                             C = NNLSR( ProjX , Par ) ;
-                        case 'NNLSRd0_LSR'
+                        case 'NNLSRd0_LSR'               % non-negative, sum to 1
                             C = NNLSRd0( ProjX , Par ) ;
-                        case 'ANNLSR_LSR'
+                        case 'ANNLSR_LSR'                 % affine, non-negative
                             C = ANNLSR( ProjX , Par ) ;
-                        case 'ANNLSRd0_LSR'
+                        case 'ANNLSRd0_LSR'             % affine, non-negative, sum to 1
                             C = ANNLSRd0( ProjX , Par ) ;
                     end
                     nCluster = length( unique( gnd ) ) ;
