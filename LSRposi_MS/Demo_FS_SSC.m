@@ -3,7 +3,7 @@ clear ;
 
 load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleBCrop025.mat';
 % load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat'   % load USPS dataset
-
+dataset = 'YaleBCrop025';
 
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 
@@ -104,7 +104,7 @@ for maxIter = [5 10]
                     matname = sprintf([writefilepath 'YaleB_SSC_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(Par.lambda) '.mat']);
                     save(matname,'missrateTot','avgmissrate','medmissrate');
                 end
-                matname = sprintf([writefilepath 'YaleB_SSC_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(Par.lambda) '.mat']);
+                matname = sprintf([writefilepath dataset '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(Par.lambda) '.mat']);
                 save(matname,'missrateTot','avgmissrate','medmissrate');
             end
         end
