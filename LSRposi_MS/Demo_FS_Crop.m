@@ -9,6 +9,21 @@ Repeat = 1; %number of repeations
 DR = 1; % perform dimension reduction or not
 dim = 6;
 
+%% Subspace segmentation methods
+% SegmentationMethod = 'LSR' ;
+% SegmentationMethod = 'LSRd0' ;
+
+% SegmentationMethod = 'NNLSR_LSR' ;
+% SegmentationMethod = 'NNLSRd0_LSR' ;
+% SegmentationMethod = 'NPLSR_LSR' ;
+% SegmentationMethod = 'NPLSRd0_LSR' ;
+% find a fast solver is still in process
+
+% SegmentationMethod = 'ANNLSR_LSR' ;
+% SegmentationMethod = 'ANNLSRd0_LSR' ;
+SegmentationMethod = 'ANPLSR_LSR' ;
+% SegmentationMethod = 'ANPLSRd0_LSR' ;
+
 %% Subspace segmentation
 for maxIter = [5 10 15]
     Par.maxIter = maxIter;
@@ -41,29 +56,33 @@ for maxIter = [5 10 15]
                         fea(:,c) = fea(:,c) /norm(fea(:,c)) ;
                     end
                     
-                    %% Subspace segmentation methods
-                    % SegmentationMethod = 'LSRd0po_LSR' ;
-                    SegmentationMethod = 'LSRpo_LSR' ;
-                    % SegmentationMethod = 'LSRd0ne_LSR' ;
-                    % SegmentationMethod = 'LSRne_LSR' ;
-                    % SegmentationMethod = 'LSRd0_LSR' ;
-                    
                     %% Subspace Clustering
                     missrate = zeros(size(index, 1), Repeat) ;
                     fprintf( 'dimension = %d \n', redDim ) ;
                     Yfea = fea(1:redDim, :) ;
                     for j = 1 : Repeat
                         switch SegmentationMethod
-                            case 'LSRd0po_LSR'
-                                C = LSRd0po( Yfea , Par ) ;
-                            case 'LSRpo_LSR'
-                                C = LSRpo( Yfea , Par ) ;
-                            case 'LSRd0ne_LSR'
-                                C = LSRd0ne( Yfea , Par ) ;
-                            case 'LSRne_LSR'
-                                C = LSRne( Yfea , Par ) ;
-                            case 'LSRd0_LSR'
-                                C = LSRd0( Yfea , Par ) ;
+                            case 'LSR'
+                                C = LSR( Yfea , Par ) ;
+                            case 'LSRd0'
+                                C = LSRd0( Yfea , Par ) ; % solved by ADMM
+                                % C = LSR1( ProjX , Par.lambda ) ; % proposed by Lu
+                            case 'NNLSR_LSR'                   % non-negative
+                                C = NNLSR( Yfea , Par ) ;
+                            case 'NNLSRd0_LSR'               % non-negative, diagonal = 0
+                                C = NNLSRd0( Yfea , Par ) ;
+                            case 'NPLSR_LSR'                   % non-positive
+                                C = NPLSR( Yfea , Par ) ;
+                            case 'NPLSRd0_LSR'               % non-positive, diagonal = 0
+                                C = NPLSRd0( Yfea , Par ) ;
+                            case 'ANNLSR_LSR'                 % affine, non-negative
+                                C = ANNLSR( Yfea , Par ) ;
+                            case 'ANNLSRd0_LSR'             % affine, non-negative, diagonal = 0
+                                C = ANNLSRd0( Yfea , Par ) ;
+                            case 'ANPLSR_LSR'                 % affine, non-positive
+                                C = ANPLSR( Yfea , Par ) ;
+                            case 'ANPLSRd0_LSR'             % affine, non-positive, diagonal = 0
+                                C = ANPLSRd0( Yfea , Par ) ;
                         end
                         for k = 1 : size(C,2)
                             C(:, k) = C(:, k) / max(abs(C(:, k))) ;

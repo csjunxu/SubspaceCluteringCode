@@ -13,7 +13,7 @@ addpath('fnnls');
 dataset = 'Hopkins155';
 
 resultdir = 'C:/Users/csjunxu/Desktop/SC/Results/';
- 
+
 for i=1:length(seq3)
     fname = seq3(i).name;
     fdir = [datadir '/' fname];
@@ -42,10 +42,14 @@ clear seq3;
 
 % SegmentationMethod = 'NNLSR_LSR' ;
 SegmentationMethod = 'NNLSRd0_LSR' ;
+% SegmentationMethod = 'NPLSR_LSR' ;
+% SegmentationMethod = 'NPLSRd0_LSR' ;
 % find a fast solver is still in process
 
 % SegmentationMethod = 'ANNLSR_LSR' ;
 % SegmentationMethod = 'ANNLSRd0_LSR' ;
+% SegmentationMethod = 'ANPLSR_LSR' ;
+% SegmentationMethod = 'ANPLSRd0_LSR' ;
 
 for mu = [1]
     Par.mu = mu;
@@ -76,10 +80,18 @@ for mu = [1]
                             C = NNLSR( ProjX , Par ) ;
                         case 'NNLSRd0_LSR'               % non-negative, diagonal = 0
                             C = NNLSRd0( ProjX , Par ) ;
+                        case 'NPLSR_LSR'                   % non-positive
+                            C = NPLSR( ProjX , Par ) ;
+                        case 'NPLSRd0_LSR'               % non-positive, diagonal = 0
+                            C = NPLSRd0( ProjX , Par ) ;
                         case 'ANNLSR_LSR'                 % affine, non-negative
                             C = ANNLSR( ProjX , Par ) ;
                         case 'ANNLSRd0_LSR'             % affine, non-negative, diagonal = 0
                             C = ANNLSRd0( ProjX , Par ) ;
+                        case 'ANPLSR_LSR'                 % affine, non-positive
+                            C = ANPLSR( ProjX , Par ) ;
+                        case 'ANPLSRd0_LSR'             % affine, non-positive, diagonal = 0
+                            C = ANPLSRd0( ProjX , Par ) ;
                     end
                     nCluster = length( unique( gnd ) ) ;
                     Z = ( abs(C) + abs(C') ) / 2 ;
