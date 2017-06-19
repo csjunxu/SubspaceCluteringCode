@@ -51,8 +51,8 @@ while  ( ~terminate )
         % sum to 1 is not included, slower than solver_BCLS_closedForm
     end
     
-    %% update Deltas the lagrange multiplier matrix
-    Delta = Delta + Par.rho * ( C - A);
+%     %% update Deltas the lagrange multiplier matrix
+%     Delta = Delta + Par.rho * ( C - A);
     
     %     %% update rho the penalty parameter scalar
     %     Par.rho = min(1e4, Par.mu * Par.rho);

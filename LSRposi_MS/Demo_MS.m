@@ -41,23 +41,23 @@ clear seq3;
 % SegmentationMethod = 'LSRd0' ;
 
 % SegmentationMethod = 'NNLSR' ;
-SegmentationMethod = 'NNLSRd0' ;
+% SegmentationMethod = 'NNLSRd0' ;
 % SegmentationMethod = 'NPLSR' ;
 % SegmentationMethod = 'NPLSRd0' ;
 % find a fast solver is still in process
 
 % SegmentationMethod = 'ANNLSR' ;
 % SegmentationMethod = 'ANNLSRd0' ;
-% SegmentationMethod = 'ANPLSR' ;
+SegmentationMethod = 'ANPLSR' ;
 % SegmentationMethod = 'ANPLSRd0' ;
 
 for mu = [1]
     Par.mu = mu;
     for maxIter = [5 10]
         Par.maxIter = maxIter;
-        for rho = [.006 .005 0.004]
+        for rho = [.006 .005 0.04]
             Par.rho = rho;
-            for lambda = [1 2 3 4 5 10 .1 .2 .3 .4 .5]
+            for lambda = [1 5 10 .1 .5 .01 .05 .001 .005]
                 Par.lambda = lambda*10^(-3);
                 maxNumGroup = 5;
                 for i = 1:maxNumGroup
