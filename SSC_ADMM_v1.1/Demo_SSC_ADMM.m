@@ -3,9 +3,10 @@ clear;
 
 load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat';
 % load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat'   % load USPS dataset
+dataset = 'YaleB_LSR';
 
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
-
+writefilepath = '';
 %% Subspace segmentation methods
 SegmentationMethod = 'SSC_ADMM' ;
 DR = 1; % dimension reduction
@@ -45,10 +46,10 @@ for alpha = [3.5:-0.2:2.5]
         end
         avgmissrate(n) = mean(missrateTot{n});
         medmissrate(n) = median(missrateTot{n});
-        matname = sprintf([writefilepath 'YaleB_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_alpha' num2str(alpha) '.mat']);
+        matname = sprintf([writefilepath dataset '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_alpha' num2str(alpha) '.mat']);
         save(matname,'missrateTot','avgmissrate','medmissrate');
     end
-    matname = sprintf([writefilepath 'YaleB_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_alpha' num2str(alpha) '.mat']);
+    matname = sprintf([writefilepath dataset '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_alpha' num2str(alpha) '.mat']);
     save(matname,'missrateTot','avgmissrate','medmissrate');
 end
 
