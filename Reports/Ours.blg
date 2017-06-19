@@ -3,44 +3,48 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Ours.aux
 The style file: unsrt.bst
 Database file #1: egbib.bib
-You've used 6 entries,
+Warning--I didn't find a database entry for ""
+Warning--I didn't find a database entry for "nmfnature"
+Warning--empty booktitle in ssccvpr
+You've used 13 entries,
             1791 wiz_defined-function locations,
-            486 strings with 4568 characters,
-and the built_in function-call counts, 1625 in all, are:
-= -- 153
-> -- 71
-< -- 2
-+ -- 26
-- -- 20
-* -- 106
-:= -- 251
-add.period$ -- 18
-call.type$ -- 6
-change.case$ -- 6
+            530 strings with 6132 characters,
+and the built_in function-call counts, 3951 in all, are:
+= -- 383
+> -- 166
+< -- 6
++ -- 60
+- -- 47
+* -- 265
+:= -- 583
+add.period$ -- 40
+call.type$ -- 13
+change.case$ -- 13
 chr.to.int$ -- 0
-cite$ -- 6
-duplicate$ -- 74
-empty$ -- 146
-format.name$ -- 20
-if$ -- 368
+cite$ -- 14
+duplicate$ -- 179
+empty$ -- 347
+format.name$ -- 47
+if$ -- 905
 int.to.chr$ -- 0
-int.to.str$ -- 6
-missing$ -- 8
-newline$ -- 33
-num.names$ -- 6
-pop$ -- 18
+int.to.str$ -- 13
+missing$ -- 15
+newline$ -- 68
+num.names$ -- 13
+pop$ -- 36
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 41
+skip$ -- 117
 stack$ -- 0
-substring$ -- 120
-swap$ -- 24
-text.length$ -- 2
+substring$ -- 339
+swap$ -- 71
+text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 16
-width$ -- 7
-write$ -- 70
+warning$ -- 1
+while$ -- 41
+width$ -- 15
+write$ -- 147
+(There were 3 warnings)

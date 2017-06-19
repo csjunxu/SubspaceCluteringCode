@@ -1,4 +1,33 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{ssccvpr}
+Ehsan Elhamifar and Ren{\'e} Vidal.
+\newblock Sparse subspace clustering.
+\newblock pages 2790--2797. IEEE, 2009.
+
+\bibitem{sscpami}
+Ehsan Elhamifar and Rene Vidal.
+\newblock Sparse subspace clustering: Algorithm, theory, and applications.
+\newblock {\em IEEE transactions on pattern analysis and machine intelligence},
+  35(11):2765--2781, 2013.
+
+\bibitem{lrricml}
+Guangcan Liu, Zhouchen Lin, and Yong Yu.
+\newblock Robust subspace segmentation by low-rank representation.
+\newblock {\em Proceedings of the 27th international conference on machine
+  learning (ICML-10)}, pages 663--670, 2010.
+
+\bibitem{lrrpami}
+Guangcan Liu, Zhouchen Lin, Shuicheng Yan, Ju~Sun, Yong Yu, and Yi~Ma.
+\newblock Robust recovery of subspace structures by low-rank representation.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  35(1):171--184, 2013.
+
+\bibitem{nnlrs}
+Liansheng Zhuang, Haoyuan Gao, Zhouchen Lin, Yi~Ma, Xin Zhang, and Nenghai Yu.
+\newblock Non-negative low rank and sparse graph for semi-supervised learning.
+\newblock {\em Computer Vision and Pattern Recognition (CVPR), 2012 IEEE
+  Conference on}, pages 2328--2335, 2012.
 
 \bibitem{slawski2013non}
 Martin Slawski, Matthias Hein, et~al.
@@ -13,6 +42,19 @@ Seung-Jean Kim, Kwangmoo Koh, Michael Lustig, Stephen Boyd, and Dimitry
   squares.
 \newblock {\em IEEE journal of selected topics in signal processing},
   1(4):606--617, 2007.
+
+\bibitem{admm}
+S.~Boyd, N.~Parikh, E.~Chu, B.~Peleato, and J.~Eckstein.
+\newblock Distributed optimization and statistical learning via the alternating
+  direction method of multipliers.
+\newblock {\em Found. Trends Mach. Learn.}, 3(1):1--122, January 2011.
+
+\bibitem{ladmap}
+Zhouchen Lin, Risheng Liu, and Zhixun Su.
+\newblock Linearized alternating direction method with adaptive penalty for
+  low-rank representation.
+\newblock {\em Advances in Neural Information Processing Systems 24}, pages
+  612--620, 2011.
 
 \bibitem{prml}
 Christopher Bishop.
