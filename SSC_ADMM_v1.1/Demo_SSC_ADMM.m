@@ -11,7 +11,7 @@ SegmentationMethod = 'SSC_ADMM' ;
 DR = 1; % dimension reduction
 dim = 6;
 %% Subspace segmentation
-for alpha = [5 10 15 20 25 30 40 50]
+for alpha = [4 3 2 1 0.8:-0.2:0.2 0.1 0.05 0.01]
     for nSet = [2 3 5 8 10]
         n = nSet;
         index = Ind{n};
