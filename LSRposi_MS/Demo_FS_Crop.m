@@ -25,11 +25,11 @@ SegmentationMethod = 'ANPLSR_LSR' ;
 % SegmentationMethod = 'ANPLSRd0_LSR' ;
 
 %% Subspace segmentation
-for maxIter = [5 10 15]
+for maxIter = [5 10]
     Par.maxIter = maxIter;
-    for rho = [0.05 0.06 0.04 0.07 0.03]
+    for rho = [0.05 0.06 0.04]
         Par.rho = rho;
-        for lambda = [2:1:6]
+        for lambda = [4 5 6 7]
             Par.lambda = 10^(-lambda);
             for nSet = [2 3 5 8 10]
                 n = nSet;
@@ -93,12 +93,12 @@ for maxIter = [5 10 15]
                         fprintf('%.3f%% \n' , missrate(i, j)*100) ;
                     end
                     missrateTot{n}(i) = mean(missrate(i, :)*100);
-                    fprintf('Mean Accuracy of %d/%d is %.3f%%.\n ' , i, size(index, 1), missrateTot{n}(i)) ;
+                    fprintf('Mean error of %d/%d is %.3f%%.\n ' , i, size(index, 1), missrateTot{n}(i)) ;
                 end
                 %% output
                 avgmissrate(n) = mean(missrateTot{n});
                 medmissrate(n) = median(missrateTot{n});
-                fprintf('Total mean missrate  is %.3f%%.\n ' , avgmissrate(n)) ;
+                fprintf('Total mean error  is %.3f%%.\n ' , avgmissrate(n)) ;
                 matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
                 save(matname,'missrateTot','avgmissrate','medmissrate');
             end
