@@ -74,11 +74,11 @@ for mu = [1]
                             % C = LSR1( ProjX , Par.lambda ) ; % proposed by Lu
                         case 'NNLSR_LSR'                   % non-negative
                             C = NNLSR( ProjX , Par ) ;
-                        case 'NNLSRd0_LSR'               % non-negative, sum to 1
+                        case 'NNLSRd0_LSR'               % non-negative, diagonal = 0
                             C = NNLSRd0( ProjX , Par ) ;
                         case 'ANNLSR_LSR'                 % affine, non-negative
                             C = ANNLSR( ProjX , Par ) ;
-                        case 'ANNLSRd0_LSR'             % affine, non-negative, sum to 1
+                        case 'ANNLSRd0_LSR'             % affine, non-negative, diagonal = 0
                             C = ANNLSRd0( ProjX , Par ) ;
                     end
                     nCluster = length( unique( gnd ) ) ;
