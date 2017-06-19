@@ -88,10 +88,11 @@ for maxIter = [5 10]
                             case 'ANPLSRd0'             % affine, non-positive, diagonal = 0
                                 C = ANPLSRd0( Yfea , Par ) ;
                         end
+                        %% this normalization can be ignored 
                         for k = 1 : size(C,2)
                             C(:, k) = C(:, k) / max(abs(C(:, k))) ;
                         end
-                        Z = ( abs(C) + abs(C') ) / 2 ;
+                        Z = ( abs(C) + abs(C') ) / 2 ; % abs is useless in our model
                         idx = clu_ncut(Z,n) ;
                         missrate(i, j) = 1 - compacc(idx,gnd);
                         fprintf('%.3f%% \n' , missrate(i, j)*100) ;
