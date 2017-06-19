@@ -40,16 +40,16 @@ clear seq3;
 % SegmentationMethod = 'LSR' ;
 % SegmentationMethod = 'LSRd0' ;
 
-% SegmentationMethod = 'NNLSR_LSR' ;
-SegmentationMethod = 'NNLSRd0_LSR' ;
-% SegmentationMethod = 'NPLSR_LSR' ;
-% SegmentationMethod = 'NPLSRd0_LSR' ;
+% SegmentationMethod = 'NNLSR' ;
+SegmentationMethod = 'NNLSRd0' ;
+% SegmentationMethod = 'NPLSR' ;
+% SegmentationMethod = 'NPLSRd0' ;
 % find a fast solver is still in process
 
-% SegmentationMethod = 'ANNLSR_LSR' ;
-% SegmentationMethod = 'ANNLSRd0_LSR' ;
-% SegmentationMethod = 'ANPLSR_LSR' ;
-% SegmentationMethod = 'ANPLSRd0_LSR' ;
+% SegmentationMethod = 'ANNLSR' ;
+% SegmentationMethod = 'ANNLSRd0' ;
+% SegmentationMethod = 'ANPLSR' ;
+% SegmentationMethod = 'ANPLSRd0' ;
 
 for mu = [1]
     Par.mu = mu;
@@ -76,21 +76,21 @@ for mu = [1]
                         case 'LSRd0'
                             C = LSRd0( ProjX , Par ) ; % solved by ADMM
                             % C = LSR1( ProjX , Par.lambda ) ; % proposed by Lu
-                        case 'NNLSR_LSR'                   % non-negative
+                        case 'NNLSR'                   % non-negative
                             C = NNLSR( ProjX , Par ) ;
-                        case 'NNLSRd0_LSR'               % non-negative, diagonal = 0
+                        case 'NNLSRd0'               % non-negative, diagonal = 0
                             C = NNLSRd0( ProjX , Par ) ;
-                        case 'NPLSR_LSR'                   % non-positive
+                        case 'NPLSR'                   % non-positive
                             C = NPLSR( ProjX , Par ) ;
-                        case 'NPLSRd0_LSR'               % non-positive, diagonal = 0
+                        case 'NPLSRd0'               % non-positive, diagonal = 0
                             C = NPLSRd0( ProjX , Par ) ;
-                        case 'ANNLSR_LSR'                 % affine, non-negative
+                        case 'ANNLSR'                 % affine, non-negative
                             C = ANNLSR( ProjX , Par ) ;
-                        case 'ANNLSRd0_LSR'             % affine, non-negative, diagonal = 0
+                        case 'ANNLSRd0'             % affine, non-negative, diagonal = 0
                             C = ANNLSRd0( ProjX , Par ) ;
-                        case 'ANPLSR_LSR'                 % affine, non-positive
+                        case 'ANPLSR'                 % affine, non-positive
                             C = ANPLSR( ProjX , Par ) ;
-                        case 'ANPLSRd0_LSR'             % affine, non-positive, diagonal = 0
+                        case 'ANPLSRd0'             % affine, non-positive, diagonal = 0
                             C = ANPLSRd0( ProjX , Par ) ;
                     end
                     nCluster = length( unique( gnd ) ) ;
