@@ -11,7 +11,7 @@ writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 
 Repeat = 1; %number of repeations
 DR = 1; % perform dimension reduction or not
-dim = 6;
+dim = 12;
 
 %% Subspace segmentation methods
 % SegmentationMethod = 'LSR' ;
@@ -23,8 +23,8 @@ dim = 6;
 % SegmentationMethod = 'NPLSRd0' ;
 % find a fast solver is still in process
 
-SegmentationMethod = 'ANNLSR' ;
-% SegmentationMethod = 'ANNLSRd0' ;
+% SegmentationMethod = 'ANNLSR' ;
+SegmentationMethod = 'ANNLSRd0' ;
 % SegmentationMethod = 'ANPLSR' ;
 % SegmentationMethod = 'ANPLSRd0' ;
 
@@ -98,7 +98,7 @@ for maxIter = [5 10]
                         fprintf('%.3f%% \n' , missrate(i, j)*100) ;
                     end
                     missrateTot{n}(i) = mean(missrate(i, :)*100);
-                    fprintf('Mean Accuracy of %d/%d is %.3f%%.\n ' , i, size(index, 1), missrateTot{n}(i)) ;
+                    fprintf('Mean missrate of %d/%d is %.3f%%.\n ' , i, size(index, 1), missrateTot{n}(i)) ;
                 end
                 %% output
                 avgmissrate(n) = mean(missrateTot{n});
