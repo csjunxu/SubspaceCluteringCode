@@ -6,7 +6,7 @@ load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat';
 dataset = 'YaleB_LSR';
 
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
-writefilepath = '';
+% writefilepath = '';
 %% Subspace segmentation methods
 SegmentationMethod = 'SSC_ADMM' ;
 DR = 1; % dimension reduction
