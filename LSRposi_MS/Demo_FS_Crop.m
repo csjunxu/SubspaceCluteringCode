@@ -21,15 +21,15 @@ dim = 6;
 
 % SegmentationMethod = 'ANNLSR' ;
 % SegmentationMethod = 'ANNLSRd0' ;
-SegmentationMethod = 'ANPLSR' ;
-% SegmentationMethod = 'ANPLSRd0' ;
+% SegmentationMethod = 'ANPLSR' ;
+SegmentationMethod = 'ANPLSRd0' ;
 
 %% Subspace segmentation
-for maxIter = [5 10]
+for maxIter = [5]
     Par.maxIter = maxIter;
-    for rho = [0.05 0.06 0.04]
+    for rho = [0.05]
         Par.rho = rho;
-        for lambda = [4 5 6 7]
+        for lambda = [1:1:6]
             Par.lambda = 10^(-lambda);
             for nSet = [2 3 5 8 10]
                 n = nSet;
