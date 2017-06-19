@@ -892,8 +892,17 @@ In this section, we apply the proposed Non-negative Least Squares Regression (NN
 
 \subsection{Subspae Clustering}
 
-We evaluate the advantages of the proposed NNLSR method on subspace clustering problem. We compare with the state-of-the-art methods on four datasets including the Hopkins 155 dataset, the Extended Yale B dataset, the USPS and MNIST datasets. The Hopkins 155 motion dataset contains 156 video sequences, 155 of which have two or three moving objects, and 1 video sequence has 5 moving onbjects. The motion trajectives of each object is viewed as a subspace. The Extended Yale B dataset contains 16,128 images of 38 human subjects with 9 poses and 64 illumination conditions. The images are projected on a 60 dimensions space by PCA. Each class or subspace includes 64 imgaes which are resized into $32\times32$ pixels. The USPS contains 9298 images for digit numbers form 0 to 9. Each of the image in USPS is resized into $16\times16$ pixels. We use all the images in USPS for experiments.
+We evaluate the advantages of the proposed NNLSR method on subspace clustering problem. We compare with the state-of-the-art methods on four datasets including the Hopkins 155 dataset, the Extended Yale B dataset, the USPS and MNIST datasets. 
 
+\begin{itemize}
+\item The Hopkins 155 motion dataset contains 156 video sequences, 155 of which have two or three moving objects, and 1 video sequence has 5 moving onbjects. The motion trajectives of each object is viewed as a subspace. 
+
+\item Extended Yale B dataset contains 38 human subjects, each subject has around 64 near frontal images taken under different illuminational conditions. The images are projected on a 60 dimensions space by PCA. Each class or subspace includes 64 imgaes which are resized into $32\times32$ pixels. 
+
+\item The USPS contains 9298 images for digit numbers form 0 to 9. Each of the image in USPS is resized into $16\times16$ pixels. We use all the images in USPS for experiments.
+
+\item The MNIST contains 60000 training images for digit numbers form 0 to 9.
+\end{itemize}
 
 
 \subsection{Subste Selection}
