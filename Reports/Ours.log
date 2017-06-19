@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  19 JUN 2017 18:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  19 JUN 2017 18:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -494,6 +494,10 @@ Package natbib Warning: Citation `lrr' on page 1 undefined on input line 54.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 56.
 
+Package natbib Warning: Citation `nmfnature' on page 1 undefined on input line 
+58.
+
+
 Package natbib Warning: Citation `admm' on page 1 undefined on input line 62.
 
 
@@ -602,10 +606,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 926.
  ) 
 Here is how much of TeX's memory you used:
- 7348 strings out of 493091
- 104669 string characters out of 6134517
- 200014 words of memory out of 5000000
- 10617 multiletter control sequences out of 15000+600000
+ 7349 strings out of 493091
+ 104680 string characters out of 6134517
+ 199014 words of memory out of 5000000
+ 10618 multiletter control sequences out of 15000+600000
  42361 words of font info for 122 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  34i,17n,28p,1175b,387s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -628,7 +632,7 @@ xlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/201
 5/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-d
 ist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts
 /type1/urw/times/utmri8a.pfb>
-Output written on Ours.pdf (6 pages, 197022 bytes).
+Output written on Ours.pdf (6 pages, 197126 bytes).
 PDF statistics:
  207 PDF objects out of 1000 (max. 8388607)
  179 compressed objects within 2 object streams
