@@ -13,16 +13,16 @@ dim = 6;
 % SegmentationMethod = 'LSR' ;
 % SegmentationMethod = 'LSRd0' ;
 
-% SegmentationMethod = 'NNLSR_LSR' ;
-% SegmentationMethod = 'NNLSRd0_LSR' ;
-% SegmentationMethod = 'NPLSR_LSR' ;
-% SegmentationMethod = 'NPLSRd0_LSR' ;
+% SegmentationMethod = 'NNLSR' ;
+% SegmentationMethod = 'NNLSRd0' ;
+% SegmentationMethod = 'NPLSR' ;
+% SegmentationMethod = 'NPLSRd0' ;
 % find a fast solver is still in process
 
-% SegmentationMethod = 'ANNLSR_LSR' ;
-% SegmentationMethod = 'ANNLSRd0_LSR' ;
-SegmentationMethod = 'ANPLSR_LSR' ;
-% SegmentationMethod = 'ANPLSRd0_LSR' ;
+% SegmentationMethod = 'ANNLSR' ;
+% SegmentationMethod = 'ANNLSRd0' ;
+SegmentationMethod = 'ANPLSR' ;
+% SegmentationMethod = 'ANPLSRd0' ;
 
 %% Subspace segmentation
 for maxIter = [5 10]
@@ -66,22 +66,22 @@ for maxIter = [5 10]
                                 C = LSR( Yfea , Par ) ;
                             case 'LSRd0'
                                 C = LSRd0( Yfea , Par ) ; % solved by ADMM
-                                % C = LSR1( ProjX , Par.lambda ) ; % proposed by Lu
-                            case 'NNLSR_LSR'                   % non-negative
+                                % C = LSR1( Yfea , Par.lambda ) ; % proposed by Lu
+                            case 'NNLSR'                   % non-negative
                                 C = NNLSR( Yfea , Par ) ;
-                            case 'NNLSRd0_LSR'               % non-negative, diagonal = 0
+                            case 'NNLSRd0'               % non-negative, diagonal = 0
                                 C = NNLSRd0( Yfea , Par ) ;
-                            case 'NPLSR_LSR'                   % non-positive
+                            case 'NPLSR'                   % non-positive
                                 C = NPLSR( Yfea , Par ) ;
-                            case 'NPLSRd0_LSR'               % non-positive, diagonal = 0
+                            case 'NPLSRd0'               % non-positive, diagonal = 0
                                 C = NPLSRd0( Yfea , Par ) ;
-                            case 'ANNLSR_LSR'                 % affine, non-negative
+                            case 'ANNLSR'                 % affine, non-negative
                                 C = ANNLSR( Yfea , Par ) ;
-                            case 'ANNLSRd0_LSR'             % affine, non-negative, diagonal = 0
+                            case 'ANNLSRd0'             % affine, non-negative, diagonal = 0
                                 C = ANNLSRd0( Yfea , Par ) ;
-                            case 'ANPLSR_LSR'                 % affine, non-positive
+                            case 'ANPLSR'                 % affine, non-positive
                                 C = ANPLSR( Yfea , Par ) ;
-                            case 'ANPLSRd0_LSR'             % affine, non-positive, diagonal = 0
+                            case 'ANPLSRd0'             % affine, non-positive, diagonal = 0
                                 C = ANPLSRd0( Yfea , Par ) ;
                         end
                         for k = 1 : size(C,2)
@@ -99,7 +99,7 @@ for maxIter = [5 10]
                 avgmissrate(n) = mean(missrateTot{n});
                 medmissrate(n) = median(missrateTot{n});
                 fprintf('Total mean error  is %.3f%%.\n ' , avgmissrate(n)) ;
-                matname = sprintf([writefilepath 'YaleB_Crop_' SegmentationMethod '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
+                matname = sprintf([writefilepath 'YaleB_LSR_' SegmentationMethod '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
                 save(matname,'missrateTot','avgmissrate','medmissrate');
             end
         end
