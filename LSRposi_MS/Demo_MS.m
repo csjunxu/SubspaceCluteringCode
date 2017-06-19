@@ -53,7 +53,7 @@ SegmentationMethod = 'NNLSRd0' ;
 
 for mu = [1]
     Par.mu = mu;
-    for maxIter = [5 10 15]
+    for maxIter = [5 10]
         Par.maxIter = maxIter;
         for rho = [.006 .005 0.004]
             Par.rho = rho;
