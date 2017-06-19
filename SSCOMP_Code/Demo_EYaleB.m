@@ -31,7 +31,7 @@
 % load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'   % load YaleB dataset
 load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat'   % load USPS dataset
 
-dataset = 'USPS';
+dataset = 'USPS'; % YaleB_LSR
 SegmentationMethod = 'SSC_OMP';
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % writefilepath = '';
