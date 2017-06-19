@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  19 JUN 2017 16:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  19 JUN 2017 16:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -491,14 +491,16 @@ Package natbib Warning: Citation `ssc' on page 1 undefined on input line 54.
 
 Package natbib Warning: Citation `lrr' on page 1 undefined on input line 54.
 
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 66.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 56.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 65.
 (c:/Software/texlive/2015/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 66.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 65.
 
-Underfull \hbox (badness 5417) in paragraph at lines 68--69
+Underfull \hbox (badness 5417) in paragraph at lines 67--68
 \OT1/ptm/m/n/10 while neg-a-tive sup-ports are neg-a-tive to self-
  []
 
@@ -507,39 +509,39 @@ Underfull \hbox (badness 5417) in paragraph at lines 68--69
 
 ]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 137.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 136.
 
-Underfull \hbox (badness 10000) in paragraph at lines 137--137
+Underfull \hbox (badness 10000) in paragraph at lines 136--136
 []\OT1/ptm/b/n/14.4 Collaborative Rep-re-sen-ta-tion
  []
 
 
-Overfull \hbox (7.91953pt too wide) in paragraph at lines 201--201
+Overfull \hbox (7.91953pt too wide) in paragraph at lines 200--200
 [] 
  []
 
 
-Overfull \hbox (4.13103pt too wide) in paragraph at lines 239--239
+Overfull \hbox (4.13103pt too wide) in paragraph at lines 238--238
 [] 
  []
 
 
-Underfull \hbox (badness 1484) in paragraph at lines 267--267
+Underfull \hbox (badness 1484) in paragraph at lines 266--266
 []\OT1/ptm/b/n/14.4 Non-Negatie Col-lab-o-ra-tive Rep-
  []
 
 
-Underfull \hbox (badness 1303) in paragraph at lines 269--270
+Underfull \hbox (badness 1303) in paragraph at lines 268--269
 \OT1/ptm/m/n/10 This model en-forces non-negative rep-re-sen-ta-tion and
  []
 
 [2]
-Overfull \hbox (7.91953pt too wide) in paragraph at lines 365--365
+Overfull \hbox (7.91953pt too wide) in paragraph at lines 364--364
 [] 
  []
 
 
-Overfull \hbox (17.29482pt too wide) detected at line 453
+Overfull \hbox (17.29482pt too wide) detected at line 452
 []\OT1/cmr/m/n/10 (\OML/cmm/b/it/10 A \OT1/cmr/m/n/10 + \OML/cmm/b/it/10 UCV\OT
 1/cmr/m/n/10 )[] = \OML/cmm/b/it/10 A[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/b/it/10 A
 []U\OT1/cmr/m/n/10 (\OML/cmm/b/it/10 C[] \OT1/cmr/m/n/10 + \OML/cmm/b/it/10 VA[
@@ -547,60 +549,58 @@ Overfull \hbox (17.29482pt too wide) detected at line 453
  []
 
 [3]
-Underfull \hbox (badness 1460) in paragraph at lines 583--585
+Underfull \hbox (badness 1460) in paragraph at lines 582--584
 \OT1/ptm/m/n/10 By in-tro-duc-ing a La-grangian mul-ti-plier $\OT1/cmr/bx/n/10 
 ^^A$\OT1/ptm/m/n/10 , the La-
  []
 
 
-Overfull \hbox (11.10814pt too wide) in paragraph at lines 665--665
+Overfull \hbox (11.10814pt too wide) in paragraph at lines 664--664
 [] 
  []
 
 
-Overfull \hbox (4.88036pt too wide) in paragraph at lines 705--705
+Overfull \hbox (4.88036pt too wide) in paragraph at lines 704--704
 [] 
  []
 
 [4]
-Overfull \hbox (4.03062pt too wide) in paragraph at lines 806--806
+Overfull \hbox (4.03062pt too wide) in paragraph at lines 805--805
 [] 
  []
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 887.
-(./Ours.bbl (./Ours.brf)
+[5] (./Ours.bbl (./Ours.brf)
 \tf@brf=\write3
 \openout3 = `Ours.brf'.
 
- [5])
+)
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 911.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 910.
 [6
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 911.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 910.
  (./Ours.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 911.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 911.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 910.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 910.
 Package rerunfilecheck Info: File `Ours.brf' has not changed.
-(rerunfilecheck)             Checksum: 4EF041BE0521609658DFCB49A90702E8;394.
+(rerunfilecheck)             Checksum: EC3493EDD73F898BF3B9B5ACE0444A0A;408.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 911.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 910.
  ) 
 Here is how much of TeX's memory you used:
- 7344 strings out of 493091
- 104627 string characters out of 6134517
+ 7345 strings out of 493091
+ 104641 string characters out of 6134517
  199897 words of memory out of 5000000
  10615 multiletter control sequences out of 15000+600000
  42361 words of font info for 122 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,17n,28p,1175b,460s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,17n,28p,1175b,335s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Software/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/Software
@@ -620,10 +620,10 @@ xlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/201
 5/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-d
 ist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts
 /type1/urw/times/utmri8a.pfb>
-Output written on Ours.pdf (6 pages, 194135 bytes).
+Output written on Ours.pdf (6 pages, 194352 bytes).
 PDF statistics:
  204 PDF objects out of 1000 (max. 8388607)
  176 compressed objects within 2 object streams
- 63 named destinations out of 1000 (max. 500000)
+ 64 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
