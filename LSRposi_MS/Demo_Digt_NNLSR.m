@@ -33,7 +33,7 @@ for maxIter = [5 10]
     Par.maxIter = maxIter;
     for rho = [0.0001 0.0005 0.001 0.005 0.01 0.1 1 5]
         Par.rho = rho;
-        for lambda = [1:1:6]
+        for lambda = [2:1:6]
             Par.lambda = 10^(-lambda);
             for nSet = [2 3 5 8 10] % nSet = [2:1:10];
                 n = nSet;
