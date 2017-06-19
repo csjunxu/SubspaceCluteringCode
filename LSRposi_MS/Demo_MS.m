@@ -39,7 +39,7 @@ clear seq3;
 %% Subspace segmentation methods
 % SegmentationMethod = 'LSR' ;
 % SegmentationMethod = 'LSRd0' ;
-
+ 
 % SegmentationMethod = 'NNLSR' ;
 % SegmentationMethod = 'NNLSRd0' ;
 % SegmentationMethod = 'NPLSR' ;
@@ -48,8 +48,8 @@ clear seq3;
 
 % SegmentationMethod = 'ANNLSR' ;
 % SegmentationMethod = 'ANNLSRd0' ;
-SegmentationMethod = 'ANPLSR' ;
-% SegmentationMethod = 'ANPLSRd0' ;
+% SegmentationMethod = 'ANPLSR' ;
+SegmentationMethod = 'ANPLSRd0' ;
 
 for mu = [1]
     Par.mu = mu;
