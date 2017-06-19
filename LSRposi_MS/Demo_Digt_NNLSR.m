@@ -13,6 +13,21 @@ Repeat = 1; %number of repeations
 DR = 1; % perform dimension reduction or not
 dim = 6;
 
+%% Subspace segmentation methods
+% SegmentationMethod = 'LSR' ;
+% SegmentationMethod = 'LSRd0' ;
+
+% SegmentationMethod = 'NNLSR' ;
+% SegmentationMethod = 'NNLSRd0' ;
+% SegmentationMethod = 'NPLSR' ;
+% SegmentationMethod = 'NPLSRd0' ;
+% find a fast solver is still in process
+
+% SegmentationMethod = 'ANNLSR' ;
+% SegmentationMethod = 'ANNLSRd0' ;
+% SegmentationMethod = 'ANPLSR' ;
+SegmentationMethod = 'ANPLSRd0' ;
+
 %% Subspace segmentation
 for maxIter = [5 10 15 20]
     Par.maxIter = maxIter;
@@ -58,16 +73,27 @@ for maxIter = [5 10 15 20]
                     Yfea = fea(1:redDim, :) ;
                     for j = 1 : Repeat
                         switch SegmentationMethod
-                            case 'LSRd0po_LSR'
-                                C = LSRd0po( Yfea , Par ) ;
-                            case 'LSRpo_LSR'
-                                C = LSRpo( Yfea , Par ) ;
-                            case 'LSRd0ne_LSR'
-                                C = LSRd0ne( Yfea , Par ) ;
-                            case 'LSRne_LSR'
-                                C = LSRne( Yfea , Par ) ;
-                            case 'LSRd0_LSR'
-                                C = LSRd0( Yfea , Par ) ;
+                            case 'LSR'
+                                C = LSR( Yfea , Par ) ;
+                            case 'LSRd0'
+                                C = LSRd0( Yfea , Par ) ; % solved by ADMM
+                                % C = LSR1( Yfea , Par.lambda ) ; % proposed by Lu
+                            case 'NNLSR'                   % non-negative
+                                C = NNLSR( Yfea , Par ) ;
+                            case 'NNLSRd0'               % non-negative, diagonal = 0
+                                C = NNLSRd0( Yfea , Par ) ;
+                            case 'NPLSR'                   % non-positive
+                                C = NPLSR( Yfea , Par ) ;
+                            case 'NPLSRd0'               % non-positive, diagonal = 0
+                                C = NPLSRd0( Yfea , Par ) ;
+                            case 'ANNLSR'                 % affine, non-negative
+                                C = ANNLSR( Yfea , Par ) ;
+                            case 'ANNLSRd0'             % affine, non-negative, diagonal = 0
+                                C = ANNLSRd0( Yfea , Par ) ;
+                            case 'ANPLSR'                 % affine, non-positive
+                                C = ANPLSR( Yfea , Par ) ;
+                            case 'ANPLSRd0'             % affine, non-positive, diagonal = 0
+                                C = ANPLSRd0( Yfea , Par ) ;
                         end
                         for k = 1 : size(C,2)
                             C(:, k) = C(:, k) / max(abs(C(:, k))) ;
