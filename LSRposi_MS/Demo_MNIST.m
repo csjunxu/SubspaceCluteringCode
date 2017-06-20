@@ -49,8 +49,8 @@ end
 % SegmentationMethod = 'NPLSRd0' ;
 % find a fast solver is still in process
 
-SegmentationMethod = 'ANNLSR' ;
-% SegmentationMethod = 'ANNLSRd0' ;
+% SegmentationMethod = 'ANNLSR' ;
+SegmentationMethod = 'ANNLSRd0' ;
 % SegmentationMethod = 'ANPLSR' ;
 % SegmentationMethod = 'ANPLSRd0' ;
 %% Subspace segmentation
@@ -58,7 +58,7 @@ for maxIter = [5 10]
     Par.maxIter = maxIter;
     for rho = [0.1:0.1:0.5]
         Par.rho = rho;
-        for lambda = [1:2:9]
+        for lambda = [1:1:9]
             Par.lambda = lambda*10^(-2);
             missrate = zeros(nExperiment, 1) ;
             for i = 1:nExperiment
