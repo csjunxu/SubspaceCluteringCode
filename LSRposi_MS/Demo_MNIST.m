@@ -27,7 +27,7 @@ end
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % writefilepath = '';
 dataset = 'MNIST';
-Repeat = 1; %number of repeations
+nExperiment = 20;%number of repeations
 DR = 1; % perform dimension reduction or not
 if DR == 0
     dim = size(Y{1, 1}, 1);
@@ -59,9 +59,9 @@ for maxIter = [5 10]
     for rho = [0.01 0.05 0.1]
         Par.rho = rho;
         for lambda = [2:1:6]
-            Par.lambda = 10^(-lambda);
-            nExperiment = 20;
-            results = zeros(nExperiment, 6); %results
+            Par.lambda = 10^(-2);
+            
+            missrate = zeros(nExperiment, 1) ;
             for i = 1:nExperiment
                 nCluster = 10;
                 digit_set = 0:9; % set of digits to test on, e.g. [2, 0]. Pick randomly if empty.
@@ -96,13 +96,12 @@ for maxIter = [5 10]
                     fea = eigvector' * fea ;
                     redDim = min(nCluster*dim, size(fea, 1)) ;
                 end
+                fprintf( 'dimension = %d \n', redDim ) ;
                 %% normalize
                 for c = 1 : size(fea,2)
                     fea(:,c) = fea(:,c) /norm(fea(:,c)) ;
                 end
                 %% Subspace Clustering
-                missrate = zeros(1, nExperiment) ;
-                fprintf( 'dimension = %d \n', redDim ) ;
                 Yfea = fea(1:redDim, :) ;
                 switch SegmentationMethod
                     case 'LSR1'
@@ -143,14 +142,14 @@ for maxIter = [5 10]
                 fprintf('%.3f%% \n' , missrate(i)*100) ;
             end
             %% output
-            avgmissrate = mean(missrate);
-            medmissrate = median(missrate);
+            avgmissrate = mean(missrate*100);
+            medmissrate = median(missrate*100);
             fprintf('Total mean missrate  is %.3f%%.\n ' , avgmissrate) ;
             if strcmp(SegmentationMethod, 'LSR')==1 || strcmp(SegmentationMethod, 'LSR1')==1 || strcmp(SegmentationMethod, 'LSR2')==1
-                matname = sprintf([writefilepath dataset '_' num2str(nSample) '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_lambda' num2str(Par.lambda) '.mat']);
+                matname = sprintf([writefilepath dataset '_' num2str(nSample(1)) '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_lambda' num2str(Par.lambda) '.mat']);
                 save(matname,'missrate','avgmissrate','medmissrate');
             else
-                matname = sprintf([writefilepath dataset '_' num2str(nSample) '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
+                matname = sprintf([writefilepath dataset '_' num2str(nSample(1)) '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
                 save(matname,'missrate','avgmissrate','medmissrate');
             end
         end
