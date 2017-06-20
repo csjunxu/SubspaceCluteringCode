@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  20 JUN 2017 09:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  20 JUN 2017 16:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -556,27 +556,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 543--543
  []
 
 [4]
-Underfull \hbox (badness 1460) in paragraph at lines 592--594
+Underfull \hbox (badness 1460) in paragraph at lines 637--639
 \OT1/ptm/m/n/10 By in-tro-duc-ing a La-grangian mul-ti-plier $\OT1/cmr/bx/n/10 
 ^^A$\OT1/ptm/m/n/10 , the La-
  []
 
 
-Overfull \hbox (11.10814pt too wide) in paragraph at lines 674--674
+Overfull \hbox (11.10814pt too wide) in paragraph at lines 719--719
 [] 
  []
 
 
-Overfull \hbox (4.88036pt too wide) in paragraph at lines 714--714
+Overfull \hbox (4.88036pt too wide) in paragraph at lines 759--759
 [] 
  []
 
-
-Overfull \hbox (4.03062pt too wide) in paragraph at lines 815--815
+[5]
+Overfull \hbox (4.03062pt too wide) in paragraph at lines 860--860
 [] 
  []
 
-[5] (./Ours.bbl (./Ours.brf)
+[6] (./Ours.bbl (./Ours.brf)
 \tf@brf=\write3
 \openout3 = `Ours.brf'.
 
@@ -586,7 +586,7 @@ Underfull \hbox (badness 1005) in paragraph at lines 13--13
 1/ptm/m/n/9 ,
  []
 
-[6]
+
 Underfull \hbox (badness 3557) in paragraph at lines 45--45
 []\OT1/ptm/m/n/9 Seung-Jean Kim, Kwang-moo Koh, Michael Lustig,
  []
@@ -595,30 +595,28 @@ Underfull \hbox (badness 3557) in paragraph at lines 45--45
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 929.
-[7
-
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 929.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 974.
+[7]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 974.
  (./Ours.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 929.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 929.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 974.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 974.
 Package rerunfilecheck Info: File `Ours.brf' has not changed.
 (rerunfilecheck)             Checksum: 195BB75A714B8F91D0D417BA10816678;696.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 929.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 974.
  ) 
 Here is how much of TeX's memory you used:
- 7396 strings out of 493091
- 105258 string characters out of 6134517
- 201123 words of memory out of 5000000
- 10657 multiletter control sequences out of 15000+600000
+ 7401 strings out of 493091
+ 105311 string characters out of 6134517
+ 200184 words of memory out of 5000000
+ 10659 multiletter control sequences out of 15000+600000
  42361 words of font info for 122 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,17n,28p,1560b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,17n,28p,1560b,331s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Software/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/Software
@@ -638,10 +636,10 @@ xlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/201
 5/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-d
 ist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts
 /type1/urw/times/utmri8a.pfb>
-Output written on Ours.pdf (7 pages, 204267 bytes).
+Output written on Ours.pdf (7 pages, 205505 bytes).
 PDF statistics:
- 238 PDF objects out of 1000 (max. 8388607)
- 208 compressed objects within 3 object streams
- 73 named destinations out of 1000 (max. 500000)
+ 242 PDF objects out of 1000 (max. 8388607)
+ 212 compressed objects within 3 object streams
+ 76 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

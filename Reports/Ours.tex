@@ -544,6 +544,51 @@ The other parts are just the same as the previous section.
 
 We can eliminate the constraint of $\text{diag}(\bm{A})=\bm{0}$. And the solution for each subproblem is obtained by removing the term of $\bm{A}=\bm{J}-\text{diag}(\bm{J})$. The physical meaning is that we can allow each data point to represente itself, so there always exists reasonable solutions even with outliers or when the data is insufficient. 
 
+
+\section{Non-negative Least Squares}
+
+Motivated by the fact that the non-negativity constraint can automatically maintain the sparsity property, we can remove the regularization term on the NNLSR model. The resulting non-negative least squares (NNLS) model could be formulated as follows:
+\begin{equation}
+\begin{split}
+\label{e21}
+&
+\min_{\bm{A}}
+\|
+\bm{X}
+-
+\bm{X}\bm{A}
+\|_{F}^{2}
+\quad 
+\text{s.t.}
+\quad
+\bm{A}\ge0
+.
+\end{split}
+\end{equation}
+This model can have a lot of benefits in complex appliactions. First, it is parameter free, and therefore we can avoid the burden of tuning paramters especially on large datasets. This will make this model suitable for large scale applications. Besides, since the non-negativity can automatically boost the sparsity on the model, the model can be viewed as ``Self-Regularized'' without any explicit regulariztion on the coding matrix $\bm{A}$.
+
+This model is also easy to solve. After introducing an auxiliary variable $\bm{C}$, we can resort to the variable splitting method to reformulate the problem (\ref{e21}) into a inequality constraint problem as:
+\begin{equation}
+\begin{split}
+\label{e22}
+&
+\min_{\bm{A}}
+\|
+\bm{X}
+-
+\bm{X}\bm{A}
+\|_{F}^{2}
+\quad 
+\text{s.t.}
+\quad
+\bm{C}=\bm{A}
+\bm{C}\ge0
+.
+\end{split}
+\end{equation}
+
+
+
 \section{Robust Large Scale Subset Selection via Dissimilarity based Outlier Detection?}
 
 
