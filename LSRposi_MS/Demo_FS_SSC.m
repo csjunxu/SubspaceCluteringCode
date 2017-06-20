@@ -10,7 +10,7 @@ writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 %% Subspace segmentation methods
 % SegmentationMethod = 'LSR' ;
 % SegmentationMethod = 'LSRd0' ;
-% SegmentationMethod = 'LSR1' ;
+SegmentationMethod = 'LSR1' ;
 % SegmentationMethod = 'LSR2' ;
 
 % SegmentationMethod = 'NNLSR' ;
@@ -20,7 +20,7 @@ writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % find a fast solver is still in process
 
 % SegmentationMethod = 'ANNLSR' ;
-SegmentationMethod = 'ANNLSRd0' ;
+% SegmentationMethod = 'ANNLSRd0' ;
 % SegmentationMethod = 'ANPLSR' ;
 % SegmentationMethod = 'ANPLSRd0' ;
 
@@ -32,10 +32,10 @@ for maxIter = [5]
     Par.maxIter = maxIter;
     for mu = [1]
         Par.mu = mu;
-        for rho = [0.01 0.05]
+        for rho = [0.05]
             Par.rho = rho;
-            for lambda = [1:1:5]
-                Par.lambda = lambda * 10^(-4);
+            for lambda = [1:2:9]
+                Par.lambda = lambda * 10^(-2);
                 for nSet = [2 3 5 8 10]
                     n = nSet;
                     index = Ind{n};
