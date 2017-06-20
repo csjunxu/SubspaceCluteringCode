@@ -39,7 +39,7 @@ clear seq3;
 %% Subspace segmentation methods
 % SegmentationMethod = 'LSR' ;
 % SegmentationMethod = 'LSRd0' ;
- 
+
 % SegmentationMethod = 'NNLSR' ;
 % SegmentationMethod = 'NNLSRd0' ;
 % SegmentationMethod = 'NPLSR' ;
@@ -93,6 +93,10 @@ for mu = [1]
                         case 'ANPLSRd0'             % affine, non-positive, diagonal = 0
                             C = ANPLSRd0( ProjX , Par ) ;
                     end
+                    %% this step is useless for motion segmentation
+                    %                             for k = 1 : size(C,2)
+                    %                                 C(:, k) = C(:, k) / max(abs(C(:, k))) ;
+                    %                             end
                     nCluster = length( unique( gnd ) ) ;
                     Z = ( abs(C) + abs(C') ) / 2 ;
                     idx = clu_ncut(Z,nCluster) ;
