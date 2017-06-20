@@ -32,10 +32,10 @@ DR = 1; % perform dimension reduction or not
 if DR == 0
     dim = size(Y{1, 1}, 1);
 elseif DR == 1
-    dim = 500;
+    dim = 50;
 else
     DR = 1;
-    dim = 500;
+    dim = 50;
 end
 %% Subspace segmentation methods
 % SegmentationMethod = 'LSR' ;
@@ -84,7 +84,7 @@ for maxIter = [5 10]
                     
                     mask( nSample_cum(iK) + 1 : nSample_cum(iK+1) ) = selpos;
                     s( nSample_cum(iK) + 1 : nSample_cum(iK+1) ) = iK * ones(1, nSample(iK));
-                end 
+                end
                 fea = MNIST_DATA(:, mask);
                 N = length(s);
                 
@@ -94,7 +94,7 @@ for maxIter = [5 10]
                     [ eigvector , eigvalue ] = PCA( fea ) ;
                     maxDim = length(eigvalue) ;
                     fea = eigvector' * fea ;
-                    redDim = min(dim, size(fea, 1)) ;
+                    redDim = min(nCluster*dim, size(fea, 1)) ;
                 end
                 %% normalize
                 for c = 1 : size(fea,2)
@@ -105,11 +105,14 @@ for maxIter = [5 10]
                 fprintf( 'dimension = %d \n', redDim ) ;
                 Yfea = fea(1:redDim, :) ;
                 switch SegmentationMethod
+                    case 'LSR1'
+                        C = LSR1( Yfea , Par.lambda ) ; % proposed by Lu
+                    case 'LSR2'
+                        C = LSR2( Yfea , Par.lambda ) ; % proposed by Lu
                     case 'LSR'
                         C = LSR( Yfea , Par ) ;
                     case 'LSRd0'
                         C = LSRd0( Yfea , Par ) ; % solved by ADMM
-                        % C = LSR1( Yfea , Par.lambda ) ; % proposed by Lu
                     case 'NNLSR'                   % non-negative
                         C = NNLSR( Yfea , Par ) ;
                     case 'NNLSRd0'               % non-negative, diagonal = 0
@@ -128,16 +131,16 @@ for maxIter = [5 10]
                         C = ANPLSRd0( Yfea , Par ) ;
                 end
                 %% generate affinity
-                for k = 1 : size(C,2)
+                for k = 1 : size(C, 2)
                     C(:, k) = C(:, k) / max(abs(C(:, k))) ;
                 end
                 Z = ( abs(C) + abs(C') ) / 2 ; % abs is useless in our model
                 %% generate label
                 fprintf('Generate label...\n')
-                idx = clu_ncut(Z,n) ;
+                idx = clu_ncut(Z, nCluster) ;
                 
                 %% Evaluation
-                missrate(i) = 1 - compacc(idx,gnd);
+                missrate(i) = 1 - compacc(idx, gnd);
                 fprintf('%.3f%% \n' , missrate(i)*100) ;
                 
                 %% output
