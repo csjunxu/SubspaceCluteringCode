@@ -40,7 +40,7 @@ clear seq3;
 % SegmentationMethod = 'LSR1' ; % 4.8
 % SegmentationMethod = 'LSR2' ; % 4.6
 
-% SegmentationMethod = 'LSR' ;
+% SegmentationMethod = 'LSR' ; % the same with LSR2
 SegmentationMethod = 'LSRd0' ;
 
 % SegmentationMethod = 'NNLSR' ;
@@ -125,10 +125,10 @@ for mu = [1]
                 avgallmissrate = sum(allmissrate)/length(allmissrate);
                 medallmissrate = median(allmissrate);
                 if strcmp(SegmentationMethod, 'LSR')==1 || strcmp(SegmentationMethod, 'LSR1')==1 || strcmp(SegmentationMethod, 'LSR2')==1
-                    matname = sprintf([writefilepath dataset '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_lambda' num2str(Par.lambda) '.mat']);
+                    matname = sprintf([writefilepath dataset '_' SegmentationMethod '_lambda' num2str(Par.lambda) '.mat']);
                     save(matname,'avgallmissrate','medallmissrate','missrateTot','avgmissrate','medmissrate');
                 else
-                    matname = sprintf([writefilepath dataset '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
+                    matname = sprintf([writefilepath dataset '_' SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
                     save(matname,'avgallmissrate','medallmissrate','missrateTot','avgmissrate','medmissrate');
                 end
             end
