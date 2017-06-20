@@ -51,7 +51,7 @@ SegmentationMethod = 'NPLSRd0' ;
 
 % SegmentationMethod = 'ANNLSR' ;
 % SegmentationMethod = 'ANNLSRd0' ;
-Q% SegmentationMethod = 'ANPLSR' ;
+% SegmentationMethod = 'ANPLSR' ;
 % SegmentationMethod = 'ANPLSRd0' ;
 %% Subspace segmentation
 for maxIter = [5 10]
