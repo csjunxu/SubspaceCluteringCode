@@ -44,8 +44,8 @@ clear seq3;
 % SegmentationMethod = 'LSRd0' ;
 
 % SegmentationMethod = 'NNLSR' ;
-SegmentationMethod = 'NNLSRd0' ;
-% SegmentationMethod = 'NPLSR' ;
+% SegmentationMethod = 'NNLSRd0' ;
+SegmentationMethod = 'NPLSR' ;
 % SegmentationMethod = 'NPLSRd0' ;
 % find a fast solver is still in process
 
