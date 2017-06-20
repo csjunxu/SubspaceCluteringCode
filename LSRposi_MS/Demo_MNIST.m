@@ -44,8 +44,8 @@ end
 % SegmentationMethod = 'LSR2' ;
 
 % SegmentationMethod = 'NNLSR' ;
-SegmentationMethod = 'NNLSRd0' ;
-% SegmentationMethod = 'NPLSR' ;
+% SegmentationMethod = 'NNLSRd0' ;
+SegmentationMethod = 'NPLSR' ;
 % SegmentationMethod = 'NPLSRd0' ;
 % find a fast solver is still in process
 
