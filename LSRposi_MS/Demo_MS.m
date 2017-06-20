@@ -45,12 +45,12 @@ clear seq3;
 
 % SegmentationMethod = 'NNLSR' ;
 % SegmentationMethod = 'NNLSRd0' ;
-SegmentationMethod = 'NPLSR' ; % SVD 的输入不能包含 NaN 或 Inf。
+% SegmentationMethod = 'NPLSR' ; % SVD 的输入不能包含 NaN 或 Inf。
 % SegmentationMethod = 'NPLSRd0' ; % SVD 的输入不能包含 NaN 或 Inf。
 % find a fast solver is still in process
 
 % SegmentationMethod = 'ANNLSR' ;
-% SegmentationMethod = 'ANNLSRd0' ;
+SegmentationMethod = 'ANNLSRd0' ;
 % SegmentationMethod = 'ANPLSR' ;
 % SegmentationMethod = 'ANPLSRd0' ;
 
@@ -58,10 +58,10 @@ for mu = [1]
     Par.mu = mu;
     for maxIter = [5]
         Par.maxIter = maxIter;
-        for rho = [.05 0.01 .02 0.03]
+        for rho = [.0005 0.0001]
             Par.rho = rho;
             for lambda = [1:1:9]
-                Par.lambda = 10^(-2);
+                Par.lambda = 10^(-4);
                 maxNumGroup = 5;
                 for i = 1:maxNumGroup
                     num(i) = 0;
