@@ -41,9 +41,9 @@ clear seq3;
 % SegmentationMethod = 'LSR2' ; % 4.6
 
 % SegmentationMethod = 'LSR' ; % the same with LSR2
-SegmentationMethod = 'LSRd0' ;
+% SegmentationMethod = 'LSRd0' ;
 
-% SegmentationMethod = 'NNLSR' ;
+SegmentationMethod = 'NNLSR' ;
 % SegmentationMethod = 'NNLSRd0' ;
 % SegmentationMethod = 'NPLSR' ;
 % SegmentationMethod = 'NPLSRd0' ;
