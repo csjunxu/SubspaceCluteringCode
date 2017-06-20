@@ -14,7 +14,7 @@ if ~exist('MNIST_DATA', 'var')
         % vector of a digit image and N = 60,000.
         % MNIST_LABEL is a 1 by N vector. Each entry is the label for the
         % corresponding column in MNIST_SC_DATA.
-        load C:\Users\csjunxu\Desktop\SC\Datasets\MNIST_SC.mat MNIST_SC_DATA MNIST_LABEL;
+        load MNIST_SC.mat MNIST_SC_DATA MNIST_LABEL;
     catch
         MNIST_DATA = loadMNISTImages('train-images.idx3-ubyte');
         MNIST_LABEL = loadMNISTLabels('train-labels.idx1-ubyte');
@@ -24,7 +24,35 @@ if ~exist('MNIST_DATA', 'var')
     MNIST_DATA = MNIST_SC_DATA;
 end
 
-%% Clustering
+writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
+% writefilepath = '';
+dataset = 'MNIST';
+Repeat = 1; %number of repeations
+DR = 1; % perform dimension reduction or not
+if DR == 0
+    dim = size(Y{1, 1}, 1);
+elseif DR == 1
+    dim = 500;
+else
+    DR = 1;
+    dim = 500;
+end
+%% Subspace segmentation methods
+% SegmentationMethod = 'LSR' ;
+% SegmentationMethod = 'LSRd0' ;
+SegmentationMethod = 'LSR1' ;
+% SegmentationMethod = 'LSR2' ;
+
+% SegmentationMethod = 'NNLSR' ;
+% SegmentationMethod = 'NNLSRd0' ;
+% SegmentationMethod = 'NPLSR' ;
+% SegmentationMethod = 'NPLSRd0' ;
+% find a fast solver is still in process
+
+% SegmentationMethod = 'ANNLSR' ;
+% SegmentationMethod = 'ANNLSRd0' ;
+% SegmentationMethod = 'ANPLSR' ;
+% SegmentationMethod = 'ANPLSRd0' ;
 %% Subspace segmentation
 for maxIter = [5 10]
     Par.maxIter = maxIter;
@@ -66,7 +94,7 @@ for maxIter = [5 10]
                     [ eigvector , eigvalue ] = PCA( fea ) ;
                     maxDim = length(eigvalue);
                     fea = eigvector' * fea ;
-                    redDim = n * dim ;
+                    redDim = dim ;
                 end
                 %% normalize
                 for c = 1 : size(fea,2)
@@ -121,10 +149,10 @@ for maxIter = [5 10]
             medmissrate = median(missrateTot);
             fprintf('Total mean missrate  is %.3f%%.\n ' , avgmissrate) ;
             if strcmp(SegmentationMethod, 'LSR')==1 || strcmp(SegmentationMethod, 'LSR1')==1 || strcmp(SegmentationMethod, 'LSR2')==1
-                matname = sprintf([writefilepath dataset '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_lambda' num2str(Par.lambda) '.mat']);
+                matname = sprintf([writefilepath dataset '_' num2str(nSample) '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_lambda' num2str(Par.lambda) '.mat']);
                 save(matname,'missrateTot','avgmissrate','medmissrate');
             else
-                matname = sprintf([writefilepath dataset '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
+                matname = sprintf([writefilepath dataset '_' num2str(nSample) '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
                 save(matname,'missrateTot','avgmissrate','medmissrate');
             end
         end
