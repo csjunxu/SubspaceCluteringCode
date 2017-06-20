@@ -12,6 +12,8 @@ dim = 6;
 %% Subspace segmentation methods
 % SegmentationMethod = 'LSR' ;
 % SegmentationMethod = 'LSRd0' ;
+SegmentationMethod = 'LSR1' ;
+% SegmentationMethod = 'LSR2' ;
 
 % SegmentationMethod = 'NNLSR' ;
 % SegmentationMethod = 'NNLSRd0' ;
@@ -29,8 +31,8 @@ for maxIter = [5]
     Par.maxIter = maxIter;
     for rho = [0.05]
         Par.rho = rho;
-        for lambda = [1:1:6]
-            Par.lambda = 10^(-lambda);
+        for lambda = [1:1:9]
+            Par.lambda = lambda*10^(-2);
             for nSet = [2 3 5 8 10]
                 n = nSet;
                 index = Ind{n};
@@ -62,12 +64,14 @@ for maxIter = [5]
                     Yfea = fea(1:redDim, :) ;
                     for j = 1 : Repeat
                         switch SegmentationMethod
+                            case 'LSR1'
+                                C = LSR1( Yfea , Par.lambda ) ; % proposed by Lu
+                            case 'LSR2'
+                                C = LSR2( Yfea , Par.lambda ) ; % proposed by Lu
                             case 'LSR'
                                 C = LSR( Yfea , Par ) ;
-                                % C = LSR2( Yfea , Par.lambda ) ; % proposed by Lu
                             case 'LSRd0'
                                 C = LSRd0( Yfea , Par ) ; % solved by ADMM
-                                % C = LSR1( Yfea , Par.lambda ) ; % proposed by Lu
                             case 'NNLSR'                   % non-negative
                                 C = NNLSR( Yfea , Par ) ;
                             case 'NNLSRd0'               % non-negative, diagonal = 0
