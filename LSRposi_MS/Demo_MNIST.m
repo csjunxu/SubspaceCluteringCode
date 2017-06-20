@@ -56,13 +56,10 @@ SegmentationMethod = 'ANNLSR' ;
 %% Subspace segmentation
 for maxIter = [5 10]
     Par.maxIter = maxIter;
-    for rho = [0.01 0.05 0.1]
+    for rho = [0.1:0.1:0.5]
         Par.rho = rho;
-        %           for lambda = [1:1:6] % 1 decide the order
-        %             Par.lambda = 10^(-lambda);
-        for lambda = [1:2:9] % 2 decide the fold
+        for lambda = [1:2:9]
             Par.lambda = lambda*10^(-2);
-            
             missrate = zeros(nExperiment, 1) ;
             for i = 1:nExperiment
                 nCluster = 10;
