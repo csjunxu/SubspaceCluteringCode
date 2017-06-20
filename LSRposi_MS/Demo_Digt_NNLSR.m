@@ -11,8 +11,14 @@ writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 
 Repeat = 1; %number of repeations
 DR = 0; % perform dimension reduction or not
-dim = 12;
-
+if DR == 0
+    dim = size(Y{1, 1}, 1);
+elseif DR == 1
+    dim = 12;
+else
+    DR = 1;
+    dim = 12;
+end
 %% Subspace segmentation methods
 % SegmentationMethod = 'LSR' ;
 % SegmentationMethod = 'LSRd0' ;
