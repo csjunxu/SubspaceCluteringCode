@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  20 JUN 2017 16:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  20 JUN 2017 16:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -550,28 +550,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 543--543
  []
 
 [4]
-Underfull \hbox (badness 3396) in paragraph at lines 644--645
+Underfull \hbox (badness 3396) in paragraph at lines 645--646
 []\OT1/ptm/b/n/10 Improvement\OT1/ptm/m/n/10 : We can also add con-straints of
  []
 
 
-Underfull \hbox (badness 1460) in paragraph at lines 693--695
+Underfull \hbox (badness 1460) in paragraph at lines 694--696
 \OT1/ptm/m/n/10 By in-tro-duc-ing a La-grangian mul-ti-plier $\OT1/cmr/bx/n/10 
 ^^A$\OT1/ptm/m/n/10 , the La-
  []
 
 
-Overfull \hbox (11.10814pt too wide) in paragraph at lines 775--775
+Overfull \hbox (11.10814pt too wide) in paragraph at lines 776--776
 [] 
  []
 
 
-Overfull \hbox (4.88036pt too wide) in paragraph at lines 815--815
+Overfull \hbox (4.88036pt too wide) in paragraph at lines 816--816
 [] 
  []
 
 [5]
-Overfull \hbox (4.03062pt too wide) in paragraph at lines 916--916
+Overfull \hbox (4.03062pt too wide) in paragraph at lines 917--917
 [] 
  []
 
@@ -591,25 +591,20 @@ Underfull \hbox (badness 3557) in paragraph at lines 50--50
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1030.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1031.
  [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1030.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1031.
  (./Ours.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1030.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1030.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1031.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1031.
 
+Package rerunfilecheck Info: File `Ours.brf' has not changed.
+(rerunfilecheck)             Checksum: 916E47D3D78F33B71EF9A46089CC3459;840.
 
-
-Package rerunfilecheck Warning: File `Ours.brf' has changed.
-(rerunfilecheck)                Rerun to get bibliographical references right.
-
-Package rerunfilecheck Info: Checksums for `Ours.brf':
-(rerunfilecheck)             Before: 195BB75A714B8F91D0D417BA10816678;696
-(rerunfilecheck)             After:  916E47D3D78F33B71EF9A46089CC3459;840.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1030.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1031.
  ) 
 Here is how much of TeX's memory you used:
  7417 strings out of 493091
@@ -638,10 +633,10 @@ xlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/201
 5/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-d
 ist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts
 /type1/urw/times/utmri8a.pfb>
-Output written on Ours.pdf (7 pages, 207351 bytes).
+Output written on Ours.pdf (7 pages, 207430 bytes).
 PDF statistics:
- 250 PDF objects out of 1000 (max. 8388607)
- 220 compressed objects within 3 object streams
+ 252 PDF objects out of 1000 (max. 8388607)
+ 222 compressed objects within 3 object streams
  80 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
