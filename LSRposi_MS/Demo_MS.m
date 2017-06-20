@@ -39,6 +39,8 @@ clear seq3;
 %% Subspace segmentation methods
 % SegmentationMethod = 'LSR' ;
 % SegmentationMethod = 'LSRd0' ;
+SegmentationMethod = 'LSR1' ;
+% SegmentationMethod = 'LSR2' ;
 
 % SegmentationMethod = 'NNLSR' ;
 % SegmentationMethod = 'NNLSRd0' ;
@@ -49,7 +51,7 @@ clear seq3;
 % SegmentationMethod = 'ANNLSR' ;
 % SegmentationMethod = 'ANNLSRd0' ;
 % SegmentationMethod = 'ANPLSR' ;
-SegmentationMethod = 'ANPLSRd0' ;
+% SegmentationMethod = 'ANPLSRd0' ;
 
 for mu = [1]
     Par.mu = mu;
@@ -71,11 +73,14 @@ for mu = [1]
                     K = length( unique( gnd ) ) ;
                     n = max(gnd);
                     switch SegmentationMethod
+                        case 'LSR1'
+                            C = LSR1( Yfea , Par.lambda ) ; % proposed by Lu
+                        case 'LSR2'
+                            C = LSR2( Yfea , Par.lambda ) ; % proposed by Lu
                         case 'LSR'
-                            C = LSR( ProjX , Par ) ;
+                            C = LSR( Yfea , Par ) ;
                         case 'LSRd0'
-                            C = LSRd0( ProjX , Par ) ; % solved by ADMM
-                            % C = LSR1( ProjX , Par.lambda ) ; % proposed by Lu
+                            C = LSRd0( Yfea , Par ) ; % solved by ADMM
                         case 'NNLSR'                   % non-negative
                             C = NNLSR( ProjX , Par ) ;
                         case 'NNLSRd0'               % non-negative, diagonal = 0
