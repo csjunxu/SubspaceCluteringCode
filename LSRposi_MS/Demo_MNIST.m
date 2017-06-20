@@ -54,12 +54,12 @@ SegmentationMethod = 'NNLSR' ;
 % SegmentationMethod = 'ANPLSR' ;
 % SegmentationMethod = 'ANPLSRd0' ;
 %% Subspace segmentation
-for maxIter = [5 10 20]
+for maxIter = [5 10]
     Par.maxIter = maxIter;
     for rho = [0.1 0.05 0.01]
         Par.rho = rho;
         for lambda = [1:1:9]
-            Par.lambda = lambda*10^(-1);
+            Par.lambda = lambda*10^(-2);
             missrate = zeros(nExperiment, 1) ;
             for i = 1:nExperiment
                 nCluster = 10;
