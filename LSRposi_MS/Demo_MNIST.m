@@ -141,7 +141,7 @@ for maxIter = [5 10]
                 idx = clu_ncut(Z, nCluster) ;
                 %% Evaluation
                 missrate(i) = 1 - compacc(idx, gnd);
-                fprintf('%.3f%% \n' , missrate(i)*100) ;
+                fprintf('%d: %.3f%% \n' , i, missrate(i)*100) ;
             end
             %% output
             avgmissrate = mean(missrate*100);
