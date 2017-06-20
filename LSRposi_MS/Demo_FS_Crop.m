@@ -7,7 +7,14 @@ writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 dataset = 'YaleB_LSR';
 Repeat = 1; %number of repeations
 DR = 1; % perform dimension reduction or not
-dim = 6;
+if DR == 0
+    dim = size(Y{1, 1}, 1);
+elseif DR == 1
+    dim = 6;
+else
+    DR = 1;
+    dim = 6;
+end
 
 %% Subspace segmentation methods
 % SegmentationMethod = 'LSR' ;
@@ -29,9 +36,9 @@ SegmentationMethod = 'ANNLSR' ;
 %% Subspace segmentation
 for maxIter = [5]
     Par.maxIter = maxIter;
-    for rho = [0.05 0.01]
+    for rho = [0.06 0.04 0.07 0.08 0.03]
         Par.rho = rho;
-        for lambda = [1:1:6]
+        for lambda = [3:1:7]
             Par.lambda = 10^(-lambda);
             for nSet = [2 3 5 8 10]
                 n = nSet;
