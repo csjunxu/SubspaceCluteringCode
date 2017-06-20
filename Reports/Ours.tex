@@ -586,6 +586,60 @@ This model is also easy to solve. After introducing an auxiliary variable $\bm{C
 .
 \end{split}
 \end{equation}
+This model can also be solved by the ADMM algorithm similar to previous sections. We ignore the detail steps and only introduce the major updating steps as follows:
+
+\textbf{Updating $\bm{A}$ while fixing $\bm{C}$}:
+\begin{equation}
+\begin{split}
+\label{e23}
+&
+\min_{\bm{A}}
+\|
+\bm{X}
+-
+\bm{X}\bm{A}
+\|_{F}^{2}
++
+\frac{\rho}{2}
+\|
+\bm{A}
+-
+\bm{C}_{k}
++
+\rho^{-1}
+\bm{\Delta}_{k}
+\|_{2}^{F}
+.
+\end{split}
+\end{equation}
+This is a standard LSR problem which can be solved in closed form.
+
+\textbf{Updating $\bm{C}$ while fixing $\bm{A}$}:
+\begin{equation}
+\begin{split}
+\label{e22}
+&
+\min_{\bm{C}}
+\|
+\bm{C}
+-
+(
+\bm{A}
+-
+\rho^{-1}
+\bm{\Delta}_{k}
+)
+\|_{F}^{2}
+\quad 
+\text{s.t.}
+\quad
+\bm{C}\ge0
+.
+\end{split}
+\end{equation}
+This is a standard non-negative least squares (NNLS) problem which can be solved by the Lawson and Hanson algorithm \cite{}.
+
+\textbf{Improvement}: We can also add constraints of $\text{diag}(\bm{C})=\bm{0}$ and/or $\bm{1}^{\top}\bm{C}=\bm{1}^{\top}$ (each column vector is ``sum to one'') to further enhance the performance of the NNLS model. This model only has two parameters, i.e., the penalty parameter $\rho$ and the number of iterations, which are quite robust to different tasks. 
 
 
 
