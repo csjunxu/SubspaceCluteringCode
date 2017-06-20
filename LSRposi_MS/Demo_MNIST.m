@@ -75,7 +75,7 @@ for maxIter = [5 10]
                     nSample = ones(1, nCluster) * nSample;
                 end
                 mask = zeros(1, sum(nSample));
-                s = zeros(1, sum(nSample));
+                gnd = zeros(1, sum(nSample));
                 nSample_cum = [0, cumsum(nSample)];
                 for iK = 1:nCluster % randomly take data for each digit.
                     allpos = find( MNIST_LABEL == Digits(iK) );
@@ -83,10 +83,10 @@ for maxIter = [5 10]
                     selpos = allpos( randperm(length(allpos), nSample(iK)) );
                     
                     mask( nSample_cum(iK) + 1 : nSample_cum(iK+1) ) = selpos;
-                    s( nSample_cum(iK) + 1 : nSample_cum(iK+1) ) = iK * ones(1, nSample(iK));
+                    gnd( nSample_cum(iK) + 1 : nSample_cum(iK+1) ) = iK * ones(1, nSample(iK));
                 end
                 fea = MNIST_DATA(:, mask);
-                N = length(s);
+                N = length(gnd);
                 
                 %% PCA Projection
                 redDim = size(fea, 1);
