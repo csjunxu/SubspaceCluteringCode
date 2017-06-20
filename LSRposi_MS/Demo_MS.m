@@ -37,10 +37,11 @@ clear seq3;
 
 
 %% Subspace segmentation methods
-% SegmentationMethod = 'LSR' ;
-% SegmentationMethod = 'LSRd0' ;
 % SegmentationMethod = 'LSR1' ; % 4.8
-SegmentationMethod = 'LSR2' ; % 4.6
+% SegmentationMethod = 'LSR2' ; % 4.6
+
+SegmentationMethod = 'LSR' ;
+% SegmentationMethod = 'LSRd0' ;
 
 % SegmentationMethod = 'NNLSR' ;
 % SegmentationMethod = 'NNLSRd0' ;
@@ -59,8 +60,8 @@ for mu = [1]
         Par.maxIter = maxIter;
         for rho = [.005]
             Par.rho = rho;
-            for lambda = [4.6]
-                Par.lambda = lambda*10^(-3);
+            for lambda = [5:5:100]
+                Par.lambda = lambda*10^(-4);
                 maxNumGroup = 5;
                 for i = 1:maxNumGroup
                     num(i) = 0;
