@@ -40,7 +40,7 @@ end
 %% Subspace segmentation methods
 % SegmentationMethod = 'LSR' ;
 % SegmentationMethod = 'LSRd0' ;
-SegmentationMethod = 'LSR1' ;
+% SegmentationMethod = 'LSR1' ;
 % SegmentationMethod = 'LSR2' ;
 
 % SegmentationMethod = 'NNLSR' ;
@@ -49,14 +49,14 @@ SegmentationMethod = 'LSR1' ;
 % SegmentationMethod = 'NPLSRd0' ;
 % find a fast solver is still in process
 
-% SegmentationMethod = 'ANNLSR' ;
+SegmentationMethod = 'ANNLSR' ;
 % SegmentationMethod = 'ANNLSRd0' ;
 % SegmentationMethod = 'ANPLSR' ;
 % SegmentationMethod = 'ANPLSRd0' ;
 %% Subspace segmentation
 for maxIter = [5 10]
     Par.maxIter = maxIter;
-    for rho = [0.001 0.005 0.01 0.05 0.1 0.5 1 5]
+    for rho = [0.01 0.05 0.1]
         Par.rho = rho;
         for lambda = [2:1:6]
             Par.lambda = 10^(-lambda);
