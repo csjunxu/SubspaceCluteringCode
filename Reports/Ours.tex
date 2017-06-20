@@ -640,7 +640,7 @@ This is a standard LSR problem which can be solved in closed form.
 .
 \end{split}
 \end{equation}
-This is a standard non-negative least squares (NNLS) problem which can be solved by the Lawson and Hanson algorithm \cite{lawsonhanson}.
+This is a standard non-negative least squares (NNLS) constraint problem which can be solved by the active set methods such as  the Lawson and Hanson algorithm \cite{lawsonhanson}. In this problem, since the measurement matrix is an identity matrix, this problem is much easier than the standard NNLS problem. In fact, the solution of $\bm{C}$ can be obtained by setting each element $\bm{C}_{ij}=\max(0,(\bm{A}+\rho^{-1}\bm{\Delta}_{k})_{ij})$.
 
 \textbf{Improvement}: We can also add constraints of $\text{diag}(\bm{C})=\bm{0}$ and/or $\bm{1}^{\top}\bm{C}=\bm{1}^{\top}$ (each column vector is ``sum to one'') to further enhance the performance of the NNLS model. This model only has two parameters, i.e., the penalty parameter $\rho$ and the number of iterations, which are quite robust to different tasks. 
 
