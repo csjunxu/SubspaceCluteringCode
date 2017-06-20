@@ -10,7 +10,7 @@ writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % writefilepath = '';
 
 Repeat = 1; %number of repeations
-DR = 1; % perform dimension reduction or not
+DR = 0; % perform dimension reduction or not
 dim = 12;
 
 %% Subspace segmentation methods
