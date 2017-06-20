@@ -28,8 +28,8 @@ end
 % SegmentationMethod = 'NPLSRd0' ;
 % find a fast solver is still in process
 
-SegmentationMethod = 'ANNLSR' ;
-% SegmentationMethod = 'ANNLSRd0' ;
+% SegmentationMethod = 'ANNLSR' ;
+SegmentationMethod = 'ANNLSRd0' ;
 % SegmentationMethod = 'ANPLSR' ;
 % SegmentationMethod = 'ANPLSRd0' ;
 
