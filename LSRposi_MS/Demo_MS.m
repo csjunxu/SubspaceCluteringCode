@@ -43,8 +43,8 @@ clear seq3;
 % SegmentationMethod = 'LSR' ; % the same with LSR2
 % SegmentationMethod = 'LSRd0' ;
 
-SegmentationMethod = 'NNLSR' ;
-% SegmentationMethod = 'NNLSRd0' ;
+% SegmentationMethod = 'NNLSR' ;
+SegmentationMethod = 'NNLSRd0' ;
 % SegmentationMethod = 'NPLSR' ;
 % SegmentationMethod = 'NPLSRd0' ;
 % find a fast solver is still in process
@@ -58,7 +58,7 @@ for mu = [1]
     Par.mu = mu;
     for maxIter = [5]
         Par.maxIter = maxIter;
-        for rho = [.005 0.06 0.04 0.07 0.03 0.1 0.01]
+        for rho = [.005 0.06 0.04 0.07 0.03]
             Par.rho = rho;
             for lambda = [1:1:6]
                 Par.lambda = 10^(-lambda);
