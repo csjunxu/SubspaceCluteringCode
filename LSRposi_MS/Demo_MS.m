@@ -124,8 +124,13 @@ for mu = [1]
                 end
                 avgallmissrate = sum(allmissrate)/length(allmissrate);
                 medallmissrate = median(allmissrate);
-                matname = sprintf([resultdir dataset '_' SegmentationMethod '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(Par.lambda) '.mat']);
-                save(matname,'avgallmissrate','medallmissrate','missrateTot','avgmissrate','medmissrate');
+                if strcmp(SegmentationMethod, 'LSR')==1 || strcmp(SegmentationMethod, 'LSR1')==1 || strcmp(SegmentationMethod, 'LSR2')==1
+                    matname = sprintf([writefilepath dataset '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_lambda' num2str(Par.lambda) '.mat']);
+                    save(matname,'avgallmissrate','medallmissrate','missrateTot','avgmissrate','medmissrate');
+                else
+                    matname = sprintf([writefilepath dataset '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
+                    save(matname,'avgallmissrate','medallmissrate','missrateTot','avgmissrate','medmissrate');
+                end
             end
         end
     end
