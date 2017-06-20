@@ -46,12 +46,13 @@ while  ( ~terminate )
     Q = (Par.rho*A - Delta)/(2*Par.lambda+Par.rho);
     C = zeros(size(Q));
     for i = 1:size(Q, 2)
-        C(:, i) = lsqnonneg(eye(N), Q(:, i));
+        %         C(:, i) = lsqnonneg(eye(N), Q(:, i));
+        [C(:, i), ~] = fnnls(eye(N), Q(:, i), 1e-3);
         % sum to 1 is not included, slower than solver_BCLS_closedForm
     end
     
-%     %% update Deltas the lagrange multiplier matrix
-%     Delta = Delta + Par.rho * ( C - A);
+    %     %% update Deltas the lagrange multiplier matrix
+    %     Delta = Delta + Par.rho * ( C - A);
     
     %     %% update rho the penalty parameter scalar
     %     Par.rho = min(1e4, Par.mu * Par.rho);
