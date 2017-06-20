@@ -10,6 +10,8 @@ writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 %% Subspace segmentation methods
 % SegmentationMethod = 'LSR' ;
 % SegmentationMethod = 'LSRd0' ;
+% SegmentationMethod = 'LSR1' ;
+% SegmentationMethod = 'LSR2' ;
 
 % SegmentationMethod = 'NNLSR' ;
 % SegmentationMethod = 'NNLSRd0' ;
@@ -65,12 +67,14 @@ for maxIter = [5]
                         Yfea = fea(1:redDim, :) ;
                         for j = 1 : Repeat
                             switch SegmentationMethod
+                                case 'LSR1'
+                                    C = LSR1( Yfea , Par.lambda ) ; % proposed by Lu
+                                case 'LSR2'
+                                    C = LSR2( Yfea , Par.lambda ) ; % proposed by Lu
                                 case 'LSR'
                                     C = LSR( Yfea , Par ) ;
-                                    % C = LSR2( Yfea , Par.lambda ) ; % proposed by Lu
                                 case 'LSRd0'
                                     C = LSRd0( Yfea , Par ) ; % solved by ADMM
-                                    % C = LSR1( Yfea , Par.lambda ) ; % proposed by Lu
                                 case 'NNLSR'                   % non-negative
                                     C = NNLSR( Yfea , Par ) ;
                                 case 'NNLSRd0'               % non-negative, diagonal = 0
