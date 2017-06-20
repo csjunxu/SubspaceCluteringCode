@@ -12,7 +12,7 @@ addpath('fnnls');
 
 dataset = 'Hopkins155';
 
-resultdir = 'C:/Users/csjunxu/Desktop/SC/Results/';
+writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 
 for i=1:length(seq3)
     fname = seq3(i).name;
@@ -40,8 +40,8 @@ clear seq3;
 % SegmentationMethod = 'LSR1' ; % 4.8
 % SegmentationMethod = 'LSR2' ; % 4.6
 
-SegmentationMethod = 'LSR' ;
-% SegmentationMethod = 'LSRd0' ;
+% SegmentationMethod = 'LSR' ;
+SegmentationMethod = 'LSRd0' ;
 
 % SegmentationMethod = 'NNLSR' ;
 % SegmentationMethod = 'NNLSRd0' ;
@@ -58,10 +58,10 @@ for mu = [1]
     Par.mu = mu;
     for maxIter = [5]
         Par.maxIter = maxIter;
-        for rho = [.005]
+        for rho = [.005 0.001 0.01]
             Par.rho = rho;
-            for lambda = [5:5:100]
-                Par.lambda = lambda*10^(-4);
+            for lambda = [1:1:6]
+                Par.lambda = 10^(-lambda);
                 maxNumGroup = 5;
                 for i = 1:maxNumGroup
                     num(i) = 0;
