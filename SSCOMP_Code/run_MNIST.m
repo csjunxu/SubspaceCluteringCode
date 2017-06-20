@@ -43,7 +43,7 @@ buildRepresentation = @(data) OMP_mat_func(data, 10, 1e-6); % second parameter i
 genLabel = @(affinity, nCluster) SpectralClustering(affinity, nCluster, 'Eig_Solver', 'eigs');
 
 %% Load data
-addpath('C:\Users\csjunxu\Desktop\SC\SSCOMP_Code\MNIST\')
+addpath('C:\Users\csjunxu\Desktop\SC\Datasets\MNIST\')
 if ~exist('MNIST_DATA', 'var')
     try
         % MNIST_SC_DATA is a D by N matrix. Each column contains a feature 
