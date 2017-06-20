@@ -3,7 +3,7 @@ clear ;
 
 load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleBCrop025.mat';
 % load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat'   % load USPS dataset
-dataset = 'YaleBCrop025';
+dataset = 'YaleB_SSC';
 
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 
@@ -30,7 +30,7 @@ for maxIter = [5]
     Par.maxIter = maxIter;
     for mu = [1]
         Par.mu = mu;
-        for rho = [0.01 0.05]
+        for rho = [0.05]
             Par.rho = rho;
             for lambda = [1:1:5]
                 Par.lambda = 10^(-lambda);
@@ -67,6 +67,7 @@ for maxIter = [5]
                             switch SegmentationMethod
                                 case 'LSR'
                                     C = LSR( Yfea , Par ) ;
+                                    % C = LSR2( Yfea , Par.lambda ) ; % proposed by Lu
                                 case 'LSRd0'
                                     C = LSRd0( Yfea , Par ) ; % solved by ADMM
                                     % C = LSR1( Yfea , Par.lambda ) ; % proposed by Lu
@@ -101,7 +102,7 @@ for maxIter = [5]
                     end
                     avgmissrate(n) = mean(missrateTot{n});
                     medmissrate(n) = median(missrateTot{n});
-                    matname = sprintf([writefilepath 'YaleB_SSC_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(Par.lambda) '.mat']);
+                    matname = sprintf([writefilepath dataset '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(Par.lambda) '.mat']);
                     save(matname,'missrateTot','avgmissrate','medmissrate');
                 end
                 matname = sprintf([writefilepath dataset '_' SegmentationMethod '_DR' num2str(DR) '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_mu' num2str(Par.mu) '_lambda' num2str(Par.lambda) '.mat']);

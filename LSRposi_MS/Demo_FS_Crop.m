@@ -4,7 +4,7 @@ clear ;
 load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'              % load YaleB dataset
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % writefilepath = '';
-
+dataset = 'YaleB_LSR';
 Repeat = 1; %number of repeations
 DR = 1; % perform dimension reduction or not
 dim = 6;
@@ -22,7 +22,7 @@ dim = 6;
 % SegmentationMethod = 'ANNLSR' ;
 % SegmentationMethod = 'ANNLSRd0' ;
 % SegmentationMethod = 'ANPLSR' ;
-SegmentationMethod = 'ANPLSRd0' ;
+% SegmentationMethod = 'ANPLSRd0' ;
 
 %% Subspace segmentation
 for maxIter = [5]
@@ -64,6 +64,7 @@ for maxIter = [5]
                         switch SegmentationMethod
                             case 'LSR'
                                 C = LSR( Yfea , Par ) ;
+                                % C = LSR2( Yfea , Par.lambda ) ; % proposed by Lu
                             case 'LSRd0'
                                 C = LSRd0( Yfea , Par ) ; % solved by ADMM
                                 % C = LSR1( Yfea , Par.lambda ) ; % proposed by Lu
@@ -99,7 +100,7 @@ for maxIter = [5]
                 avgmissrate(n) = mean(missrateTot{n});
                 medmissrate(n) = median(missrateTot{n});
                 fprintf('Total mean error  is %.3f%%.\n ' , avgmissrate(n)) ;
-                matname = sprintf([writefilepath 'YaleB_LSR_' SegmentationMethod '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
+                matname = sprintf([writefilepath DATASET '_' SegmentationMethod '_dim' num2str(dim) '_maxIter' num2str(Par.maxIter) '_rho' num2str(Par.rho) '_lambda' num2str(Par.lambda) '.mat']);
                 save(matname,'missrateTot','avgmissrate','medmissrate');
             end
         end
