@@ -26,7 +26,14 @@ SegmentationMethod = 'LSR1' ;
 
 Repeat = 1; %number of repeations
 DR = 1; % dimension reduction
-dim = 6;
+if DR == 0
+    dim = size(Y, 1);
+elseif DR == 1
+    dim = 6;
+else
+    DR = 1;
+    dim = 6;
+end
 %% Subspace segmentation
 for maxIter = [5]
     Par.maxIter = maxIter;
@@ -35,7 +42,7 @@ for maxIter = [5]
         for rho = [0.05]
             Par.rho = rho;
             for lambda = [1:2:9]
-                Par.lambda = lambda * 10^(-2);
+                Par.lambda = lambda * 10^(-3);
                 for nSet = [2 3 5 8 10]
                     n = nSet;
                     index = Ind{n};
