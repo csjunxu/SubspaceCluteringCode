@@ -44,9 +44,10 @@ while  ( ~terminate )
     
     %% update C the data term matrix
     Q = (Par.rho*A - Delta)/(2*Par.lambda+Par.rho);
-    C = zeros(size(Q));
+    C1 = max(0, Q);
+    C2 = zeros(size(Q));
     for i = 1:size(Q, 2)
-        C(:, i) = lsqnonneg(eye(N), Q(:, i));
+        C2(:, i) = lsqnonneg(eye(N), Q(:, i));
         %         [C(:, i), ~] = fnnls(eye(N), Q(:, i), 1e-3);
         % sum to 1 is not included, slower than solver_BCLS_closedForm
     end
