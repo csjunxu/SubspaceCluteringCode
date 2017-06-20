@@ -62,7 +62,7 @@ for maxIter = [5]
                             [ eigvector , eigvalue ] = PCA( fea ) ;
                             maxDim = length(eigvalue);
                             fea = eigvector' * fea ;
-                            redDim = nSet * dim ;
+                            redDim = min(nSet*dim, size(fea, 1)) ;
                         end
                         
                         % normalize

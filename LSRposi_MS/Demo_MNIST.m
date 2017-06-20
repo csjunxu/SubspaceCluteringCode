@@ -84,7 +84,7 @@ for maxIter = [5 10]
                     
                     mask( nSample_cum(iK) + 1 : nSample_cum(iK+1) ) = selpos;
                     s( nSample_cum(iK) + 1 : nSample_cum(iK+1) ) = iK * ones(1, nSample(iK));
-                end
+                end 
                 fea = MNIST_DATA(:, mask);
                 N = length(s);
                 
@@ -92,9 +92,9 @@ for maxIter = [5 10]
                 redDim = size(fea, 1);
                 if DR == 1
                     [ eigvector , eigvalue ] = PCA( fea ) ;
-                    maxDim = length(eigvalue);
+                    maxDim = length(eigvalue) ;
                     fea = eigvector' * fea ;
-                    redDim = dim ;
+                    redDim = min(dim, size(fea, 1)) ;
                 end
                 %% normalize
                 for c = 1 : size(fea,2)
