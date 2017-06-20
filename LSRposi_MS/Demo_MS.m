@@ -55,7 +55,7 @@ SegmentationMethod = 'LSR1' ; % 4.8
 
 for mu = [1]
     Par.mu = mu;
-    for maxIter = [5 10]
+    for maxIter = [5]
         Par.maxIter = maxIter;
         for rho = [.005]
             Par.rho = rho;
@@ -74,13 +74,13 @@ for mu = [1]
                     n = max(gnd);
                     switch SegmentationMethod
                         case 'LSR1'
-                            C = LSR1( Yfea , Par.lambda ) ; % proposed by Lu
+                            C = LSR1( ProjX , Par.lambda ) ; % proposed by Lu
                         case 'LSR2'
-                            C = LSR2( Yfea , Par.lambda ) ; % proposed by Lu
+                            C = LSR2( ProjX , Par.lambda ) ; % proposed by Lu
                         case 'LSR'
-                            C = LSR( Yfea , Par ) ;
+                            C = LSR( ProjX , Par ) ;
                         case 'LSRd0'
-                            C = LSRd0( Yfea , Par ) ; % solved by ADMM
+                            C = LSRd0( ProjX , Par ) ; % solved by ADMM
                         case 'NNLSR'                   % non-negative
                             C = NNLSR( ProjX , Par ) ;
                         case 'NNLSRd0'               % non-negative, diagonal = 0
