@@ -29,6 +29,11 @@ Liansheng Zhuang, Haoyuan Gao, Zhouchen Lin, Yi~Ma, Xin Zhang, and Nenghai Yu.
 \newblock {\em Computer Vision and Pattern Recognition (CVPR), 2012 IEEE
   Conference on}, pages 2328--2335, 2012.
 
+\bibitem{nmfnature}
+Daniel~D Lee and H~Sebastian Seung.
+\newblock Learning the parts of objects by non-negative matrix factorization.
+\newblock {\em Nature}, 401(6755):788--791, 1999.
+
 \bibitem{slawski2013non}
 Martin Slawski, Matthias Hein, et~al.
 \newblock Non-negative least squares for high-dimensional linear models:
@@ -78,5 +83,10 @@ Lei Zhang, Meng Yang, and Xiangchu Feng.
 J.~Nocedal and S.~J. Wright.
 \newblock {\em Numerical Optimization}.
 \newblock Springer, New York, 2nd edition, 2006.
+
+\bibitem{lawsonhanson}
+Charles~L Lawson and Richard~J Hanson.
+\newblock {\em Solving least squares problems}.
+\newblock SIAM, 1995.
 
 \end{thebibliography}

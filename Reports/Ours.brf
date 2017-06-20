@@ -3,6 +3,8 @@
 \backcite {lrricml}{{1}{1}{section.1}}
 \backcite {lrrpami}{{1}{1}{section.1}}
 \backcite {nnlrs}{{1}{1.1}{subsection.1.1}}
+\backcite {nmfnature}{{1}{1.1}{subsection.1.1}}
+\backcite {nmfnature}{{1}{1.1}{subsection.1.1}}
 \backcite {slawski2013non}{{1}{1.1}{subsection.1.1}}
 \backcite {kim2007interior}{{2}{1.1}{subsection.1.1}}
 \backcite {admm}{{2}{1.1}{subsection.1.1}}
@@ -15,3 +17,4 @@
 \backcite {lsr}{{3}{5}{section.5}}
 \backcite {crc}{{3}{5}{section.5}}
 \backcite {Nocedal2006NO}{{4}{5}{equation.5.15}}
+\backcite {lawsonhanson}{{5}{8}{equation.8.24}}
