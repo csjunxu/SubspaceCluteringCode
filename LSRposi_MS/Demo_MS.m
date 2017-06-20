@@ -45,8 +45,8 @@ clear seq3;
 
 % SegmentationMethod = 'NNLSR' ;
 % SegmentationMethod = 'NNLSRd0' ;
-SegmentationMethod = 'NPLSR' ;
-% SegmentationMethod = 'NPLSRd0' ;
+SegmentationMethod = 'NPLSR' ; % SVD 的输入不能包含 NaN 或 Inf。
+% SegmentationMethod = 'NPLSRd0' ; % SVD 的输入不能包含 NaN 或 Inf。
 % find a fast solver is still in process
 
 % SegmentationMethod = 'ANNLSR' ;
