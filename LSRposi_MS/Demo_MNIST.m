@@ -134,7 +134,6 @@ for maxIter = [5 10]
                 end
                 Z = ( abs(C) + abs(C') ) / 2 ; % abs is useless in our model
                 %% generate label
-                fprintf('Generate label...\n')
                 idx = clu_ncut(Z, nCluster) ;
                 %% Evaluation
                 missrate(i) = 1 - compacc(idx, gnd);
