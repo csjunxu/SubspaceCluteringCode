@@ -56,7 +56,7 @@ SegmentationMethod = 'LSRd0' ;
 %% Subspace segmentation
 for maxIter = [5 10]
     Par.maxIter = maxIter;
-    for rho = [0.1 0.05 0.01]
+    for rho = [0.02:0.02:0.08]
         Par.rho = rho;
         for lambda = [1:1:9 .1:.1:.9 .01:.01:.09]
             Par.lambda = lambda*10^(-2);
