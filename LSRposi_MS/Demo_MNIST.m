@@ -4,7 +4,7 @@ addpath('MNISThelpcode');
 addpath('C:\Users\csjunxu\Documents\GitHub\SubspaceCluteringCode\SSCOMP_Code\scatnet-0.2');
 %% Settings
 % setup
-nSample = 600; % number of images for each digit
+nSample = 100; % number of images for each digit
 
 %% Load data
 addpath('C:\Users\csjunxu\Desktop\SC\Datasets\MNIST\')
