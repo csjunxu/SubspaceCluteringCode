@@ -19,7 +19,7 @@ end
 %% Subspace segmentation methods
 % SegmentationMethod = 'LSR' ;
 % SegmentationMethod = 'LSRd0' ;
-% SegmentationMethod = 'LSR1' ;
+SegmentationMethod = 'LSR1' ;
 % SegmentationMethod = 'LSR2' ;
 
 % SegmentationMethod = 'NNLSR' ;
@@ -30,7 +30,7 @@ end
 
 % SegmentationMethod = 'ANNLSR' ;
 % SegmentationMethod = 'ANNLSRd0' ;
-SegmentationMethod = 'ANPLSR' ;
+% SegmentationMethod = 'ANPLSR' ;
 % SegmentationMethod = 'ANPLSRd0' ;
 
 %% Subspace segmentation
