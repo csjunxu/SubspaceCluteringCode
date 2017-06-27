@@ -20,11 +20,11 @@ end
 % SegmentationMethod = 'LSR' ;
 % SegmentationMethod = 'LSRd0' ;
 % SegmentationMethod = 'LSR1' ;
-SegmentationMethod = 'LSR2' ;
+% SegmentationMethod = 'LSR2' ;
 
 % SegmentationMethod = 'NNLSR' ;
 % SegmentationMethod = 'NNLSRd0' ;
-% SegmentationMethod = 'NPLSR' ;
+aSegmentationMethod = 'NPLSR' ;
 % SegmentationMethod = 'NPLSRd0' ;
 % find a fast solver is still in process
 
