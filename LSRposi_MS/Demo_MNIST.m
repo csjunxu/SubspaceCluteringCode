@@ -54,9 +54,9 @@ SegmentationMethod = 'ANNLSR' ;
 % SegmentationMethod = 'ANPLSR' ;
 % SegmentationMethod = 'ANPLSRd0' ;
 %% Subspace segmentation
-for maxIter = [5 10]
+for maxIter = [5]
     Par.maxIter = maxIter;
-    for rho = [0.1 0.05 0.01 0.005 0.001]
+    for rho = [0.01:0.01:0.09]
         Par.rho = rho;
         for lambda = [1:1:9 .1:.1:.9 .01:.01:.09]
             Par.lambda = lambda*10^(-2);
