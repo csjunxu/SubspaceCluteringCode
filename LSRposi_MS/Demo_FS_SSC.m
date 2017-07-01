@@ -12,13 +12,13 @@ writefilepath = ['C:/Users/csjunxu/Desktop/SC/Results/' dataset '/'];
 % SegmentationMethod = 'LSR1' ;
 % SegmentationMethod = 'LSR2' ;
 
-SegmentationMethod = 'NNLSR' ;
+% SegmentationMethod = 'NNLSR' ;
 % SegmentationMethod = 'NNLSRd0' ;
 % SegmentationMethod = 'NPLSR' ;
 % SegmentationMethod = 'NPLSRd0' ;
 % find a fast solver is still in process
 
-% SegmentationMethod = 'ANNLSR' ;
+SegmentationMethod = 'ANNLSR' ;
 % SegmentationMethod = 'ANNLSRd0' ;
 % SegmentationMethod = 'ANPLSR' ;
 % SegmentationMethod = 'ANPLSRd0' ;
@@ -38,10 +38,10 @@ for maxIter = [5]
     Par.maxIter = maxIter;
     for mu = [1]
         Par.mu = mu;
-        for rho = [0.05]
+        for rho = [0.01 0.1 0.5 1]
             Par.rho = rho;
-            for lambda = [1:1:6]
-                Par.lambda = 10^(-lambda);
+            for lambda = [0]
+                Par.lambda = lambda*10^(-4);
                 for nSet = [2 3 5 8 10]
                     n = nSet;
                     index = Ind{n};
