@@ -1052,32 +1052,44 @@ We evaluate the advantages of the proposed NNLSR method on subspace clustering p
 \end{itemize}
 
 
-\subsection{Subste Selection}
+\subsubsection{Motion Segmentation}
 
 
 
-
-\begin{table*}[hbp]
-\caption{Accracy (\%) of different algorithms as a function of the frction of selected samples from each class ($\eta$) on the MNIST dataset \cite{mnist}.}
+\begin{table}[hbp]
+\caption{Clustering error (\%) of different algorithms on the Hopkins 155 dataset \cite{hopkins} with the 12-dimensional data points obtained by applying PCA.}
 \label{t3}
 \vspace{-4mm}
 \begin{center}
 \renewcommand\arraystretch{1}
-%\scriptsize
-\huge
-\begin{tabular*}{1\textwidth}{@{\extracolsep{\fill}}ccccccccccc}
+\scriptsize
+%\huge
+\begin{tabular}{ccccc}
 \Xhline{0.5pt}
-Ratio
+Algorithms
 &
-\textbf{AF}
+\textbf{SSC}\cite{ssc}
 &
-\textbf{?1}
+\textbf{LRR}\cite{lrr}
 &
-\textbf{?2}
+\textbf{LRSC}\cite{lrsc}
 &
-\textbf{DS3}
-&
-\textbf{LSR}
+\textbf{LSR1}\cite{lsr}
+\\
+\Xhline{1.2pt}
+Mean & 2.18 & 2.56 &  & 2.97 
+\\
+\Xhline{0.5pt}
+Median & 0.00 & 0.00 & 0.00 & 0.28
+\\
+\Xhline{0.5pt}
+Max &  &  &  &  
+\\
+\Xhline{0.5pt}
+Time &  &  &  &  
+\\
+\Xhline{0.5pt}
+Algorithms
 &
 \textbf{NNLSR}
 &
@@ -1088,28 +1100,154 @@ Ratio
 \textbf{ANPLSR}
 \\
 \Xhline{1.2pt}
-$0.1$ &  &  &  &  &  &  &  &  & 
+Mean &  &  &  &  
 \\
 \Xhline{0.5pt}
-$0.2$ &  &  &  &  &  &  &  &  & 
+Median & 0.00 &  & 0.00 &  
 \\
 \Xhline{0.5pt}
-$0.3$ &  &  &  &  &  &  &  &  & 
+Max &  &  &  &  
 \\
 \Xhline{0.5pt}
-$0.4$ &  &  &  &  &  &  &  &  & 
+Time &  &  &  &  
 \\
-\Xhline{0.5pt}
-$0.5$ &  &  &  &  &  &  &  &  & 
-\\
-\Xhline{0.5pt}
-\end{tabular*}
+\Xhline{0.5pt} 
+\end{tabular}
 \end{center}
 \vspace{-3mm}
-\end{table*}
+\end{table}
+
+
+\subsection{Subste Selection}
+
+
+
+
+\begin{table}[hbp]
+\caption{Accracy (\%) of different algorithms as a function of the frction of selected samples from each class ($\eta$) on the MNIST dataset \cite{mnist}.}
+\label{t3}
+\vspace{-4mm}
+\begin{center}
+\renewcommand\arraystretch{1}
+\scriptsize
+%\huge
+\begin{tabular}{ccccc}
+\Xhline{0.5pt}
+Algorithms
+&
+\textbf{SSC}\cite{ssc}
+&
+\textbf{LRR}\cite{lrr}
+&
+\textbf{LRSC}\cite{lrsc}
+&
+\textbf{LSR}\cite{lsr}
+\\
+\Xhline{1.2pt}
+Mean & 2.18 &  &  &  
+\\
+\Xhline{0.5pt}
+Median &  &  &  &  
+\\
+\Xhline{0.5pt}
+Max &  &  &  &  
+\\
+\Xhline{0.5pt}
+Time &  &  &  &  
+\\
+\Xhline{0.5pt}
+Algorithms
+&
+\textbf{NNLSR}
+&
+\textbf{NPLSR}
+&
+\textbf{ANNLSR}
+&
+\textbf{ANPLSR}
+\\
+\Xhline{1.2pt}
+Mean &  &  &  &  
+\\
+\Xhline{0.5pt}
+Median &  &  &  &  
+\\
+\Xhline{0.5pt}
+Max &  &  &  &  
+\\
+\Xhline{0.5pt}
+Time &  &  &  &  
+\\
+\Xhline{0.5pt} 
+\end{tabular}
+\end{center}
+\vspace{-3mm}
+\end{table}
 
 \subsection{Image Classification}
 We compare the proposed method with ScSPM \cite{} and LLC \cite{} on UIUC psorts dataset \cite{} and Scene15 \cite{} dataset. 
+
+
+\begin{table}[hbp]
+\caption{Clustering error (\%) of different algorithms on the Hopkins 155 dataset \cite{hopkins} with the 12-dimensional data points obtained by applying PCA.}
+\label{t3}
+\vspace{-4mm}
+\begin{center}
+\renewcommand\arraystretch{1}
+\scriptsize
+%\huge
+\begin{tabular}{ccccc}
+\Xhline{0.5pt}
+Algorithms
+&
+\textbf{SSC}\cite{ssc}
+&
+\textbf{LRR}\cite{lrr}
+&
+\textbf{LRSC}\cite{lrsc}
+&
+\textbf{LSR}\cite{lsr}
+\\
+\Xhline{1.2pt}
+Mean & 2.18 &  &  &  
+\\
+\Xhline{0.5pt}
+Median &  &  &  &  
+\\
+\Xhline{0.5pt}
+Max &  &  &  &  
+\\
+\Xhline{0.5pt}
+Time &  &  &  &  
+\\
+\Xhline{0.5pt}
+Algorithms
+&
+\textbf{NNLSR}
+&
+\textbf{NPLSR}
+&
+\textbf{ANNLSR}
+&
+\textbf{ANPLSR}
+\\
+\Xhline{1.2pt}
+Mean &  &  &  &  
+\\
+\Xhline{0.5pt}
+Median &  &  &  &  
+\\
+\Xhline{0.5pt}
+Max &  &  &  &  
+\\
+\Xhline{0.5pt}
+Time &  &  &  &  
+\\
+\Xhline{0.5pt} 
+\end{tabular}
+\end{center}
+\vspace{-3mm}
+\end{table}
 
 
 \subsection{Complexity Analysis and Comparison}
