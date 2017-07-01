@@ -22,7 +22,7 @@ SegmentationMethod = 'ANNLSR' ;
 % SegmentationMethod = 'ANNLSRd0' ;
 % SegmentationMethod = 'ANPLSR' ;
 % SegmentationMethod = 'ANPLSRd0' ;
-
+  
 Repeat = 1; %number of repeations
 DR = 1; % dimension reduction
 if DR == 0
