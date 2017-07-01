@@ -27,7 +27,7 @@ end
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % writefilepath = '';
 dataset = 'MNIST';
-nExperiment = 20;%number of repeations
+nExperiment = 5; % number of repeations
 DR = 1; % perform dimension reduction or not
 if DR == 0
     dim = size(Y{1, 1}, 1);
