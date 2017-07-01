@@ -10,7 +10,7 @@ writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % writefilepath = '';
 
 Repeat = 1; %number of repeations
-DR = 0; % perform dimension reduction or not
+DR = 1; % perform dimension reduction or not
 if DR == 0
     dim = size(Y{1, 1}, 1);
 elseif DR == 1
@@ -22,6 +22,8 @@ end
 %% Subspace segmentation methods
 % SegmentationMethod = 'LSR' ;
 % SegmentationMethod = 'LSRd0' ;
+SegmentationMethod = 'LSR1' ;
+% SegmentationMethod = 'LSR2' ;
 
 % SegmentationMethod = 'NNLSR' ;
 % SegmentationMethod = 'NNLSRd0' ;
@@ -30,18 +32,18 @@ end
 % find a fast solver is still in process
 
 % SegmentationMethod = 'ANNLSR' ;
-SegmentationMethod = 'ANNLSRd0' ;
+% SegmentationMethod = 'ANNLSRd0' ;
 % SegmentationMethod = 'ANPLSR' ;
 % SegmentationMethod = 'ANPLSRd0' ;
 
 %% Subspace segmentation
-for maxIter = [5 10]
+for maxIter = [5]
     Par.maxIter = maxIter;
-    for rho = [0.001 0.005 0.01 0.05 0.1 0.5 1 5]
+    for rho = [0.001]
         Par.rho = rho;
-        for lambda = [2:1:6]
-            Par.lambda = 10^(-lambda);
-            for nSet = [2 3 5 8 10] % nSet = [2:1:10];
+        for lambda = [0 1 10 1e2 1e3 1e4]
+            Par.lambda =lambda*10^(-4);
+            for nSet = [2 3 5 8 10]
                 n = nSet;
                 index = Ind{n};
                 for i = 1:size(index,1)
@@ -59,24 +61,26 @@ for maxIter = [5 10]
                         [ eigvector , eigvalue ] = PCA( fea ) ;
                         maxDim = length(eigvalue);
                         fea = eigvector' * fea ;
-                        redDim = n * dim ;
+                        redDim = min(n*dim, size(fea, 1)) ;
                     end
                     %% normalize
                     for c = 1 : size(fea,2)
                         fea(:,c) = fea(:,c) /norm(fea(:,c)) ;
                     end
-                    
                     %% Subspace Clustering
                     missrate = zeros(size(index, 1), Repeat) ;
                     fprintf( 'dimension = %d \n', redDim ) ;
                     Yfea = fea(1:redDim, :) ;
                     for j = 1 : Repeat
                         switch SegmentationMethod
+                            case 'LSR1'
+                                C = LSR1( Yfea , Par.lambda ) ; % proposed by Lu
+                            case 'LSR2'
+                                C = LSR2( Yfea , Par.lambda ) ; % proposed by Lu
                             case 'LSR'
                                 C = LSR( Yfea , Par ) ;
                             case 'LSRd0'
                                 C = LSRd0( Yfea , Par ) ; % solved by ADMM
-                                % C = LSR1( Yfea , Par.lambda ) ; % proposed by Lu
                             case 'NNLSR'                   % non-negative
                                 C = NNLSR( Yfea , Par ) ;
                             case 'NNLSRd0'               % non-negative, diagonal = 0

@@ -29,7 +29,6 @@ SegmentationMethod = 'LSR1' ;
 % SegmentationMethod = 'NNLSRd0' ;
 % SegmentationMethod = 'NPLSR' ;
 % SegmentationMethod = 'NPLSRd0' ;
-% find a fast solver is still in process
 
 % SegmentationMethod = 'ANNLSR' ;
 % SegmentationMethod = 'ANNLSRd0' ;
