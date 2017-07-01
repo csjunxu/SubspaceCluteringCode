@@ -20,7 +20,7 @@ if ~exist('MNIST_DATA', 'var')
     end
     MNIST_DATA = MNIST_SC_DATA;
 end
-
+ 
 writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 % writefilepath = '';
 dataset = 'MNIST';
