@@ -17,14 +17,28 @@
 \usepackage{bm}
 \DeclareMathOperator*{\argmin}{arg\,min}
 \usepackage{arydshln}
-\usepackage{latexsym}
 
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{conj}[theorem]{Conjecture}
 
-% Include other packages here, before hyperref.
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{url}            % simple URL typesetting
+\usepackage{latexsym}
+\usepackage{makecell}
+\usepackage{boldline}
+\setcellgapes{3pt}
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{microtype}      % microtypography
+
+\usepackage{tabularx}
+
+
+
+\renewcommand{\huge}{\fontsize{8.6pt}{\baselineskip}\selectfont}
+
+
 
 % If you comment hyperref and then uncomment it, you should delete
 % egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
@@ -1043,6 +1057,56 @@ We evaluate the advantages of the proposed NNLSR method on subspace clustering p
 
 
 
+\begin{table*}[hbp]
+\caption{Accracy (\%) of different algorithms as a function of the frction of selected samples from each class ($\eta$) on the MNIST dataset \cite{mnist}.}
+\label{t3}
+\vspace{-4mm}
+\begin{center}
+\renewcommand\arraystretch{1}
+%\scriptsize
+\huge
+\begin{tabular*}{1\textwidth}{@{\extracolsep{\fill}}ccccccccccc}
+\Xhline{0.5pt}
+Ratio
+&
+\textbf{AF}
+&
+\textbf{?1}
+&
+\textbf{?2}
+&
+\textbf{DS3}
+&
+\textbf{LSR}
+&
+\textbf{NNLSR}
+&
+\textbf{NPLSR}
+&
+\textbf{ANNLSR}
+&
+\textbf{ANPLSR}
+\\
+\Xhline{1.2pt}
+$0.1$ &  &  &  &  &  &  &  &  & 
+\\
+\Xhline{0.5pt}
+$0.2$ &  &  &  &  &  &  &  &  & 
+\\
+\Xhline{0.5pt}
+$0.3$ &  &  &  &  &  &  &  &  & 
+\\
+\Xhline{0.5pt}
+$0.4$ &  &  &  &  &  &  &  &  & 
+\\
+\Xhline{0.5pt}
+$0.5$ &  &  &  &  &  &  &  &  & 
+\\
+\Xhline{0.5pt}
+\end{tabular*}
+\end{center}
+\vspace{-3mm}
+\end{table*}
 
 \subsection{Image Classification}
 We compare the proposed method with ScSPM \cite{} and LLC \cite{} on UIUC psorts dataset \cite{} and Scene15 \cite{} dataset. 
