@@ -4,8 +4,8 @@ clear;
 % load 'YaleBa.mat';
 
 %% USPS
-load 'USPS.mat';
-fea = fea';
+load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS.mat';
+fea = fea' - min(min(fea));
 
 % %% MNIST
 % load 'MNIST.mat';
@@ -23,5 +23,5 @@ for i = 1:nSet
 end
 Ind = USPSInd;
 
-save USPS_Crop.mat Y S Ind;
+save C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat Y S Ind;
     

@@ -36,7 +36,7 @@
 
 
 
-\renewcommand{\huge}{\fontsize{8.6pt}{\baselineskip}\selectfont}
+\renewcommand{\huge}{\fontsize{6pt}{\baselineskip}\selectfont}
 
 
 
@@ -1062,9 +1062,9 @@ We evaluate the advantages of the proposed NNLSR method on subspace clustering p
 \vspace{-4mm}
 \begin{center}
 \renewcommand\arraystretch{1}
-\scriptsize
-%\huge
-\begin{tabular}{ccccc}
+%\scriptsize
+\huge
+\begin{tabular}{ccccccc}
 \Xhline{0.5pt}
 Algorithms
 &
@@ -1075,35 +1075,43 @@ Algorithms
 \textbf{LRSC}\cite{lrsc}
 &
 \textbf{LSR1}\cite{lsr}
-\\
-\Xhline{1.2pt}
-Mean & 2.18 & 2.56 &  & 2.97 
-\\
-\Xhline{0.5pt}
-Median & 0.00 & 0.00 & 0.00 & 0.28 
-\\
-\Xhline{0.5pt}
-Time &  &  &  &  
-\\
-\Xhline{0.5pt}
-Algorithms
 &
 \textbf{NNLSR}
 &
 \textbf{NPLSR}
+\\
+\Xhline{1.2pt}
+Mean & 2.18 & 2.56 &  & 2.97 &  &  
+\\
+\Xhline{0.5pt}
+Median & 0.00 & 0.00 & 0.00 & 0.28 &  &  
+\\
+\Xhline{0.5pt}
+Time &  &  &  &  &  &  
+\\
+\Xhline{0.5pt}
+Algorithms
+&
+\textbf{NNLSRd0}
+&
+\textbf{NPLSRd0}
 &
 \textbf{ANNLSR}
 &
 \textbf{ANPLSR}
+&
+\textbf{ANNLSRd0}
+&
+\textbf{ANPLSRd0}
 \\
 \Xhline{1.2pt}
-Mean &  &  &  &  
+Mean &  &  &  &  &  &  
 \\
 \Xhline{0.5pt}
-Median & 0.00 &  & 0.00 &  
+Median & 0.00 &  & 0.00 &  &  &  
 \\
 \Xhline{0.5pt}
-Time &  &  &  &  
+Time &  &  &  &  &  &   
 \\
 \Xhline{0.5pt} 
 \end{tabular}
