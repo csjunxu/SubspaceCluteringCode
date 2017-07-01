@@ -4,8 +4,7 @@ clear ;
 load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleBCrop025.mat';
 % load 'C:\Users\csjunxu\Desktop\SC\Datasets\USPS_Crop.mat'   % load USPS dataset
 dataset = 'YaleB_SSC';
-
-writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
+writefilepath = ['C:/Users/csjunxu/Desktop/SC/Results/' dataset '/'];
 
 %% Subspace segmentation methods
 % SegmentationMethod = 'LSR' ;

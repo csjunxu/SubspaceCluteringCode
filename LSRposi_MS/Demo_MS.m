@@ -11,8 +11,8 @@ data = struct('ProjX', {}, 'name',{}, 'ids',{});
 addpath('fnnls');
 
 dataset = 'Hopkins155';
+writefilepath = ['C:/Users/csjunxu/Desktop/SC/Results/' dataset '/'];
 
-writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
 
 for i=1:length(seq3)
     fname = seq3(i).name;

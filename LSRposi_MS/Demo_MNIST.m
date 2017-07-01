@@ -24,9 +24,10 @@ if ~exist('MNIST_DATA', 'var')
     MNIST_DATA = MNIST_SC_DATA;
 end
 
-writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
-% writefilepath = '';
+
 dataset = 'MNIST';
+writefilepath = ['C:/Users/csjunxu/Desktop/SC/Results/' dataset '/'];
+
 nExperiment = 5; % number of repeations
 DR = 1; % perform dimension reduction or not
 if DR == 0

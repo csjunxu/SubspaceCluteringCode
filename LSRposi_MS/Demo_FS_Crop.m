@@ -2,9 +2,10 @@
 clear ;
 
 load 'C:\Users\csjunxu\Desktop\SC\Datasets\YaleB_Crop.mat'              % load YaleB dataset
-writefilepath = 'C:/Users/csjunxu/Desktop/SC/Results/';
-% writefilepath = '';
+
 dataset = 'YaleB_LSR';
+writefilepath = ['C:/Users/csjunxu/Desktop/SC/Results/' dataset '/'];
+
 Repeat = 1; %number of repeations
 DR = 1; % perform dimension reduction or not
 if DR == 0
