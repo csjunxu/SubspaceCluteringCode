@@ -27,19 +27,18 @@ end
 % SegmentationMethod = 'NNLSRd0' £»
 % SegmentationMethod = 'NPLSR' ;
 % SegmentationMethod = 'NPLSRd0' ;
-% find a fast solver is still in process
 
-% SegmentationMethod = 'ANNLSR' ;
+SegmentationMethod = 'ANNLSR' ;
 % SegmentationMethod = 'ANNLSRd0' ;
 % SegmentationMethod = 'ANPLSR' ;
-SegmentationMethod = 'ANPLSRd0' ;
+% SegmentationMethod = 'ANPLSRd0' ;
 
 %% Subspace segmentation
 for maxIter = [5]
     Par.maxIter = maxIter;
-    for rho = [0.01:0.01:0.1]
+    for rho = [0.1:0.05:0.5]
         Par.rho = rho;
-        for lambda = [0 1 10]
+        for lambda = [0 1]
             Par.lambda = lambda*10^(-4);
             for nSet = [2 3 5 8 10]
                 n = nSet;
